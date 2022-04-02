@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from polymorphic.models import PolymorphicModel
+from adminsortable.models import SortableMixin
 
 class Plan(models.Model):
     name = models.CharField(_("name"), max_length=150)
@@ -13,10 +14,11 @@ class Plan(models.Model):
         verbose_name = _("plan")
         verbose_name_plural = _("plans")
 
-class PlanDisplayFeature(models.Model):
+class PlanDisplayFeature(SortableMixin):
     plan = models.ForeignKey(
         Plan, related_name="display_features", on_delete=models.CASCADE, verbose_name=_("plan")
     )
+    the_order = models.PositiveIntegerField(_('order'), default=0, editable=False, db_index=True)
     enabled = models.BooleanField(_("enabled"), default=True)
     name = models.CharField(_("name"), max_length=150)
 
@@ -24,6 +26,7 @@ class PlanDisplayFeature(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['the_order']
         verbose_name = _("plan display feature")
         verbose_name_plural = _("plan display features")
 

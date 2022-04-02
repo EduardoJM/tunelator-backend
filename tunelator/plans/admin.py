@@ -7,6 +7,7 @@ from polymorphic.admin import (
     PolymorphicInlineSupportMixin,
     StackedPolymorphicInline
 )
+from adminsortable.admin import SortableTabularInline, NonSortableParentAdmin
 from plans.models import (
     Plan,
     PlanConfigurationStringItem,
@@ -44,8 +45,9 @@ class PlanConfigurationItemAdmin(PolymorphicParentModelAdmin):
         return '-'
     display_value.short_description = _('value')
 
-class PlanDisplayFeatureInlineAdmin(admin.TabularInline):
+class PlanDisplayFeatureInlineAdmin(SortableTabularInline):
     model = PlanDisplayFeature
+    extra = 0
 
 class PlanConfigurationItemInline(StackedPolymorphicInline):
     class PlanConfigurationStringItemInline(StackedPolymorphicInline.Child):
@@ -61,5 +63,5 @@ class PlanConfigurationItemInline(StackedPolymorphicInline):
     )
 
 @admin.register(Plan)
-class PlanAdmin(PolymorphicInlineSupportMixin, admin.ModelAdmin):
+class PlanAdmin(PolymorphicInlineSupportMixin, NonSortableParentAdmin):
     inlines = (PlanConfigurationItemInline, PlanDisplayFeatureInlineAdmin)
