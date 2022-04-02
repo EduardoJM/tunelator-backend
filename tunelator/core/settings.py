@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # django extensions
+    'polymorphic',
     # rest
     'rest_framework',
     'rest_framework_simplejwt',
@@ -32,7 +34,8 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     # custom tunelator apps
-    'authentication'
+    'authentication',
+    'plans',
 ]
 
 MIDDLEWARE = [
