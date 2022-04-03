@@ -6,6 +6,7 @@ from adminsortable.models import SortableMixin
 class Plan(models.Model):
     name = models.CharField(_("name"), max_length=150)
     description = models.TextField(_("description"))
+    is_visible = models.BooleanField(_("plan is visible"), default=True)
 
     def __str__(self):
         return self.name
