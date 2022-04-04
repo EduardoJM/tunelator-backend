@@ -1,3 +1,5 @@
+#!/bin/sh
+
 while ! nc -z redis 6379 ; do
     echo "Waiting for the Redis Server"
     sleep 3
