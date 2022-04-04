@@ -13,7 +13,10 @@ SECRET_KEY = 'django-insecure-q2u*^!+q1)!1nc9d0mx#*w!zjgmbyex_zwnd1jbw_q(v1idr_f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "bebc-179-251-22-59.ngrok.io",
+    "localhost",
+]
 
 
 # Application definition
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     # custom tunelator apps
     'authentication',
     'plans',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +142,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
+
+MP_PUBLIC_KEY = "APP_USR-d1e7f8c6-3d75-4f58-82d2-efadbec103ae"
+MP_ACCESS_TOKEN = "APP_USR-7029564028727729-040317-ca924e9519a29602294a56aea11284bf-1100657934"
+MP_APPLICATION_ID = "7029564028727729"
+#MP_APPLICATION_SECRET = "FWrJhJyBPuQTFNmrzU0D1H7t9ElFjSGp"

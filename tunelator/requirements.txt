@@ -3,12 +3,15 @@ asgiref==3.5.0
 async-timeout==4.0.2
 billiard==3.6.4.0
 celery==5.2.3
+certifi==2021.10.8
+charset-normalizer==2.0.12
 click==8.1.2
 click-didyoumean==0.3.0
 click-plugins==1.1.1
 click-repl==0.2.0
 Deprecated==1.2.13
 Django==3.2
+django-admin-sortable==2.2.4
 django-celery-beat==2.2.1
 django-celery-results==2.3.0
 django-filter==21.1
@@ -16,6 +19,7 @@ django-polymorphic==3.1.0
 django-timezone-field==4.2.3
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
+idna==3.3
 importlib-metadata==4.11.3
 kombu==5.2.4
 Markdown==3.3.6
@@ -29,9 +33,11 @@ python-dateutil==2.8.2
 pytz==2022.1
 PyYAML==6.0
 redis==4.2.1
+requests==2.27.1
 six==1.16.0
 sqlparse==0.4.2
 uritemplate==4.1.1
+urllib3==1.26.9
 vine==5.0.0
 wcwidth==0.2.5
 wrapt==1.14.0

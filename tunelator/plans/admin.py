@@ -13,7 +13,8 @@ from plans.models import (
     PlanConfigurationStringItem,
     PlanDisplayFeature,
     PlanConfigurationItem,
-    PlanConfigurationBooleanItem
+    PlanConfigurationBooleanItem,
+    Approval,
 )
 
 class PlanConfigurationItemAdmin(PolymorphicChildModelAdmin):
@@ -65,3 +66,7 @@ class PlanConfigurationItemInline(StackedPolymorphicInline):
 @admin.register(Plan)
 class PlanAdmin(PolymorphicInlineSupportMixin, NonSortableParentAdmin):
     inlines = (PlanConfigurationItemInline, PlanDisplayFeatureInlineAdmin)
+
+@admin.register(Approval)
+class ApprovalAdmin(admin.ModelAdmin):
+    list_display = ["user", "plan", "approval_id", "status"]

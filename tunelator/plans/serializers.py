@@ -11,4 +11,7 @@ class PlanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Plan
-        exclude = ["is_visible"]
+        exclude = ["is_visible", "mp_plan_id"]
+
+class PlanApprovalSerializer(serializers.Serializer):
+    card_token_id = serializers.CharField()
