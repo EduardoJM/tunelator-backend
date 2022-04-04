@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     "api.tunelator.com.br",
     "tunelator.com.br",
     "localhost",
+    "127.0.0.1",
 ]
 
 
