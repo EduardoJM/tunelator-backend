@@ -25,7 +25,7 @@ services:
       - tunelator
 
   api:
-    build: .
+    build: ./tunelator
     entrypoint: ['./entrypoint.api.sh']
     ports:
       - 8000:8000
@@ -36,7 +36,7 @@ services:
       - "redis"
 
   admin:
-    build: .
+    build: ./tunelator
     entrypoint: ['./entrypoint.admin.sh']
     ports:
       - 8080:8080
