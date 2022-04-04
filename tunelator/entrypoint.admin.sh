@@ -9,5 +9,4 @@ while ! nc -z db 5432 ; do
     sleep 3
 done
 
-python manage.py migrate
 gunicorn -b 0.0.0.0:8080 admin.wsgi:application
