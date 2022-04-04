@@ -17,12 +17,12 @@ services:
     networks:
       - tunelator
 
-#  redis:
-#    image: redis:alpine
-#    volumes:
-#      - /redis:/data
-#    networks:
-#      - tunelator
+  redis:
+    image: redis:alpine
+    volumes:
+      - /redis:/data
+    networks:
+      - tunelator
 
   api:
     build: .
