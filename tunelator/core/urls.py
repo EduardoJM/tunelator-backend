@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-urlpatterns = []
+urlpatterns = static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += [
@@ -14,4 +14,4 @@ urlpatterns += [
     path('auth/', include('authentication.urls')),
     path('api/plans/', include('plans.urls')),
     path('api/payments/', include('payments.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
