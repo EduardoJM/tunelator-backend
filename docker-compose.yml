@@ -35,8 +35,8 @@ services:
       - "db"
       - "redis"
     volumes:
-      - /etc/passwd:/metc/passwd
-      - /etc/shadow:/metc/shadow
+      - /etc/passwd:/passwd
+      - /etc/shadow:/shadow
 
   admin:
     build: ./tunelator
@@ -49,8 +49,8 @@ services:
       - "db"
       - "redis"
     volumes:
-      - /etc/passwd:/metc/passwd
-      - /etc/shadow:/metc/shadow
+      - /etc/passwd:/passwd
+      - /etc/shadow:/shadow
 
 #  worker:
 #    build: .
