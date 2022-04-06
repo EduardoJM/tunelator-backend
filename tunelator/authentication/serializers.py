@@ -19,6 +19,12 @@ class AuthenticationUserSerializer(serializers.ModelSerializer):
             "last_login",
         ]
 
+class UserCreateSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    password = serializers.CharField()
+
 class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
     def get_user_data(self):
         user_serializer = AuthenticationUserSerializer(self.user)

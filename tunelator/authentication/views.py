@@ -1,4 +1,7 @@
+from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView as BaseTokenObtainPairView,
     TokenRefreshView as BaseTokenRefreshView,
@@ -6,7 +9,39 @@ from rest_framework_simplejwt.views import (
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from authentication.serializers import TokenObtainPairSerializer, AuthenticationUserSerializer
+from authentication.serializers import (
+    TokenObtainPairSerializer,
+    AuthenticationUserSerializer,
+    UserCreateSerializer
+)
+
+User = get_user_model()
+
+class UserCreateView(APIView):
+    permission_classes = []
+    
+    def post(self, request):
+        serializer = UserCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        user = User()
+        user.email = data["email"]
+        user.first_name = data["first_name"]
+        user.last_name = data["last_name"]
+        user.set_password(data["password"])
+        user.save()
+
+        token_serializer = TokenObtainPairSerializer(data={
+            "email": data["email"],
+            "password": data["password"]
+        })
+
+        try:
+            token_serializer.is_valid(raise_exception=True)
+        except TokenError as e:
+            raise InvalidToken(e.args[0])
+
+        return Response(token_serializer.validated_data, status=status.HTTP_200_OK)
 
 class TokenObtainPairView(BaseTokenObtainPairView):
     def get_serializer_class(self):
