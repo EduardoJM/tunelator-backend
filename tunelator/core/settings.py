@@ -148,7 +148,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
 }
 
 MP_PUBLIC_KEY = "APP_USR-d1e7f8c6-3d75-4f58-82d2-efadbec103ae"
