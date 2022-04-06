@@ -71,6 +71,13 @@ class PlanConfigurationStringItem(PlanConfigurationItem):
         verbose_name = _('plan configuration string item')
         verbose_name_plural = _('plan configuration string items')
 
+class PlanConfigurationIntegerItem(PlanConfigurationItem):
+    value = models.IntegerField(_('value'), default=0)
+
+    class Meta:
+        verbose_name = _('plan configuration integer item')
+        verbose_name_plural = _('plan configuration integer items')
+
 class Approval(models.Model):
     STATUS_AUTHORIZED = "authorized"
     STATUS_PAUSED = "paused"

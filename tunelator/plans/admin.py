@@ -14,6 +14,7 @@ from plans.models import (
     PlanDisplayFeature,
     PlanConfigurationItem,
     PlanConfigurationBooleanItem,
+    PlanConfigurationIntegerItem,
     Approval,
 )
 
@@ -30,12 +31,18 @@ class PlanConfigurationStringItemAdmin(PlanConfigurationItemAdmin):
     base_model = PlanConfigurationStringItem
     show_in_index = False
 
+@admin.register(PlanConfigurationIntegerItem)
+class PlanConfigurationIntegerItemAdmin(PlanConfigurationItemAdmin):
+    base_model = PlanConfigurationIntegerItem
+    show_in_index = False
+
 @admin.register(PlanConfigurationItem)
 class PlanConfigurationItemAdmin(PolymorphicParentModelAdmin):
     base_model = PlanConfigurationItem
     child_models = (
         PlanConfigurationBooleanItem,
         PlanConfigurationStringItem,
+        PlanConfigurationIntegerItem,
     )
     list_filter = (PolymorphicChildModelFilter,)
     list_display = ['id', 'plan', 'name', 'display_value']
@@ -57,10 +64,14 @@ class PlanConfigurationItemInline(StackedPolymorphicInline):
     class PlanConfigurationBooleanItemInline(StackedPolymorphicInline.Child):
         model = PlanConfigurationBooleanItem
     
+    class PlanConfigurationIntegerItemInline(StackedPolymorphicInline.Child):
+        model = PlanConfigurationIntegerItem
+    
     model = PlanConfigurationItem
     child_inlines = (
         PlanConfigurationStringItemInline,
         PlanConfigurationBooleanItemInline,
+        PlanConfigurationIntegerItemInline,
     )
 
 @admin.register(Plan)
