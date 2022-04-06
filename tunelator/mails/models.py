@@ -45,6 +45,8 @@ class UserMail(models.Model):
         self.mail = "%s@%s" % (self.mail_user, "tunelator.com.br")
 
     def full_clean(self, exclude=None, validate_unique=True):
+        ## TODO: verify if user (plan) has permission to made that action
+        
         self._generate_email()
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
