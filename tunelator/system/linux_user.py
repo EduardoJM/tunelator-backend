@@ -1,5 +1,5 @@
 import subprocess
-import secrets
+import uuid
 
 def user_already_exists(name: str) -> bool:
     cmd = "id -u %s" % name
@@ -12,13 +12,10 @@ def user_already_exists(name: str) -> bool:
     except subprocess.CalledProcessError:
         return False
 
-def get_unique_name(identifier: str) -> str:
-    if len(identifier) > 20:
-        identifier = identifier[0:20]
-    token_hash = secrets.token_hex(10)
-    user_name = "%s_%s" % (identifier, token_hash)
+def get_unique_name() -> str:
+    user_name = str(uuid.uuid4()).replace("-", "")
     if user_already_exists(user_name):
-        return get_unique_name(identifier)
+        return get_unique_name()
     return user_name
 
 def create_mail_anonymous_user(user_name: str) -> bool:
