@@ -39,14 +39,14 @@ class UserMail(models.Model):
     )
 
     def _generate_email(self):
-        self.mail_user = linux_user.get_unique_name()
+        self.mail_user = linux_user.get_unique_name(self.name)
         if not linux_user.create_mail_anonymous_user(self.mail_user):
             raise ValidationError(_("we have a problem saving your mail. try again later."))
         self.mail = "%s@%s" % (self.mail_user, "tunelator.com.br")
 
     def full_clean(self, exclude=None, validate_unique=True):
         ## TODO: verify if user (plan) has permission to made that action
-        
+
         self._generate_email()
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
