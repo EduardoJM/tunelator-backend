@@ -1,6 +1,8 @@
 import json
 from django.conf import settings
 from celery import shared_task
+from common import tasks
+from mails.notification_types import MAIL_IS_DONE
 import requests
 
 @shared_task(name="create_mail_user")
@@ -30,5 +32,9 @@ def create_mail_user(mail_user_id: int):
         user_name = data["user_name"]
         user_mail.mail_user = user_name
         user_mail.save()
+        tasks.send_silent_notification.delay(user_mail.user.pk, {
+            "type": MAIL_IS_DONE,
+            "mail": user_mail.mail
+        })
     else:
         raise Exception("Error in server: " + response.text)

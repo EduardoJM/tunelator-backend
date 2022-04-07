@@ -9,10 +9,12 @@ from rest_framework_simplejwt.views import (
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from authentication.models import UserFCMToken
 from authentication.serializers import (
     TokenObtainPairSerializer,
     AuthenticationUserSerializer,
-    UserCreateSerializer
+    UserCreateSerializer,
+    UserFCMTokenReceiveSerializer,
 )
 
 User = get_user_model()
@@ -65,3 +67,18 @@ class TokenRefreshView(BaseTokenRefreshView):
 
         data = {**serializer.validated_data, "user": user_serializer.data}
         return Response(data)
+
+class UserFCMTokenReceiveView(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = UserFCMTokenReceiveSerializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        
+        user = request.user
+        token = UserFCMToken.objects.filter(user=user, token=serializer.validated_data["token"]).first()
+        if token is not None:
+            return Response(status=status.HTTP_200_OK)
+
+        UserFCMToken.objects.delete(user=user)
+        UserFCMToken.objects.create(user=user, token=serializer.validated_data["token"])
+        return Response(status=201)
