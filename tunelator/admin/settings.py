@@ -165,3 +165,10 @@ if DEBUG is False:
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+CELERY_CACHE_BACKEND = 'django-cache'
+
+USER_SYSTEM_URL = "https://usersystem.tunelator.com.br"
+USER_SYSTEM_AUTHORIZATION = env('USER_SYSTEM_AUTHORIZATION')
