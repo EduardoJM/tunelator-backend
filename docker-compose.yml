@@ -54,7 +54,8 @@ services:
     depends_on:
       - "db"
       - "redis"
-      - "web"
+      - "api"
+      - "admin"
 
 networks:
   tunelator:
