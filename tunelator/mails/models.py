@@ -20,10 +20,14 @@ class UserMail(models.Model):
     mail_user = models.CharField(
         _("mail user"),
         max_length=32,
+        null=True,
+        default=None,
     )
     mail = models.CharField(
         _("mail"),
         max_length=255,
+        null=True,
+        default=None,
     )
     redirect_enabled = models.BooleanField(
         _("redirect enabled"),
@@ -38,17 +42,19 @@ class UserMail(models.Model):
         auto_now=True
     )
 
-    def _generate_email(self):
-        self.mail_user = linux_user.get_unique_name()
-        if not linux_user.create_mail_anonymous_user(self.mail_user):
-            raise ValidationError(_("we have a problem saving your mail. try again later."))
-        self.mail = "%s@%s" % (self.mail_user, "tunelator.com.br")
-
     def full_clean(self, exclude=None, validate_unique=True):
         ## TODO: verify if user (plan) has permission to made that action
-        
-        self._generate_email()
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
+
+    def save(self, *args, **kwargs):
+        if self.mail_user and not self.mail:
+            self.mail = "%s@tunelator.com.br" % self.mail_user
+
+        super(UserMail, self).save(*args, **kwargs)
+
+        if not self.mail_user:
+            from mails.tasks import create_mail_user
+            create_mail_user.apply_async(args=[self.pk], countdown=2)
 
     def __str__(self):
         return self.name

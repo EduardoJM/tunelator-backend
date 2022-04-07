@@ -172,3 +172,6 @@ if DEBUG is False:
 CELERY_RESULT_BACKEND = 'django-db'
 
 CELERY_CACHE_BACKEND = 'django-cache'
+
+USER_SYSTEM_URL = "https://usersystem.tunelator.com.br"
+USER_SYSTEM_AUTHORIZATION = env('USER_SYSTEM_AUTHORIZATION')
