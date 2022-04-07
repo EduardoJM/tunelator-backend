@@ -1,3 +1,4 @@
+from contextlib import suppress
 import os
 from pathlib import Path
 import firebase_admin
@@ -7,4 +8,5 @@ def setup_firebase():
     credentials = firebase_admin.credentials.Certificate(
         os.path.join(APP_DIR, "firebase_keys.json")
     )
-    firebase_admin.initialize_app(credentials)
+    with suppress(ValueError):
+        firebase_admin.initialize_app(credentials)
