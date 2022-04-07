@@ -16,7 +16,7 @@ def create_mail_user(mail_user_id: int):
 
     url = "%s/add/" % settings.USER_SYSTEM_URL
     headers = {
-        'Authorization', 'Bearer %s' % settings.USER_SYSTEM_AUTHORIZATION
+        'Authorization': 'Bearer %s' % settings.USER_SYSTEM_AUTHORIZATION
     }
     
     response = requests.post(url, headers=headers)
