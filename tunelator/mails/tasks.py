@@ -15,8 +15,11 @@ def create_mail_user(mail_user_id: int):
         raise Exception("Invalid user id was sent")
 
     url = "%s/add/" % settings.USER_SYSTEM_URL
+    headers = {
+        'Authorization', 'Bearer %s' % settings.USER_SYSTEM_AUTHORIZATION
+    }
     
-    response = requests.post(url)
+    response = requests.post(url, headers=headers)
     if response.status_code == 200:
         response_data = json.loads(response.text)
         if "data" not in response_data:
