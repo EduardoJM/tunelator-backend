@@ -2,7 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
-from system import linux_user
+from plans.plan import Plan
 
 User = get_user_model()
 
@@ -45,7 +45,12 @@ class UserMail(models.Model):
     )
 
     def full_clean(self, exclude=None, validate_unique=True):
-        ## TODO: verify if user (plan) has permission to made that action
+        mails_count = len(
+            UserMail.objects.filter(user=self.user).all()
+        )
+        plan = Plan(self.user)
+        if mails_count >= plan.settings.mails:
+            raise ValidationError(_('you reached the limit of mails for your plan.'))
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
     def save(self, *args, **kwargs):
