@@ -46,15 +46,15 @@ services:
       - "db"
       - "redis"
 
-#  worker:
-#    build: .
-#    entrypoint: ['./entrypoint.worker.sh']
-#    networks:
-#      - tunelator
-#    depends_on:
-#      - "db"
-#      - "redis"
-#      - "web"
+  worker:
+    build: ./tunelator
+    entrypoint: ['./entrypoint.worker.sh']
+    networks:
+      - tunelator
+    depends_on:
+      - "db"
+      - "redis"
+      - "web"
 
 networks:
   tunelator:
