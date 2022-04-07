@@ -16,10 +16,14 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, HttpResponseRedirect
 from django.template.response import TemplateResponse
-from authentication.models import User
+from authentication.models import User, UserFCMToken
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
+
+@admin.register(UserFCMToken)
+class UserFCMTokenAdmin(admin.ModelAdmin):
+    list_display = ["id", "user", "token"]
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
