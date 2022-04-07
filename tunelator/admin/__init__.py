@@ -1,5 +1,4 @@
-from common.celery import setup_app
 from common.firebase import setup_firebase
+from admin.celery import celery_app
 
-celery_app = setup_app('admin.settings')
 setup_firebase()
