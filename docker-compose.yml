@@ -34,9 +34,6 @@ services:
     depends_on:
       - "db"
       - "redis"
-    volumes:
-      - /etc/passwd:/passwd
-      - /etc/shadow:/shadow
 
   admin:
     build: ./tunelator
@@ -48,9 +45,6 @@ services:
     depends_on:
       - "db"
       - "redis"
-    volumes:
-      - /etc/passwd:/passwd
-      - /etc/shadow:/shadow
 
 #  worker:
 #    build: .
