@@ -21,12 +21,14 @@ class UserMail(models.Model):
         _("mail user"),
         max_length=32,
         null=True,
+        blank=True,
         default=None,
     )
     mail = models.CharField(
         _("mail"),
         max_length=255,
         null=True,
+        blank=True,
         default=None,
     )
     redirect_enabled = models.BooleanField(
