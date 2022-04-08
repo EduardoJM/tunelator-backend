@@ -24,7 +24,7 @@ class Plan:
             return None
         current_approval = approvals[0]
         for approval in approvals:
-            if approval.monthly_price >= current_approval.monthly_price:
+            if approval.plan.monthly_price >= current_approval.plan.monthly_price:
                 current_approval = approval
         return current_approval
 
