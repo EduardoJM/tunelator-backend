@@ -3,18 +3,17 @@ import environ
 from pathlib import Path
 from celery import Celery
 
-def setup_app(settings_file):
-    env = environ.Env(
-        # set casting, default value
-        DEBUG=(bool, False)
-    )
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-    BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_file)
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-    app = Celery('tunelator')
-    app.config_from_object('django.conf:settings', namespace='CELERY')
-    app.autodiscover_tasks()
-    app.conf.broker_url = BASE_REDIS_URL
-    app.conf.beat_scheduler = 'django_celery_beat.schedulers.DatabaseScheduler'
+app = Celery('tunelator')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
+app.conf.broker_url = BASE_REDIS_URL
+app.conf.beat_scheduler = 'django_celery_beat.schedulers.DatabaseScheduler'
