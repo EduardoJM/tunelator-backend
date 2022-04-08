@@ -44,7 +44,6 @@ services:
       - "db"
       - "redis"
       - "api"
-      - "admin"
 
 networks:
   tunelator:
