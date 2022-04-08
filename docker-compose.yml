@@ -35,17 +35,6 @@ services:
       - "db"
       - "redis"
 
-  admin:
-    build: ./tunelator
-    entrypoint: ['./entrypoint.admin.sh']
-    ports:
-      - 8080:8080
-    networks:
-      - tunelator
-    depends_on:
-      - "db"
-      - "redis"
-
   worker:
     build: ./tunelator
     entrypoint: ['./entrypoint.worker.sh']
