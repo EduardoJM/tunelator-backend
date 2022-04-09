@@ -60,13 +60,14 @@ def get_mail_informations(path):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        print("begin mails watcher")
         i = inotify.adapters.InotifyTree('/home/')
         for event in i.event_gen():
+            if not event:
+                continue
+            (_, type_names, path, filename) = event
+            print("PATH=[{}] FILENAME=[{}] EVENT_TYPES={}".format(path, filename, type_names))
             try:
-                if not event:
-                    continue
-                (_, type_names, path, filename) = event
-
                 if 'IN_MOVED_TO' not in type_names:
                     continue
                 if not str(path).endswith('/Mail/Inbox/new'):
