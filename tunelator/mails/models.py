@@ -2,6 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
+from mirage import fields as mirage_fields
 from plans.plan import Plan
 
 User = get_user_model()
@@ -43,6 +44,10 @@ class UserMail(models.Model):
         _("updated at"),
         auto_now=True
     )
+    plan_enabled = models.BooleanField(
+        _("plan enabled"),
+        default=True
+    )
 
     def full_clean(self, exclude=None, validate_unique=True):
         mails_count = len(
@@ -69,3 +74,25 @@ class UserMail(models.Model):
     class Meta:
         verbose_name = _("user mail")
         verbose_name_plural = _("user mails")
+
+class UserReceivedMail(models.Model):
+    mail = models.ForeignKey(
+        UserMail,
+        verbose_name=_("mail"),
+        related_name="received",
+        on_delete=models.CASCADE
+    )
+    origin_mail = models.CharField(_("origin mail"), blank=True, max_length=255, default="")
+    subject = models.CharField(_("subject"), blank=True, max_length=255, default="")
+    date = models.DateTimeField(_("date"), auto_now_add=True)
+    text_content = mirage_fields.EncryptedTextField(blank=True, default="")
+    html_content = mirage_fields.EncryptedTextField(blank=True, default="")
+    raw_mail = mirage_fields.EncryptedTextField()
+    delivered = models.BooleanField(_("delivered"), default=False)
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        verbose_name = _("User Received Email")
+        verbose_name_plural = _("User Received Emails")
