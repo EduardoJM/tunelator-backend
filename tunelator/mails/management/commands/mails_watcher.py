@@ -19,7 +19,7 @@ def get_mail_informations(path):
     if origin_match:
         origin_mail = origin_match.groups()[0]
     
-    subject_match = re.search("Subject: (.*?)", text)
+    subject_match = re.search("Subject: (.*)", text)
     subject = ""
     if subject_match:
         subject = subject_match.groups()[0]
