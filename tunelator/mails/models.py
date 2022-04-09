@@ -89,6 +89,7 @@ class UserReceivedMail(models.Model):
     html_content = mirage_fields.EncryptedTextField(blank=True, default="")
     raw_mail = mirage_fields.EncryptedTextField()
     delivered = models.BooleanField(_("delivered"), default=False)
+    delivered_date = models.DateTimeField(_('delivered date'), null=True, default=None)
 
     def __str__(self):
         return self.subject

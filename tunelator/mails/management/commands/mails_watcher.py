@@ -2,6 +2,7 @@ import os
 import re
 import inotify.adapters
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 from mails.models import UserMail, UserReceivedMail
 
 def get_mail_informations(path):
@@ -88,6 +89,7 @@ class Command(BaseCommand):
 
                 if not user_mail.plan_enabled:
                     received_mail.delivered = True
+                    received_mail.delivered_date = timezone.now()
 
                 origin_mail, subject, text_content, html_content, raw = get_mail_informations(real_path)
 
