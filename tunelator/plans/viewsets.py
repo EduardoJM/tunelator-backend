@@ -15,7 +15,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Gen
         # TODO: validate if authenticated user has a plan
         if not request.user.is_authenticated:
             return response.Response({
-                "detail": "you are not authenticated"
+                "detail": _("you are not authenticated"),
             }, status=status.HTTP_401_UNAUTHORIZED)
 
         serializer = PlanApprovalSerializer(data=request.data)
