@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'polymorphic',
     'adminsortable',
     # rest
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     # background tasks
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,3 +142,12 @@ MP_APPLICATION_ID = "7029564028727729"
 #
 USER_SYSTEM_URL = "https://usersystem.tunelator.com.br"
 USER_SYSTEM_AUTHORIZATION = env('USER_SYSTEM_AUTHORIZATION')
+
+#
+# CORS
+#
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'https://dashboard.tunelator.com.br',
+]
