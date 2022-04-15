@@ -9,6 +9,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Gen
     queryset = Plan.objects.filter(is_visible=True)
     serializer_class = PlanSerializer
     permission_classes = []
+    pagination_class = None
 
     @decorators.action(detail=True, methods=["POST"])
     def approval(self, request, pk):
