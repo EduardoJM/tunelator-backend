@@ -11,4 +11,4 @@ class UserMailSerializer(serializers.ModelSerializer):
 class UserMailRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMail
-        fields = ["name", "mail", "redirect_enabled", "plan_enabled", "created_at", "updated_at"]
+        fields = ["id", "name", "mail", "redirect_enabled", "plan_enabled", "created_at", "updated_at"]
