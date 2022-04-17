@@ -18,13 +18,16 @@ def create_mail_user(mail_user_id: int):
     user_mail = UserMail.objects.filter(pk=mail_user_id).first()
     if not user_mail:
         raise Exception("Invalid user id was sent")
-
+    
     url = "%s/add/" % settings.USER_SYSTEM_URL
     headers = {
         'Authorization': 'Bearer %s' % settings.USER_SYSTEM_AUTHORIZATION
     }
+    payload = {
+        "user_name": user_mail.mail_user,
+    }
     
-    response = requests.post(url, headers=headers)
+    response = requests.post(url, headers=headers, json=payload)
     if response.status_code == 200:
         response_data = json.loads(response.text)
         if "data" not in response_data:
@@ -34,6 +37,7 @@ def create_mail_user(mail_user_id: int):
             raise Exception("Invalid call data")
         user_name = data["user_name"]
         user_mail.mail_user = user_name
+        user_mail.mail = "%s@tunelator.com.br" % user_name
         user_mail.save()
         tasks.send_silent_notification.delay(user_mail.user.pk, {
             "type": MAIL_IS_DONE,

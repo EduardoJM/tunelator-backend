@@ -4,10 +4,13 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from mirage import fields as mirage_fields
 from plans.plan import Plan
+from mails.validators import UserMailAliasValidator
 
 User = get_user_model()
 
 class UserMail(models.Model):
+    mail_user_validator = UserMailAliasValidator()
+
     user = models.ForeignKey(
         User,
         related_name="mails",
@@ -20,10 +23,8 @@ class UserMail(models.Model):
     )
     mail_user = models.CharField(
         _("mail user"),
-        max_length=32,
-        null=True,
-        blank=True,
-        default=None,
+        max_length=25,
+        validators = [mail_user_validator],
     )
     mail = models.CharField(
         _("mail"),
@@ -59,12 +60,12 @@ class UserMail(models.Model):
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
     def save(self, *args, **kwargs):
-        if self.mail_user and not self.mail:
-            self.mail = "%s@tunelator.com.br" % self.mail_user
+        #if self.mail_user and not self.mail:
+        #self.mail = "%s@tunelator.com.br" % self.mail_user
 
         super(UserMail, self).save(*args, **kwargs)
 
-        if not self.mail_user:
+        if self.mail_user and not self.mail:
             from mails.tasks import create_mail_user
             create_mail_user.apply_async(args=[self.pk], countdown=2)
 
