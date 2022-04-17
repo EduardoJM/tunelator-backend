@@ -89,7 +89,10 @@ def save_mail_from_file(user_mail, path):
     text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
     email = message_from_string(text)
 
-    received_mail = UserReceivedMail()
+    received_mail = UserReceivedMail.objects.filter(raw_file_path=path).first()
+    if not received_mail:
+        received_mail = UserReceivedMail()
+
     received_mail.mail = user_mail
 
     if not user_mail.plan_enabled:
@@ -103,6 +106,7 @@ def save_mail_from_file(user_mail, path):
     received_mail.text_content = text_body
     received_mail.html_content = html_body
     received_mail.raw_mail = text
+    received_mail.raw_file_path = path
     received_mail.save()
 
     attachments = get_attachments(email)

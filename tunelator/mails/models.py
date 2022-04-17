@@ -88,6 +88,7 @@ class UserReceivedMail(models.Model):
     date = models.DateTimeField(_("date"), auto_now_add=True)
     text_content = mirage_fields.EncryptedTextField(blank=True, null=True, default="")
     html_content = mirage_fields.EncryptedTextField(blank=True, null=True, default="")
+    raw_file_path = models.TextField(_("raw file path"), blank=True, null=True, default=None)
     raw_mail = mirage_fields.EncryptedTextField()
     delivered = models.BooleanField(_("delivered"), default=False)
     delivered_date = models.DateTimeField(_('delivered date'), null=True, default=None)
