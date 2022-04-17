@@ -94,7 +94,7 @@ def save_mail_from_file(user_mail, path):
         received_mail.delivered = True
         received_mail.delivered_date = timezone.now()
 
-    text_body, html_body = get_email_body(text)
+    text_body, html_body = get_email_body(email)
 
     received_mail.origin_mail = decode_from_email(email)
     received_mail.subject = decode_subject(email)
