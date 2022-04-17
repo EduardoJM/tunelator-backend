@@ -1,5 +1,8 @@
 import json
+import smtplib
+from email import message_from_string
 from django.conf import settings
+from django.utils import timezone
 from celery import shared_task
 from common import tasks
 from mails.notification_types import MAIL_IS_DONE
@@ -38,3 +41,33 @@ def create_mail_user(mail_user_id: int):
         })
     else:
         raise Exception("Error in server: " + response.text)
+
+@shared_task(name="send_redirect_mail")
+def send_redirect_mail(user_received_mail_id: int):
+    from mails.models import UserReceivedMail
+    
+    received_mail = UserReceivedMail.objects.filter(pk=user_received_mail_id).first()
+    if not received_mail:
+        raise Exception("No received mail found with id " + user_received_mail_id)
+    
+    mail_to_send = received_mail.mail.user.email
+    mail_msg = message_from_string(received_mail.raw_mail)
+    
+    del mail_msg["to"]
+    mail_msg["to"] = "<%s>" % mail_to_send
+
+    with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:
+        s.ehlo()
+        s.starttls()
+        s.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+        s.sendmail(
+            settings.EMAIL_HOST_USER,
+            mail_to_send,
+            mail_msg.as_string()
+        )
+        s.quit()
+
+    if not received_mail.delivered:
+        received_mail.delivered = True
+        received_mail.delivered_date = timezone.now()
+        received_mail.save()

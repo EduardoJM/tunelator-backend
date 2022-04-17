@@ -91,9 +91,33 @@ class UserReceivedMail(models.Model):
     delivered = models.BooleanField(_("delivered"), default=False)
     delivered_date = models.DateTimeField(_('delivered date'), null=True, default=None)
 
+    def save(self, *args, **kwargs):
+        super(UserReceivedMail, self).save(*args, **kwargs)
+
+        if not self.delivered:
+            from mails.tasks import send_redirect_mail
+            send_redirect_mail.apply_async(args=[self.pk], countdown=2)
+
     def __str__(self):
         return self.subject
 
     class Meta:
         verbose_name = _("User Received Email")
         verbose_name_plural = _("User Received Emails")
+
+class UserReceivedMailAttachment(models.Model):
+    received_mail = models.ForeignKey(
+        UserReceivedMail,
+        verbose_name=_("received mail"),
+        related_name="attachments",
+        on_delete=models.CASCADE
+    )
+    file_name = models.CharField(_("file name"), max_length=255)
+    file = models.FileField(_("file"))
+
+    def __str__(self):
+        return self.file_name
+    
+    class Meta:
+        verbose_name = _("User Received Email Attachment")
+        verbose_name_plural = _("User Received Emails Attachments")

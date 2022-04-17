@@ -151,3 +151,12 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://dashboard.tunelator.com.br',
 ]
+
+#
+# SMTP
+#
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
