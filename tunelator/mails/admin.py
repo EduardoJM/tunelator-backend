@@ -4,7 +4,7 @@ from mails.models import UserMail, UserReceivedMail, UserReceivedMailAttachment
 @admin.register(UserMail)
 class UserMailAdmin(admin.ModelAdmin):
     list_display = ["user", "name", "mail_user", "mail", "redirect_enabled", "created_at"]
-    fields = ["user", "name", "redirect_enabled"]
+    fields = ["user", "name", "mail_user", "redirect_enabled"]
 
 @admin.register(UserReceivedMail)
 class UserReceivedMailAdmin(admin.ModelAdmin):
