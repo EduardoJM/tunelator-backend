@@ -93,10 +93,7 @@ def check_user_late_mails(user_mail_id):
 
     for file in onlyfiles:
         real_path = join(path_to_find, file)
-
-        save_mail_from_file(user_mail, real_path)
-
-        remove(real_path)
+        save_user_late_mail.delay(user_mail_id, real_path)
 
 @shared_task(name="save_user_late_mail")
 def save_user_late_mail(user_mail_id, real_path):
