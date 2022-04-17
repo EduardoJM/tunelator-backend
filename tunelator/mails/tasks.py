@@ -8,7 +8,7 @@ from django.utils import timezone
 from celery import shared_task
 from common import tasks
 from mails.notification_types import MAIL_IS_DONE
-from mails.management.commands.mails_watcher import save_mail_from_file
+from mails.utils import save_mail_from_file
 import requests
 
 @shared_task(name="create_mail_user")
@@ -97,3 +97,14 @@ def check_user_late_mails(user_mail_id):
         save_mail_from_file(user_mail, real_path)
 
         remove(real_path)
+
+@shared_task(name="save_user_late_mail")
+def save_user_late_mail(user_mail_id, real_path):
+    from mails.models import UserMail
+
+    user_mail = UserMail.objects.filter(pk=user_mail_id).first()
+    if not user_mail:
+        raise Exception("User mail not found")
+
+    save_mail_from_file(user_mail, real_path)
+    remove(real_path)

@@ -63,6 +63,8 @@ def get_attachments(received_email):
         if payload.is_multipart():
             continue
         disposition = payload['Content-Disposition']
+        if not disposition:
+            continue
         if 'attachment' not in disposition:
             continue
         print(disposition)
