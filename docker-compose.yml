@@ -40,6 +40,8 @@ services:
     entrypoint: ['./entrypoint.worker.sh']
     networks:
       - tunelator
+    volumes:
+      - /home:/home
     depends_on:
       - "db"
       - "redis"

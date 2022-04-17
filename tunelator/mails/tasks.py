@@ -1,11 +1,14 @@
 import json
 import smtplib
+from os import listdir, remove
+from os.path import isfile, join
 from email import message_from_string
 from django.conf import settings
 from django.utils import timezone
 from celery import shared_task
 from common import tasks
 from mails.notification_types import MAIL_IS_DONE
+from mails.management.commands.mails_watcher import save_mail_from_file
 import requests
 
 @shared_task(name="create_mail_user")
@@ -75,3 +78,22 @@ def send_redirect_mail(user_received_mail_id: int):
         received_mail.delivered = True
         received_mail.delivered_date = timezone.now()
         received_mail.save()
+
+@shared_task(name="check_user_late_mails")
+def check_user_late_mails(user_mail_id):
+    from mails.models import UserMail
+
+    user_mail = UserMail.objects.filter(pk=user_mail_id).first()
+    if not user_mail:
+        raise Exception("User mail not found")
+    
+    path_to_find = "/home/%s/Mail/Inbox/new" % user_mail.mail_user
+    
+    onlyfiles = [f for f in listdir(path_to_find) if isfile(join(path_to_find, f))]
+
+    for file in onlyfiles:
+        real_path = join(path_to_find, file)
+
+        save_mail_from_file(user_mail, real_path)
+
+        remove(real_path)
