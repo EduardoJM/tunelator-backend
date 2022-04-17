@@ -34,7 +34,7 @@ def decode_from_email(message):
         match = re.match('^<(.*?\@.*?)>$', decoded_string)
         if match:
             return match.groups()[0]
-    return None
+    return output
 
 def get_email_body(received_email):
     text_body = ""

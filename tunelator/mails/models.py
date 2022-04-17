@@ -83,8 +83,8 @@ class UserReceivedMail(models.Model):
         related_name="received",
         on_delete=models.CASCADE
     )
-    origin_mail = models.CharField(_("origin mail"), blank=True, max_length=255, default="")
-    subject = models.CharField(_("subject"), blank=True, max_length=255, default="")
+    origin_mail = models.CharField(_("origin mail"), blank=True, null=True, max_length=255, default="")
+    subject = models.CharField(_("subject"), blank=True, null=True, max_length=255, default="")
     date = models.DateTimeField(_("date"), auto_now_add=True)
     text_content = mirage_fields.EncryptedTextField(blank=True, default="")
     html_content = mirage_fields.EncryptedTextField(blank=True, default="")
