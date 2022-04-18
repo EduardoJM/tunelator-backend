@@ -3,7 +3,6 @@ from authentication.views import (
     TokenObtainPairView,
     TokenRefreshView,
     UserCreateView,
-    UserFCMTokenReceiveView,
 )
 
 urlpatterns = [

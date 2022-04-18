@@ -60,9 +60,6 @@ class UserMail(models.Model):
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
     def save(self, *args, **kwargs):
-        #if self.mail_user and not self.mail:
-        #self.mail = "%s@tunelator.com.br" % self.mail_user
-
         super(UserMail, self).save(*args, **kwargs)
 
         if self.mail_user and not self.mail:
