@@ -112,19 +112,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
-
-class UserFCMToken(models.Model):
-    user = models.ForeignKey(
-        User,
-        related_name="tokens",
-        verbose_name=_("user"),
-        on_delete=models.CASCADE
-    )
-    token = models.CharField(_("token"), max_length=255)
-
-    def __str__(self):
-        return self.token
-    
-    class Meta:
-        verbose_name = _("User Firebase Cloud Messaging Token")
-        verbose_name_plural = _("Users Firebase Cloud Messaging Tokens")
