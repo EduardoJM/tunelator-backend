@@ -86,8 +86,6 @@ class UserReceivedMail(models.Model):
     origin_mail = models.CharField(_("origin mail"), blank=True, null=True, max_length=255, default="")
     subject = models.CharField(_("subject"), blank=True, null=True, max_length=255, default="")
     date = models.DateTimeField(_("date"), auto_now_add=True)
-    text_content = mirage_fields.EncryptedTextField(blank=True, null=True, default="")
-    html_content = mirage_fields.EncryptedTextField(blank=True, null=True, default="")
     raw_file_path = models.TextField(_("raw file path"), blank=True, null=True, default=None)
     raw_mail = mirage_fields.EncryptedTextField()
     delivered = models.BooleanField(_("delivered"), default=False)
@@ -106,20 +104,3 @@ class UserReceivedMail(models.Model):
     class Meta:
         verbose_name = _("User Received Email")
         verbose_name_plural = _("User Received Emails")
-
-class UserReceivedMailAttachment(models.Model):
-    received_mail = models.ForeignKey(
-        UserReceivedMail,
-        verbose_name=_("received mail"),
-        related_name="attachments",
-        on_delete=models.CASCADE
-    )
-    file_name = models.CharField(_("file name"), max_length=255)
-    file = models.FileField(_("file"))
-
-    def __str__(self):
-        return self.file_name
-    
-    class Meta:
-        verbose_name = _("User Received Email Attachment")
-        verbose_name_plural = _("User Received Emails Attachments")
