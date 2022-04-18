@@ -5,7 +5,7 @@ from mails.validators import UserMailAliasValidator
 class UserReceivedMailSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserReceivedMail
-        fields = ["id", "origin_mail", "subject", "date", "delivered", "delivered_date"]
+        fields = ["id", "mail", "origin_mail", "subject", "date", "delivered", "delivered_date"]
 
 class UserMailSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
