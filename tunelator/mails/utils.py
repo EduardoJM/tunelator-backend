@@ -1,11 +1,7 @@
-import re
-import io
-from django.core.files import File
 from email import message_from_string
 from email.header import decode_header
-from django.core.files import File
 from django.utils import timezone
-from mails.models import UserReceivedMail, UserReceivedMailAttachment
+from mails.models import UserReceivedMail
 
 def decode_subject(message):
     output = ""
