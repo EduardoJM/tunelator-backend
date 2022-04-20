@@ -4,7 +4,7 @@ from mails.viewsets import UserMailViewSet, UserReceivedMailViewSet
 from mails.views import VerifyUserSystemAPIView
 
 mails_router = routers.SimpleRouter()
-mails_router.register("", UserMailViewSet, basename="UserMail")
+mails_router.register("accounts", UserMailViewSet, basename="UserMail")
 mails_router.register("received", UserReceivedMailViewSet, basename="UserReceivedMail")
 
 urlpatterns = [
