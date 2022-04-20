@@ -4,8 +4,10 @@ from django.utils import timezone
 from mails.models import UserReceivedMail
 
 def decode_subject(message):
+    if not message["subject"]:
+        return ""
     output = ""
-    decoded = decode_header(output)
+    decoded = decode_header(message["subject"])
     for decoded_bytes, encoding in decoded:
         if type(decoded_bytes) == str:
             output += decoded_bytes
@@ -14,8 +16,10 @@ def decode_subject(message):
     return output
 
 def decode_from_email(message):
+    if not message["from"]:
+        return ""
     output = ""
-    decoded = decode_header(output)
+    decoded = decode_header(message["from"])
     for decoded_item in decoded:
         decoded_bytes, encoding = decoded_item
         if not encoding:
