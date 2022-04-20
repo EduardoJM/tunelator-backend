@@ -33,6 +33,14 @@ def decode_from_email(message):
         output += decoded_string
     return output
 
+def update_mail_origin_subject(received_mail):
+    text = received_mail.raw_mail
+    email = message_from_string(text)
+
+    received_mail.origin_mail = decode_from_email(email)
+    received_mail.subject = decode_subject(email)
+    received_mail.save()
+
 def save_mail_from_file(user_mail, path):
     text = None
     lines = []
