@@ -1,5 +1,6 @@
 import json
 import requests
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, mixins, decorators, response, status
 from plans.models import Plan, Approval
@@ -32,10 +33,10 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Gen
         payload = {
             "preapproval_plan_id": approval.plan.mp_plan_id,
             "card_token_id": data["card_token_id"],
-            "payer_email": "test_user_79075495@testuser.com",
+            "payer_email": request.user.email,
         }
         headers = {
-            "Authorization": "Bearer APP_USR-7029564028727729-040317-ca924e9519a29602294a56aea11284bf-1100657934",
+            "Authorization": "Bearer %s" % settings.MP_ACCESS_TOKEN,
             "Content-Type": "application/json",
         }
         mp_response = requests.post("https://api.mercadopago.com/preapproval", headers=headers, json=payload)
