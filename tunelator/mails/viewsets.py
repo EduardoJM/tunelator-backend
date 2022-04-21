@@ -1,7 +1,27 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, mixins
 from django_filters.rest_framework import DjangoFilterBackend
-from mails.models import UserMail
-from mails.serializers import UserMailSerializer, UserMailRetrieveSerializer
+from mails.models import UserMail, UserReceivedMail
+from mails.serializers import (
+    UserMailSerializer,
+    UserMailRetrieveSerializer,
+    UserReceivedMailSerializer,
+)
+
+class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+    filter_backends = [filters.OrderingFilter, DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = {
+        "date": ["gte", "lte", "exact", "gt", "lt"],
+        "delivered_date": ["gte", "lte", "exact", "gt", "lt"],
+        "delivered": ["exact"],
+        "mail": ["exact"],
+    }
+    search_fields = ["origin_mail", "subject"]
+    ordering = ["-date"]
+    serializer_class = UserReceivedMailSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return UserReceivedMail.objects.filter(mail__user=user).all()
 
 class UserMailViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.OrderingFilter, DjangoFilterBackend, filters.SearchFilter]

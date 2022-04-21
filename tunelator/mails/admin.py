@@ -1,5 +1,5 @@
 from django.contrib import admin
-from mails.models import UserMail, UserReceivedMail, UserReceivedMailAttachment
+from mails.models import UserMail, UserReceivedMail
 
 @admin.register(UserMail)
 class UserMailAdmin(admin.ModelAdmin):
@@ -9,7 +9,3 @@ class UserMailAdmin(admin.ModelAdmin):
 @admin.register(UserReceivedMail)
 class UserReceivedMailAdmin(admin.ModelAdmin):
     list_display = ["mail", "origin_mail", "subject", "date", "delivered", "delivered_date"]
-
-@admin.register(UserReceivedMailAttachment)
-class UserReceivedMailAttachmentAdmin(admin.ModelAdmin):
-    list_display = ["received_mail", "file_name", "file"]

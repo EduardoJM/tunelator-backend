@@ -1,6 +1,18 @@
 from rest_framework import serializers
-from mails.models import UserMail
+from mails.models import UserMail, UserReceivedMail
 from mails.validators import UserMailAliasValidator
+
+class UserReceivedMailInternSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserMail
+        fields = ["id", "mail"]
+
+class UserReceivedMailSerializer(serializers.ModelSerializer):
+    mail = UserReceivedMailInternSerializer()
+
+    class Meta:
+        model = UserReceivedMail
+        fields = ["id", "mail", "origin_mail", "subject", "date", "delivered", "delivered_date"]
 
 class UserMailSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())

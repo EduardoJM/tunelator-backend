@@ -6,7 +6,6 @@ from email import message_from_string
 from django.conf import settings
 from django.utils import timezone
 from celery import shared_task
-from common import tasks
 from mails.notification_types import MAIL_IS_DONE
 from mails.utils import save_mail_from_file
 import requests
@@ -42,10 +41,6 @@ def create_mail_user(mail_user_id: int):
         user_mail.mail_user = user_name
         user_mail.mail = "%s@tunelator.com.br" % user_name
         user_mail.save()
-        tasks.send_silent_notification.delay(user_mail.user.pk, {
-            "type": MAIL_IS_DONE,
-            "mail": user_mail.mail
-        })
     else:
         raise Exception("Error in server: " + response.text)
 

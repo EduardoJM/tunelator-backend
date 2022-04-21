@@ -42,6 +42,3 @@ class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
         update_last_login(None, self.user)
 
         return data
-
-class UserFCMTokenReceiveSerializer(serializers.Serializer):
-    token = serializers.CharField()
