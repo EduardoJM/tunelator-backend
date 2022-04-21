@@ -90,7 +90,7 @@ class Approval(models.Model):
         (STATUS_CANCELLED, _("Cancelled")),
     )
 
-    user = models.OneToOneField(User, related_name="plan", on_delete=models.CASCADE, verbose_name=_("user"))
+    user = models.ForeignKey(User, related_name="approvals", on_delete=models.CASCADE, verbose_name=_("user"))
     plan = models.ForeignKey(Plan, verbose_name=_("plan"), related_name="subscriptions", on_delete=models.CASCADE)
     approval_id = models.CharField(_('approval id'), max_length=255, blank=True, null=True)
     status = models.CharField(_("status"), max_length=20, choices=STATUS, default=STATUS_PENDING)
