@@ -33,7 +33,7 @@ class Plan:
         approvals = list(
             Approval.objects.filter(
                 user=user,
-                status=Approval.STATUS_AUTHORIZED,
+                status=Approval.STATUS_ACTIVE,
             ).all()
         )
         self.approval = self.get_best_approval(approvals)
@@ -46,7 +46,7 @@ class Plan:
             self.approval = Approval.objects.create(
                 user=user,
                 plan=free_plan,
-                status=Approval.STATUS_AUTHORIZED,
+                status=Approval.STATUS_ACTIVE,
             )
         
         self.plan = self.approval.plan

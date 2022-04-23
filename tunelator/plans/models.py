@@ -80,21 +80,28 @@ class PlanConfigurationIntegerItem(PlanConfigurationItem):
         verbose_name_plural = _('plan configuration integer items')
 
 class Approval(models.Model):
-    STATUS_AUTHORIZED = "authorized"
-    STATUS_PAUSED = "paused"
-    STATUS_PENDING = "pending"
-    STATUS_CANCELLED = "cancelled"
+    STATUS_ACTIVE = "active"
+    STATUS_PAST_DUE = "past_due"
+    STATUS_UNPAID = "unpaid"
+    STATUS_CANCELED = "canceled"
+    STATUS_INCOMPLETE = "incomplete"
+    STATUS_INCOMPLETE_EXPIRED = "incomplete_expired"
+    STATUS_TRIALING = "trialing"
     STATUS = (
-        (STATUS_AUTHORIZED, _("Authorized")),
-        (STATUS_PAUSED, _("Paused")),
-        (STATUS_PENDING, _("Pending")),
-        (STATUS_CANCELLED, _("Cancelled")),
+        (STATUS_ACTIVE, _("active")),
+        (STATUS_PAST_DUE, _("past due")),
+        (STATUS_UNPAID, _("unpaid")),
+        (STATUS_CANCELED, _("canceled")),
+        (STATUS_INCOMPLETE, _("incomplete")),
+        (STATUS_INCOMPLETE_EXPIRED, _("incomplete expired")),
+        (STATUS_TRIALING, _("trialing")),
     )
 
     user = models.ForeignKey(User, related_name="approvals", on_delete=models.CASCADE, verbose_name=_("user"))
     plan = models.ForeignKey(Plan, verbose_name=_("plan"), related_name="subscriptions", on_delete=models.CASCADE)
-    approval_id = models.CharField(_('approval id'), max_length=255, blank=True, null=True)
-    status = models.CharField(_("status"), max_length=20, choices=STATUS, default=STATUS_PENDING)
+    stripe_session_id = models.CharField(_('stripe session id'), max_length=255, blank=True, null=True, default=None)
+    stripe_subscription_id = models.CharField(_('stripe subscription id'), max_length=255, blank=True, null=True, default=None)
+    status = models.CharField(_('status'), max_length=50, choices=STATUS, default=STATUS_INCOMPLETE)
 
     def __str__(self):
         return _('approval of %(user)s to plan %(plan)s') % {
