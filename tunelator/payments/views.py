@@ -86,14 +86,14 @@ def stripe_subscription_view(request, uuid):
         checkout_id=uuid
     ).first()
     if not checkout or checkout.used:
-        return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
+        return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
 
     user = checkout.user
     plan = checkout.plan
 
     plan_util = PlanIntegration(user)
     if plan_util.is_paid_approval():
-        return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
+        return redirect('https://dashboard.tunelator.com.br/checkout/already-paid', status=303)
 
     checkout.used = True
     checkout.save()
