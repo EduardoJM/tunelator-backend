@@ -20,9 +20,27 @@ class StripeWebHookAPIView(views.APIView):
     permission_classes = []
     
     def post(self, request):
-        data = request.data
-        data_object = data["data"]["object"]
-        event_type = data["type"]
+        request_data = request.data
+        webhook_secret = settings.STRIPE_WEBHOOK_TOKEN
+        if webhook_secret:
+            # Retrieve the event by verifying the signature using the raw body and secret if webhook signing is configured.
+            signature = request.headers.get('stripe-signature')
+            try:
+                event = stripe.Webhook.construct_event(
+                    payload=request.data,
+                    sig_header=signature,
+                    secret=webhook_secret
+                )
+                data = event['data']
+            except Exception as e:
+                raise e
+            # Get the type of webhook event sent - used to check the status of PaymentIntents.
+            event_type = event['type']
+        else:
+            data = request_data['data']
+            event_type = request_data['type']
+        data_object = data['object']
+        
         if event_type == "checkout.session.completed":
             checkout_id = data_object["id"]
             subscription_id = data_object["subscription"]
