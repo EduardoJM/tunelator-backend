@@ -3,8 +3,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 import stripe
-
-from tunelator.plans.models import Approval, Plan
+from plans.models import Approval, Plan
 
 User = get_user_model()
 

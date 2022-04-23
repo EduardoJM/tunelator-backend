@@ -80,4 +80,4 @@ class PlanAdmin(PolymorphicInlineSupportMixin, NonSortableParentAdmin):
 
 @admin.register(Approval)
 class ApprovalAdmin(admin.ModelAdmin):
-    list_display = ["user", "plan", "approval_id", "status"]
+    list_display = ["user", "plan", "stripe_subscription_id", "status"]
