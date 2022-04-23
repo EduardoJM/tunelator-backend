@@ -5,9 +5,21 @@ from django.contrib.auth import get_user_model
 from django.middleware.csrf import get_token
 from plans.models import Approval, Plan
 from plans.plan import Plan as PlanIntegration
+from payments.models import SubscriptionCheckout
+from payments.serializers import SubscriptionCheckoutSerializer, SubscriptionCheckoutRetrieveSerializer
 import stripe
 
 User = get_user_model()
+
+class CreateCheckoutAPIView(views.APIView):
+    def post(self, request):
+        serializer = SubscriptionCheckoutSerializer(data=request.data, context={ 'request': request })
+        serializer.is_valid(raise_exception=True)
+
+        instance = serializer.save()
+        
+        serializer = SubscriptionCheckoutRetrieveSerializer(instance=instance)
+        return response.Response(serializer.data)
 
 class DjangoGetCSRFTokenAPIView(views.APIView):
     def post(self, request):
@@ -81,23 +93,24 @@ def stripe_subscription_manage_view(request):
     )
     return redirect(session.url, status=303)
 
-def stripe_subscription_view(request):
+def stripe_subscription_view(request, uuid):
     stripe.api_key = settings.STRIPE_ACCESS_TOKEN
 
-    data = request.POST
-
-    user_id = data["user_id"]
-    user = User.objects.filter(pk=user_id).first()
-    if not user:
+    checkout = SubscriptionCheckout.objects.filter(
+        checkout_id=uuid
+    ).first()
+    if not checkout or checkout.used:
         return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
+
+    user = checkout.user
+    plan = checkout.plan
+
     plan_util = PlanIntegration(user)
     if plan_util.is_paid_approval():
         return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
 
-    plan_id = data["plan_id"]
-    plan = Plan.objects.filter(pk=plan_id).first()
-    if not plan:
-        return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
+    checkout.used = True
+    checkout.save()
 
     session = stripe.checkout.Session.create(
         success_url='https://dashboard.tunelator.com.br/checkout/success',
