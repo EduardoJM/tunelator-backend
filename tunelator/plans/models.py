@@ -19,7 +19,6 @@ class Plan(models.Model):
     is_visible = models.BooleanField(_("plan is visible"), default=True)
     plan_type = models.CharField(_("plan type"), max_length=10, choices=TYPES, default=TYPE_PAID)
     monthly_price = models.IntegerField(_("monthly price"), default=999)
-    mp_plan_id = models.CharField(_("mercado pago integration id"), max_length=255, blank=True, default="")
     stripe_price_id = models.CharField(_("stripe integration price id"), max_length=255, blank=True, default="")
 
     def __str__(self):
