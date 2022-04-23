@@ -54,7 +54,7 @@ def stripe_subscription_manage_view(request):
     if not approval:
         return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
     
-    customer_id = approval.customerstripe_customer_id
+    customer_id = approval.stripe_customer_id
     return_url = 'https://dashboard.tunelator.com.br'
 
     session = stripe.billing_portal.Session.create(
