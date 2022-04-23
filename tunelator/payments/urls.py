@@ -11,6 +11,6 @@ urlpatterns = [
     path('token/', DjangoGetCSRFTokenAPIView.as_view()),
     path('checkout/', stripe_subscription_view),
     path('manage/', stripe_subscription_manage_view),
-    path('test/', test_stripe),
+    #path('test/', test_stripe),
     path('webhook/', StripeWebHookAPIView.as_view()),
 ]
