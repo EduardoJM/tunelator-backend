@@ -101,6 +101,7 @@ class Approval(models.Model):
     plan = models.ForeignKey(Plan, verbose_name=_("plan"), related_name="subscriptions", on_delete=models.CASCADE)
     stripe_session_id = models.CharField(_('stripe session id'), max_length=255, blank=True, null=True, default=None)
     stripe_subscription_id = models.CharField(_('stripe subscription id'), max_length=255, blank=True, null=True, default=None)
+    stripe_customer_id = models.CharField(_('stripe customer id'), max_length=255, blank=True, null=True, default=None)
     status = models.CharField(_('status'), max_length=50, choices=STATUS, default=STATUS_INCOMPLETE)
 
     def __str__(self):

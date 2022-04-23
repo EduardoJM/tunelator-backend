@@ -51,3 +51,8 @@ class Plan:
         
         self.plan = self.approval.plan
         self.settings = PlanSettings(self.plan)
+
+    def is_paid_approval(self):
+        if not self.approval:
+            return False
+        return self.approval.plan.plan_type == PlanModel.TYPE_PAID

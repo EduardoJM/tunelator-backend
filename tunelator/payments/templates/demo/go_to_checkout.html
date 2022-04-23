@@ -10,11 +10,8 @@
     <form action="/api/payments/checkout/" method="post">
       {% csrf_token %}
 
-      <input
-        type="hidden"
-        name="price_id"
-        value="price_1KrCeOD443VvuZp6DIbMFn9R"
-      />
+      <input type="hidden" name="plan_id" value="1" />
+      <input type="hidden" name="user_id" value="1" />
 
       <input type="submit" value="Ir" />
     </form>
