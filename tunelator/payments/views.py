@@ -72,8 +72,11 @@ def stripe_subscription_manage_view(request, uuid):
         manager_id=uuid
     ).first()
     
-    if not manager:
+    if not manager or manager.used:
         return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
+    
+    manager.used = True
+    manager.save()
     
     user = manager.user
     plan_util = PlanIntegration(user)
