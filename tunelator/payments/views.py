@@ -5,8 +5,13 @@ from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from plans.models import Approval
 from plans.plan import Plan as PlanIntegration
-from payments.models import SubscriptionCheckout
-from payments.serializers import SubscriptionCheckoutSerializer, SubscriptionCheckoutRetrieveSerializer
+from payments.models import SubscriptionCheckout, SubscriptionManager
+from payments.serializers import (
+    SubscriptionCheckoutSerializer,
+    SubscriptionCheckoutRetrieveSerializer,
+    SubscriptionManagerSerializer,
+    SubscriptionManagerRetrieveSerializer,
+)
 import stripe
 
 User = get_user_model()
@@ -19,6 +24,16 @@ class CreateCheckoutAPIView(views.APIView):
         instance = serializer.save()
         
         serializer = SubscriptionCheckoutRetrieveSerializer(instance=instance)
+        return response.Response(serializer.data)
+
+class CreateManagerAPIView(views.APIView):
+    def post(self, request):
+        serializer = SubscriptionManagerSerializer(data={}, context={ 'request': request })
+        serializer.is_valid(raise_exception=True)
+
+        instance = serializer.save()
+        
+        serializer = SubscriptionManagerRetrieveSerializer(instance=instance)
         return response.Response(serializer.data)
 
 class StripeWebHookAPIView(views.APIView):
@@ -49,15 +64,23 @@ class StripeWebHookAPIView(views.APIView):
             approval.save()
         return response.Response()
 
-def stripe_subscription_manage_view(request):
+@csrf_exempt
+def stripe_subscription_manage_view(request, uuid):
     stripe.api_key = settings.STRIPE_ACCESS_TOKEN
 
-    data = request.POST
-    approval_id = data["approval_id"]
-    approval = Approval.objects.filter(pk=approval_id).first()
-    if not approval:
-        return redirect('https://dashboard.tunelator.com.br/checkout/canceled', status=303)
+    manager = SubscriptionManager.objects.filter(
+        manager_id=uuid
+    ).first()
     
+    if not manager:
+        return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
+    
+    user = manager.user
+    plan_util = PlanIntegration(user)
+    if not plan_util.is_paid_approval():
+        return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
+    
+    approval = plan_util.approval
     customer_id = approval.stripe_customer_id
     return_url = 'https://dashboard.tunelator.com.br'
 
