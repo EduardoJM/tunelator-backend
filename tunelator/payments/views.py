@@ -2,9 +2,8 @@ from rest_framework import views, response
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
-from plans.models import Approval, Plan
+from plans.models import Approval
 from plans.plan import Plan as PlanIntegration
 from payments.models import SubscriptionCheckout
 from payments.serializers import SubscriptionCheckoutSerializer, SubscriptionCheckoutRetrieveSerializer
@@ -21,13 +20,6 @@ class CreateCheckoutAPIView(views.APIView):
         
         serializer = SubscriptionCheckoutRetrieveSerializer(instance=instance)
         return response.Response(serializer.data)
-
-class DjangoGetCSRFTokenAPIView(views.APIView):
-    def post(self, request):
-        data = {
-            'token': get_token(request)
-        }
-        return response.Response(data)
 
 class StripeWebHookAPIView(views.APIView):
     permission_classes = []
@@ -56,9 +48,6 @@ class StripeWebHookAPIView(views.APIView):
             approval.status = data_object["status"]
             approval.save()
         return response.Response()
-
-def test_stripe(request):
-    return render(request, 'demo/go_to_checkout.html')
 
 def stripe_subscription_manage_view(request):
     stripe.api_key = settings.STRIPE_ACCESS_TOKEN
