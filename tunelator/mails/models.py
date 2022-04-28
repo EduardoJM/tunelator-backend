@@ -66,6 +66,9 @@ class UserMail(models.Model):
 
         if self.redirect_to and not plan.settings.allow_custom_redirect:
             raise ValidationError(_('your plan not have custom redirects.'))
+
+        if str(self.redirect_to).lower().endswith('@tunelator.com.br'):
+            raise ValidationError(_("you can't redirect to other tunelator e-mail."))
         
         if mails_count >= plan.settings.mails:
             raise ValidationError(_('you reached the limit of mails for your plan.'))
