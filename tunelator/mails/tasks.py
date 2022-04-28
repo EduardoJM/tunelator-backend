@@ -53,6 +53,9 @@ def send_redirect_mail(user_received_mail_id: int):
         raise Exception("No received mail found with id " + user_received_mail_id)
     
     mail_to_send = received_mail.mail.user.email
+    if received_mail.mail.redirect_to:
+        mail_to_send = received_mail.mail.redirect_to
+
     mail_msg = message_from_string(received_mail.raw_mail)
     
     del mail_msg["to"]

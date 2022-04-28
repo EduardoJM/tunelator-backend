@@ -3,20 +3,30 @@ from django.utils.translation import gettext_lazy as _
 from plans.models import (
     Approval,
     Plan as PlanModel,
+    PlanConfigurationBooleanItem,
     PlanConfigurationIntegerItem,
 )
 
 class PlanSettings:
     DEFAULTS = {
         "mails": 2,
+        "allow_custom_redirect": False,
     }
 
     def __init__(self, plan: PlanModel):
         self.mails = self.DEFAULTS["mails"]
+        self.allow_custom_redirect = self.DEFAULTS["allow_custom_redirect"]
 
         mails_model = PlanConfigurationIntegerItem.objects.filter(plan=plan, name__iexact="mails").first()
         if mails_model:
             self.mails = mails_model.value
+        
+        allow_custom_redirect_model = PlanConfigurationBooleanItem.objects.filter(
+            plan=plan,
+            name__iexact="allow_custom_redirect"
+        ).first()
+        if allow_custom_redirect_model:
+            self.allow_custom_redirect = allow_custom_redirect_model.value
 
 class Plan:
     def get_best_approval(self, approvals: list):

@@ -61,8 +61,13 @@ class UserMail(models.Model):
             UserMail.objects.filter(user=self.user).all()
         )
         plan = Plan(self.user)
+
+        if self.redirect_to and not plan.settings.allow_custom_redirect:
+            raise ValidationError(_('your plan not have custom redirects.'))
+        
         if mails_count >= plan.settings.mails:
             raise ValidationError(_('you reached the limit of mails for your plan.'))
+        
         return super(UserMail, self).full_clean(exclude=exclude, validate_unique=validate_unique)
 
     def save(self, *args, **kwargs):
