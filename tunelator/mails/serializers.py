@@ -5,7 +5,7 @@ from mails.validators import UserMailAliasValidator
 class UserReceivedMailInternSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMail
-        fields = ["id", "mail"]
+        fields = ["id", "mail", "redirect_to"]
 
 class UserReceivedMailSerializer(serializers.ModelSerializer):
     mail = UserReceivedMailInternSerializer()
@@ -19,12 +19,12 @@ class UserMailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserMail
-        fields = ["user", "name", "mail_user", "redirect_enabled"]
+        fields = ["user", "name", "mail_user", "redirect_enabled", "redirect_to"]
 
 class UserMailRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMail
-        fields = ["id", "name", "mail", "mail_user", "redirect_enabled", "plan_enabled", "created_at", "updated_at"]
+        fields = ["id", "name", "mail", "mail_user", "redirect_enabled", "redirect_to", "plan_enabled", "created_at", "updated_at"]
 
 mail_user_validator = UserMailAliasValidator()
 

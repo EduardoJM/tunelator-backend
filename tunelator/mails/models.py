@@ -37,6 +37,12 @@ class UserMail(models.Model):
         _("redirect enabled"),
         default=True
     )
+    redirect_to = models.EmailField(
+        _("redirect to e-mail"),
+        blank=True,
+        null=True,
+        default=None
+    )
     created_at = models.DateTimeField(
         _("created at"),
         auto_now_add=True
