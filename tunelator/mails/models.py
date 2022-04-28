@@ -57,6 +57,8 @@ class UserMail(models.Model):
     )
 
     def full_clean(self, exclude=None, validate_unique=True):
+        self.mail_user = str(self.mail_user).lower()
+
         mails_count = len(
             UserMail.objects.filter(user=self.user).all()
         )

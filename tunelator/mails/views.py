@@ -19,7 +19,7 @@ class VerifyUserSystemAPIView(APIView):
             'Authorization': 'Bearer %s' % settings.USER_SYSTEM_AUTHORIZATION
         }
         payload = {
-            "user_name": user_name,
+            "user_name": str(user_name).lower(),
         }
         
         response = requests.post(url, headers=headers, json=payload)
