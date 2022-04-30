@@ -73,7 +73,7 @@ def stripe_subscription_manage_view(request, uuid):
     ).first()
     
     if not manager or manager.used:
-        return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
+        return redirect('https://dashboard.tunelator.com.br/customer/error', status=303)
     
     manager.used = True
     manager.save()
@@ -81,7 +81,7 @@ def stripe_subscription_manage_view(request, uuid):
     user = manager.user
     plan_util = PlanIntegration(user)
     if not plan_util.is_paid_approval():
-        return redirect('https://dashboard.tunelator.com.br/checkout/error', status=303)
+        return redirect('https://dashboard.tunelator.com.br/customer/error', status=303)
     
     approval = plan_util.approval
     customer_id = approval.stripe_customer_id
