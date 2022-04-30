@@ -7,7 +7,11 @@ from polymorphic.admin import (
     PolymorphicInlineSupportMixin,
     StackedPolymorphicInline
 )
-from adminsortable.admin import SortableTabularInline, NonSortableParentAdmin
+from adminsortable.admin import (
+    SortableTabularInline,
+    NonSortableParentAdmin,
+    SortableAdmin
+)
 from plans.models import (
     Plan,
     PlanConfigurationStringItem,
@@ -75,7 +79,7 @@ class PlanConfigurationItemInline(StackedPolymorphicInline):
     )
 
 @admin.register(Plan)
-class PlanAdmin(PolymorphicInlineSupportMixin, NonSortableParentAdmin):
+class PlanAdmin(PolymorphicInlineSupportMixin, SortableAdmin):
     inlines = (PlanConfigurationItemInline, PlanDisplayFeatureInlineAdmin)
 
 @admin.register(Approval)

@@ -6,7 +6,7 @@ from adminsortable.models import SortableMixin
 
 User = get_user_model()
 
-class Plan(models.Model):
+class Plan(SortableMixin):
     TYPE_FREE = "free"
     TYPE_PAID = "paid"
     TYPES = (
@@ -20,6 +20,7 @@ class Plan(models.Model):
     plan_type = models.CharField(_("plan type"), max_length=10, choices=TYPES, default=TYPE_PAID)
     monthly_price = models.IntegerField(_("monthly price"), default=999)
     stripe_price_id = models.CharField(_("stripe integration price id"), max_length=255, blank=True, default="")
+    the_order = models.PositiveIntegerField(_('order'), default=0, editable=False, db_index=True)
 
     def __str__(self):
         return self.name
@@ -27,6 +28,7 @@ class Plan(models.Model):
     class Meta:
         verbose_name = _("plan")
         verbose_name_plural = _("plans")
+        ordering = ['the_order']
 
 class PlanDisplayFeature(SortableMixin):
     plan = models.ForeignKey(
