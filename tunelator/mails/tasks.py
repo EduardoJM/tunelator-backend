@@ -3,6 +3,7 @@ import smtplib
 from os import listdir, remove
 from os.path import isfile, join
 from email import message_from_string
+from email.utils import make_msgid
 from django.conf import settings
 from django.utils import timezone
 from celery import shared_task
@@ -63,6 +64,10 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
     
     del mail_msg["to"]
     mail_msg["to"] = "<%s>" % mail_to_send
+
+    if received_mail.delivered:
+        del mail_msg['Message-ID']
+        mail_msg['Message-ID'] = make_msgid()
 
     with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:
         s.ehlo()
