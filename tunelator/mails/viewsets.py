@@ -1,5 +1,6 @@
-from rest_framework import viewsets, filters, mixins
+from rest_framework import viewsets, filters, mixins, decorators, response, status
 from django_filters.rest_framework import DjangoFilterBackend
+from django.utils.translation import gettext_lazy as _
 from mails.models import UserMail, UserReceivedMail
 from mails.serializers import (
     UserMailSerializer,
@@ -18,6 +19,19 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
     search_fields = ["origin_mail", "subject"]
     ordering = ["-date"]
     serializer_class = UserReceivedMailSerializer
+
+    @decorators.action(methods=["POST"], detail=True)
+    def resend(self, request):
+        received_mail = self.get_object()
+        if not received_mail:
+            return response.Response({
+                'detail': _('Received mail not found.')
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        from mails.tasks import send_redirect_mail
+        send_redirect_mail.apply_async(args=[received_mail.pk, True], coutdown=2)
+        
+        return response.Response()
 
     def get_queryset(self):
         user = self.request.user

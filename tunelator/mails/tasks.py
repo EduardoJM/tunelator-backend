@@ -45,12 +45,15 @@ def create_mail_user(mail_user_id: int):
         raise Exception("Error in server: " + response.text)
 
 @shared_task(name="send_redirect_mail")
-def send_redirect_mail(user_received_mail_id: int):
+def send_redirect_mail(user_received_mail_id: int, force: bool = False):
     from mails.models import UserReceivedMail
     
     received_mail = UserReceivedMail.objects.filter(pk=user_received_mail_id).first()
     if not received_mail:
         raise Exception("No received mail found with id " + user_received_mail_id)
+
+    if not received_mail.mail.redirect_enabled and not force:
+        return
     
     mail_to_send = received_mail.mail.user.email
     if received_mail.mail.redirect_to:
@@ -72,10 +75,9 @@ def send_redirect_mail(user_received_mail_id: int):
         )
         s.quit()
 
-    if not received_mail.delivered:
-        received_mail.delivered = True
-        received_mail.delivered_date = timezone.now()
-        received_mail.save()
+    received_mail.delivered = True
+    received_mail.delivered_date = timezone.now()
+    received_mail.save()
 
 @shared_task(name="check_user_late_mails")
 def check_user_late_mails(user_mail_id):
