@@ -21,7 +21,7 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
     serializer_class = UserReceivedMailSerializer
 
     @decorators.action(methods=["POST"], detail=True)
-    def resend(self, request):
+    def resend(self, request, pk):
         received_mail = self.get_object()
         if not received_mail:
             return response.Response({

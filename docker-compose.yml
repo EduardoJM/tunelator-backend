@@ -35,29 +35,29 @@ services:
       - "db"
       - "redis"
 
-  worker:
-    build: ./tunelator
-    entrypoint: ['./entrypoint.worker.sh']
-    networks:
-      - tunelator
-    volumes:
-      - /home:/home
-    depends_on:
-      - "db"
-      - "redis"
-      - "api"
+#  worker:
+#    build: ./tunelator
+#    entrypoint: ['./entrypoint.worker.sh']
+#    networks:
+#      - tunelator
+#    volumes:
+#      - /home:/home
+#    depends_on:
+#      - "db"
+#      - "redis"
+#      - "api"
     
-  watcher:
-    build: ./tunelator
-    entrypoint: ['./entrypoint.watcher.sh']
-    networks:
-      - tunelator
-    volumes:
-      - /home:/home
-    depends_on:
-      - "db"
-      - "redis"
-      - "api"
+#  watcher:
+#    build: ./tunelator
+#    entrypoint: ['./entrypoint.watcher.sh']
+#    networks:
+#      - tunelator
+#    volumes:
+#      - /home:/home
+#    depends_on:
+#      - "db"
+#      - "redis"
+#      - "api"
 
 networks:
   tunelator:
