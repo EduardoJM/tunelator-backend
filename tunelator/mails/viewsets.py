@@ -29,7 +29,7 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
             }, status=status.HTTP_404_NOT_FOUND)
         
         from mails.tasks import send_redirect_mail
-        send_redirect_mail.apply_async(args=[received_mail.pk, True], coutdown=2)
+        send_redirect_mail.apply_async(args=[received_mail.id, True], coutdown=2)
         
         return response.Response()
 
