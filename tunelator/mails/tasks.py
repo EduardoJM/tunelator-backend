@@ -7,8 +7,7 @@ from email.utils import make_msgid
 from django.conf import settings
 from django.utils import timezone
 from celery import shared_task
-from mails.notification_types import MAIL_IS_DONE
-from mails.utils import save_mail_from_file
+from mails.utils import save_mail_from_file, get_email_body, set_email_body
 import requests
 
 @shared_task(name="create_mail_user")
@@ -68,6 +67,38 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
     if received_mail.delivered:
         del mail_msg['Message-ID']
         mail_msg['Message-ID'] = make_msgid()
+    
+    text_body, html_body = get_email_body(mail_msg)
+    if html_body:
+        html_body = "%s%s" % (
+            """
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td bgcolor="#5F30E2" style="padding: 10px; color: #FFFFFF;">
+                        Esse é um e-mail reenviado pelo <a href="https://tunelator.com.br/">tunelator.com.br</a>.
+                        <br/>
+                        <br/>
+                        <strong>Conta de Redirecionamento:</strong> %s
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            """ % received_mail.mail.mail,
+            html_body,
+        )
+    if text_body:
+        text_body = "%s%s" % (
+            """
+            Esse é um e-mail reenviado pelo tunelator.com.br.
+            
+            Conta de Redirecionamento:  %s
+
+            
+            """ % received_mail.mail.mail,
+            text_body
+        )
+
+    set_email_body(mail_msg, text_body, html_body)
 
     with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:
         s.ehlo()

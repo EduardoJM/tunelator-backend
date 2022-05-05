@@ -69,3 +69,46 @@ def save_mail_from_file(user_mail, path):
     received_mail.raw_mail = text
     received_mail.raw_file_path = path
     received_mail.save()
+
+
+def set_email_body(received_email, text_body, html_body):
+    if not received_email.is_multipart():
+        if not text_body:
+            return
+        received_email.set_payload(text_body)
+        return
+
+    for payload in received_email.get_payload():
+        if payload.is_multipart():
+            set_email_body(payload, text_body, html_body)
+            continue
+        
+        if text_body:
+            if payload.get_content_type() == "text/plain":
+                payload.set_payload(text_body)
+        
+        if html_body:
+            if payload.get_content_type() == "text/html":
+                payload.set_payload(html_body)
+
+
+def get_email_body(received_email):
+    text_body = ""
+    html_body = ""
+    if received_email.is_multipart():
+        for payload in received_email.get_payload():
+            # If the message comes with a signature it can be that this
+            # payload itself has multiple parts, so just return the
+            # first one
+            if payload.is_multipart():
+                text_body, html_body = get_email_body(payload)
+
+            body = payload.get_payload()
+            if payload.get_content_type() == "text/plain":
+                text_body = body
+            elif payload.get_content_type() == "text/html":
+                html_body = body
+    else:
+        text_body = received_email.get_payload()
+        html_body = None
+    return text_body, html_body
