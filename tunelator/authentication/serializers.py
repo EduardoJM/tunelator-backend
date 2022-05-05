@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import update_last_login
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer as BaseTokenObtainPairSerializer,
@@ -24,6 +25,11 @@ class UserCreateSerializer(serializers.Serializer):
     first_name = serializers.CharField()
     last_name = serializers.CharField()
     password = serializers.CharField()
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).first():
+            raise ValidationError(_('The e-mail is already used.'))
+        return value
 
 class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
     def get_user_data(self):
