@@ -102,12 +102,12 @@ def get_email_body(received_email):
             # first one
             if payload.is_multipart():
                 text_body, html_body = get_email_body(payload)
-
-            body = payload.get_payload()
-            if payload.get_content_type() == "text/plain":
-                text_body = body
-            elif payload.get_content_type() == "text/html":
-                html_body = body
+            else:
+                body = payload.get_payload(decode=True)
+                if payload.get_content_type() == "text/plain":
+                    text_body = body
+                elif payload.get_content_type() == "text/html":
+                    html_body = body
     else:
         text_body = received_email.get_payload()
         html_body = None
