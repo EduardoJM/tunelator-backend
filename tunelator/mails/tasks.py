@@ -70,33 +70,23 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
     
     text_body, html_body = get_email_body(mail_msg)
     if html_body:
-        html_body = "%s%s" % (
-            """
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                    <td bgcolor="#5F30E2" style="padding: 10px; color: #FFFFFF;">
-                        Esse é um e-mail reenviado pelo <a href="https://tunelator.com.br/">tunelator.com.br</a>.
-                        <br/>
-                        <br/>
-                        <strong>Conta de Redirecionamento:</strong> %s
-                    </td>
-                </tr>
-            </table>
-            <br/>
-            """ % received_mail.mail.mail,
-            html_body,
-        )
+        html_body = '' +\
+            '<table border="0" cellpadding="0" cellspacing="0" width="100%">' +\
+                '<tr>' +\
+                    '<td bgcolor="#5F30E2" style="padding: 10px; color: #FFFFFF;">' + \
+                        'Esse é um e-mail reenviado pelo <a href="https://tunelator.com.br/">tunelator.com.br</a>.' +\
+                        '<br/>' +\
+                        '<br/>' +\
+                        '<strong>Conta de Redirecionamento:</strong> ' + received_mail.mail.mail +\
+                    '</td>' +\
+                '</tr>' +\
+            '</table>' +\
+            '<br/>' + \
+            html_body
+    
     if text_body:
-        text_body = "%s%s" % (
-            """
-            Esse é um e-mail reenviado pelo tunelator.com.br.
-            
-            Conta de Redirecionamento:  %s
-
-            
-            """ % received_mail.mail.mail,
-            text_body
-        )
+        text_body = 'Esse é um e-mail reenviado pelo tunelator.com.br.\r\n\r\nConta de Redirecionamento:  ' + received_mail.mail.mail +\
+            '\r\n' + text_body
 
     set_email_body(mail_msg, text_body, html_body)
 
