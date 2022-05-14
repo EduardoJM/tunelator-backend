@@ -41,7 +41,7 @@ class UserCreateView(APIView):
         except TokenError as e:
             raise InvalidToken(e.args[0])
 
-        return Response(token_serializer.validated_data, status=status.HTTP_200_OK)
+        return Response(token_serializer.validated_data, status=status.HTTP_201_CREATED)
 
 class TokenObtainPairView(BaseTokenObtainPairView):
     def get_serializer_class(self):
