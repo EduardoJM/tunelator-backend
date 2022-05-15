@@ -11,19 +11,15 @@ jobs:
 
     services:
       # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres:12-alpine
+      db:
+        image: postgres:9.5.20-alpine
         # Provide the password for postgres
-        env:
+        environment:
           - POSTGRES_DB=postgres
           - POSTGRES_USER=postgres
           - POSTGRES_PASSWORD=postgres
-
         ports:
           - 5432:5432
-          
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -32,7 +28,6 @@ jobs:
         
       redis:
         image: redis:alpine
-
         ports:
           - 6379:6379
     
