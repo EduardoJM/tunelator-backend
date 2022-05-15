@@ -11,22 +11,32 @@ from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from authentication.serializers import (
     TokenObtainPairSerializer,
+    TokenObtainPairResponseSerializer,
     AuthenticationUserSerializer,
     AuthenticationUserUpdateSerializer,
     UserCreateSerializer,
+    TokenRefreshResponseSerializer,
 )
-from authentication.schemas import (
-    TokenObtainPairViewSchema,
-    UserCreateViewSchema,
-)
+from drf_yasg.utils import swagger_auto_schema
 
 User = get_user_model()
 
 class UserProfileDataView(APIView):
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: AuthenticationUserSerializer,
+        },
+    )
     def get(self, request):
         serializer = AuthenticationUserSerializer(instance=request.user)
         return Response(serializer.data, status=200)
     
+    @swagger_auto_schema(
+        request_body=AuthenticationUserUpdateSerializer,
+        responses={
+            status.HTTP_200_OK: AuthenticationUserSerializer,
+        },
+    )
     def patch(self, request):
         serializer = AuthenticationUserUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -40,13 +50,15 @@ class UserProfileDataView(APIView):
         return Response(serializer.data, status=200)
 
 class UserCreateView(APIView):
-    """
-    Signup route. Send the e-mail, first name, last name and the password and get
-    the access and refresh JsonWebToken tokens and the basic user data.
-    """
     permission_classes = []
-    schema = UserCreateViewSchema()
     
+    @swagger_auto_schema(
+        request_body=UserCreateSerializer,
+        responses={
+            status.HTTP_201_CREATED: TokenObtainPairResponseSerializer,
+        },
+        security=[],
+    )
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -71,16 +83,25 @@ class UserCreateView(APIView):
         return Response(token_serializer.validated_data, status=status.HTTP_201_CREATED)
 
 class TokenObtainPairView(BaseTokenObtainPairView):
-    """
-    Login with JsonWebToken route. Send the e-mail and the password and get
-    the access and refresh JsonWebToken tokens and the basic user data.
-    """
-    schema = TokenObtainPairViewSchema()
-
     def get_serializer_class(self):
         return TokenObtainPairSerializer
+    
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: TokenObtainPairResponseSerializer,
+        },
+        security=[],
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
 class TokenRefreshView(BaseTokenRefreshView):
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: TokenRefreshResponseSerializer,
+        },
+        security=[],
+    )
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 

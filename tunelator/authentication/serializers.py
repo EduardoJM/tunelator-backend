@@ -60,3 +60,17 @@ class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
         update_last_login(None, self.user)
 
         return data
+
+
+#
+# Schema Utils
+#
+class TokenObtainPairResponseSerializer(serializers.Serializer):
+    access = serializers.CharField()
+    refresh = serializers.CharField()
+    user = AuthenticationUserSerializer(read_only=True)
+
+class TokenRefreshResponseSerializer(serializers.Serializer):
+    access = serializers.CharField()
+    user = AuthenticationUserSerializer(read_only=True)
+    

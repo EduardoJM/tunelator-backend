@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
     # background tasks
     'django_celery_results',
     'django_celery_beat',
@@ -160,3 +161,17 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 # STRIPE
 #
 STRIPE_ACCESS_TOKEN = env('STRIPE_ACCESS_TOKEN')
+
+#
+# SWAGGER
+#
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    "api_path": "/api"
+}
