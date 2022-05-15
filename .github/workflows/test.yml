@@ -1,0 +1,13 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    - uses: actions/checkout@v2
+    - uses: docker-practice/actions-setup-docker@master
+    - run: docker-compose -f docker-compose.test.yml --build
+    - run: ./tests.sh
