@@ -55,6 +55,13 @@ jobs:
       - name: Install Dependencies
         run: |
           pip-sync tunelator/requirements.txt
-      
+          
+      - name: Write secrets to repository
+        run: |
+          printf "%s\n" "$TEST_ENV_FILE" >> tunelator/.env
+        shell: bash
+        env:
+          TEST_ENV_FILE: ${{ secrets.TEST_ENV }}
+
       - name: Run Tests
         run: python tunelator/manage.py test
