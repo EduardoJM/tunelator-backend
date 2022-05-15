@@ -57,4 +57,4 @@ jobs:
           pip-sync tunelator/requirements.txt
       
       - name: Run Tests
-        run: python manage.py test
+        run: python tunelator/manage.py test
