@@ -15,6 +15,10 @@ from authentication.serializers import (
     AuthenticationUserUpdateSerializer,
     UserCreateSerializer,
 )
+from authentication.schemas import (
+    TokenObtainPairViewSchema,
+    UserCreateViewSchema,
+)
 
 User = get_user_model()
 
@@ -36,7 +40,12 @@ class UserProfileDataView(APIView):
         return Response(serializer.data, status=200)
 
 class UserCreateView(APIView):
+    """
+    Signup route. Send the e-mail, first name, last name and the password and get
+    the access and refresh JsonWebToken tokens and the basic user data.
+    """
     permission_classes = []
+    schema = UserCreateViewSchema()
     
     def post(self, request):
         serializer = UserCreateSerializer(data=request.data)
@@ -62,6 +71,12 @@ class UserCreateView(APIView):
         return Response(token_serializer.validated_data, status=status.HTTP_201_CREATED)
 
 class TokenObtainPairView(BaseTokenObtainPairView):
+    """
+    Login with JsonWebToken route. Send the e-mail and the password and get
+    the access and refresh JsonWebToken tokens and the basic user data.
+    """
+    schema = TokenObtainPairViewSchema()
+
     def get_serializer_class(self):
         return TokenObtainPairSerializer
 

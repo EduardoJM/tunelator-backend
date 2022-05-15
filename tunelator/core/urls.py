@@ -11,4 +11,5 @@ urlpatterns += [
     path('api/plans/', include('plans.urls')),
     path('api/payments/', include('payments.urls')),
     path('api/mails/', include('mails.urls')),
+    path('docs/', include('docs.urls')),
 ]
