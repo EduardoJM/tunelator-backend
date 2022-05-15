@@ -12,5 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker-practice/actions-setup-docker@master
+      - name: Write secrets to repository
+        run: |
+          printf "%s\n" "$TEST_ENV_FILE" >> tunelator/.env
+        shell: bash
+        env:
+          TEST_ENV_FILE: ${{ secrets.TEST_ENV }}
       - run: docker-compose -f docker-compose.test.yml up --build
       - run: ./tests.sh
