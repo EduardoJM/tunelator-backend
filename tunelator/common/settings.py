@@ -120,11 +120,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace("\\", "/")
 MEDIA_URL = "/media/"
 
-AWS_S3_CUSTOM_DOMAIN = env('AWS_S3_DOMAIN')
-AWS_STORAGE_BUCKET_NAME = env('AWS_S3_BUCKET_NAME')
-AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+if not DEBUG:
+    AWS_S3_CUSTOM_DOMAIN = env('AWS_S3_DOMAIN')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_S3_BUCKET_NAME')
+    AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 #
 # Celery Task Result
