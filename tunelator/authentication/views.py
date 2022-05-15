@@ -12,10 +12,28 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from authentication.serializers import (
     TokenObtainPairSerializer,
     AuthenticationUserSerializer,
+    AuthenticationUserUpdateSerializer,
     UserCreateSerializer,
 )
 
 User = get_user_model()
+
+class UserProfileDataView(APIView):
+    def get(self, request):
+        serializer = AuthenticationUserSerializer(instance=request.user)
+        return Response(serializer.data, status=200)
+    
+    def patch(self, request):
+        serializer = AuthenticationUserUpdateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        data = serializer.validated_data
+        user = request.user
+        user.__dict__.update(data)
+        user.save()
+
+        serializer = AuthenticationUserSerializer(instance=request.user)
+        return Response(serializer.data, status=200)
 
 class UserCreateView(APIView):
     permission_classes = []
