@@ -8,15 +8,58 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:12-alpine
+        # Provide the password for postgres
+        env:
+          POSTGRES_DB=postgres
+          POSTGRES_USER=postgres
+          POSTGRES_PASSWORD=postgres
+
+        ports:
+          - 5432:5432
+          
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        
+      redis:
+        image: redis:alpine
+
+        ports:
+          - 6379:6379
     
     steps:
       - uses: actions/checkout@v2
-      - uses: docker-practice/actions-setup-docker@master
-      - name: Write secrets to repository
+      
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      
+      - name: Install pip-tools
         run: |
-          printf "%s\n" "$TEST_ENV_FILE" >> tunelator/.env
-        shell: bash
-        env:
-          TEST_ENV_FILE: ${{ secrets.TEST_ENV }}
-      - run: docker-compose -f docker-compose.test.yml up --build -d
-      - run: ./tests.sh
+          pip install --upgrade pip
+          pip install pip-tools
+      
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('project/requirements/*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('project/requirements/*.txt') }}
+      
+      - name: Install Dependencies
+        run: |
+          pip-sync tunelator/requirements.txt
+      
+      - name: Run Tests
+        run: python manage.py test
