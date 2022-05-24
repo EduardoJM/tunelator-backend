@@ -1,5 +1,8 @@
 from celery import shared_task
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
 
 User = get_user_model()
 
@@ -15,4 +18,15 @@ def send_recovery_link(email: str):
     session.user = user
     session.save()
 
-    # TODO: send e-mail here
+    html = render_to_string('password-reset.html', {
+        'session': session
+    })
+
+    send_mail(
+        'Recuperar sua senha',
+        message='',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[email],
+        fail_silently=False,
+        html_message=html,
+    )

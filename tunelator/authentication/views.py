@@ -195,6 +195,8 @@ class ForgotPasswordSessionResetView(APIView):
         
         user = session.user
         user.set_password(serializer.validated_data['password'])
+        session.used = True
+        session.save()
         user.save()
 
         return Response(status=status.HTTP_200_OK)
