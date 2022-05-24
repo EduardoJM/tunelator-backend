@@ -1,5 +1,6 @@
+import uuid
+from datetime import timedelta
 from django.db import models
-from django.apps import apps
 from django.contrib import auth
 from django.utils import timezone
 from django.core.mail import send_mail
@@ -111,3 +112,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+class ForgotPasswordSession(models.Model):
+    session_id = models.CharField(verbose_name=_('checkout id'), max_length=50)
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
+    valid_until = models.DateTimeField(_('Valid Until'))
+    used = models.BooleanField(_('used'), default=False)
+
+    def __str__(self):
+        return self.session_id
+
+    def save(self, *args, **kwargs):
+        if not self.session_id:
+            self.session_id = str(uuid.uuid4())
+        if not self.valid_until:
+            self.valid_until = timezone.now() + timedelta(hours=3)
+        return super(ForgotPasswordSession, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Forgot Password Session')
+        verbose_name_plural = _('Forgot Password Sessions')
