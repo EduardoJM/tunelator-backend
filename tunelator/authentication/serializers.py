@@ -61,6 +61,8 @@ class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
 
         return data
 
+class ForgotPasswordSessionSerializer(serializers.Serializer):
+    email = serializers.EmailField()
 
 #
 # Schema Utils
@@ -73,4 +75,3 @@ class TokenObtainPairResponseSerializer(serializers.Serializer):
 class TokenRefreshResponseSerializer(serializers.Serializer):
     access = serializers.CharField()
     user = AuthenticationUserSerializer(read_only=True)
-    

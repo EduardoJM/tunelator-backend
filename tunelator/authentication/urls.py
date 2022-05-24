@@ -4,6 +4,7 @@ from authentication.views import (
     TokenRefreshView,
     UserCreateView,
     UserProfileDataView,
+    ForgotPasswordSessionView,
 )
 
 app_name = 'authentication'
@@ -13,4 +14,5 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='login'),
     path('token/refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('user/', UserProfileDataView.as_view(), name='user'),
+    path('recovery/', ForgotPasswordSessionView.as_view(), name='recovery'),
 ]

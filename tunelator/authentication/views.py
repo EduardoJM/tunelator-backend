@@ -16,6 +16,7 @@ from authentication.serializers import (
     AuthenticationUserUpdateSerializer,
     UserCreateSerializer,
     TokenRefreshResponseSerializer,
+    ForgotPasswordSessionSerializer,
 )
 from drf_yasg.utils import swagger_auto_schema
 
@@ -119,3 +120,17 @@ class TokenRefreshView(BaseTokenRefreshView):
 
         data = {**serializer.validated_data, "user": user_serializer.data}
         return Response(data)
+
+class ForgotPasswordSessionView(APIView):
+    permission_classes = []
+    authentication_classes = []
+
+    @swagger_auto_schema(
+        request_body=ForgotPasswordSessionSerializer,
+        responses={
+            status.HTTP_200_OK: "No body",
+        },
+        security=[],
+    )
+    def post(self, request):
+        return Response(status=status.HTTP_200_OK)
