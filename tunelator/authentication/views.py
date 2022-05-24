@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,7 +18,9 @@ from authentication.serializers import (
     UserCreateSerializer,
     TokenRefreshResponseSerializer,
     ForgotPasswordSessionSerializer,
+    ForgotPasswordSessionResetSerializer,
 )
+from authentication.models import ForgotPasswordSession
 from drf_yasg.utils import swagger_auto_schema
 
 User = get_user_model()
@@ -133,4 +136,65 @@ class ForgotPasswordSessionView(APIView):
         security=[],
     )
     def post(self, request):
+        from authentication.tasks import send_recovery_link
+        
+        serializer = ForgotPasswordSessionSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        send_recovery_link.delay(serializer.validated_data['email'])
+
+        return Response(status=status.HTTP_200_OK)
+
+class ForgotPasswordValidateSessionView(APIView):
+    permission_classes = []
+    authentication_classes = []
+
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: "No body. Indicates that the session is valid.",
+            status.HTTP_404_NOT_FOUND: "No body. Indicates that the session is not found.",
+            status.HTTP_422_UNPROCESSABLE_ENTITY: 'No body. Indicates that the session is expired.',
+        },
+        security=[],
+    )
+    def get(self, request, session_id):
+        session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
+        if not session:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        if session.used:
+            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        if timezone.now() > session.valid_until:
+            session.used = True
+            session.save()
+            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        return Response(status=status.HTTP_200_OK)
+
+class ForgotPasswordSessionResetView(APIView):
+    @swagger_auto_schema(
+        request_body=ForgotPasswordSessionResetSerializer,
+        responses={
+            status.HTTP_200_OK: "No body. Indicates that the user password was changed.",
+            status.HTTP_404_NOT_FOUND: "No body. Indicates that the session is not found.",
+            status.HTTP_422_UNPROCESSABLE_ENTITY: 'No body. Indicates that the session is expired.',
+        },
+        security=[],
+    )
+    def put(self, request, session_id):
+        session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
+        if not session:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        if session.used:
+            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        if timezone.now() > session.valid_until:
+            session.used = True
+            session.save()
+            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        serializer = ForgotPasswordSessionResetSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        user = session.user
+        user.set_password(serializer.validated_data['password'])
+        user.save()
+
         return Response(status=status.HTTP_200_OK)

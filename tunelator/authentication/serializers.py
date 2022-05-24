@@ -64,6 +64,9 @@ class TokenObtainPairSerializer(BaseTokenObtainPairSerializer):
 class ForgotPasswordSessionSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
+class ForgotPasswordSessionResetSerializer(serializers.Serializer):
+    password = serializers.CharField()
+
 #
 # Schema Utils
 #
