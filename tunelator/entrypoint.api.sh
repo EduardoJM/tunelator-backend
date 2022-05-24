@@ -10,5 +10,4 @@ while ! nc -z db 5432 ; do
 done
 
 python manage.py migrate
-#gunicorn -b 0.0.0.0:8000 core.wsgi:application
-python manage.py runserver 0.0.0.0:8000
+gunicorn -b 0.0.0.0:8000 core.wsgi:application
