@@ -170,6 +170,9 @@ class ForgotPasswordValidateSessionView(APIView):
         return Response(status=status.HTTP_200_OK)
 
 class ForgotPasswordSessionResetView(APIView):
+    permission_classes = []
+    authentication_classes = []
+    
     @swagger_auto_schema(
         request_body=ForgotPasswordSessionResetSerializer,
         responses={
