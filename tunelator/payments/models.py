@@ -10,6 +10,7 @@ class SubscriptionManager(models.Model):
     manager_id = models.CharField(verbose_name=_('checkout id'), max_length=50)
     user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
     used = models.BooleanField(_('used'), default=False)
+    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
 
     def __str__(self):
         return self.manager_id
@@ -28,6 +29,7 @@ class SubscriptionCheckout(models.Model):
     user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
     plan = models.ForeignKey(Plan, verbose_name=_('plan'), on_delete=models.CASCADE)
     used = models.BooleanField(_('used'), default=False)
+    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
 
     def __str__(self):
         return self.checkout_id
