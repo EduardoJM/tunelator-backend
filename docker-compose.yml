@@ -19,7 +19,7 @@ services:
 
   api:
     build: ./tunelator
-    entrypoint: ['./entrypoint.api.sh']
+    entrypoint: ['./entrypoints/production/entrypoint.api.sh']
     ports:
       - 8000:8000
     networks:
@@ -29,7 +29,7 @@ services:
 
   worker:
     build: ./tunelator
-    entrypoint: ['./entrypoint.worker.sh']
+    entrypoint: ['./entrypoints/production/entrypoint.worker.sh']
     networks:
       - tunelator
     volumes:
@@ -40,7 +40,7 @@ services:
     
   watcher:
     build: ./tunelator
-    entrypoint: ['./entrypoint.watcher.sh']
+    entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
     networks:
       - tunelator
     volumes:
