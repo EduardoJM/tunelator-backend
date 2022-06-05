@@ -7,6 +7,7 @@ networks:
 services:
   db:
     image: postgres:9.5.20-alpine
+    container_name: db
     volumes:
       - /postgres:/var/lib/postgresql/data/
     environment:
@@ -17,36 +18,39 @@ services:
     networks:
       - tunelator
 
+  redis:
+    image: redis:alpine
+    container_name: redis
+    volumes:
+      - /redis:/data
+    networks:
+      - tunelator
+
   api:
     build: ./tunelator
-    entrypoint: ['./entrypoints/production/entrypoint.api.sh']
+    container_name: api
+    entrypoint: ['./entrypoints/development/entrypoint.api.sh']
+    volumes:
+      - ./tunelator:/app
     ports:
       - 8000:8000
     networks:
       - tunelator
     depends_on:
       - "db"
+      - "redis"
 
   worker:
     build: ./tunelator
-    entrypoint: ['./entrypoints/production/entrypoint.worker.sh']
+    container_name: worker
+    entrypoint: ['./entrypoints/development/entrypoint.worker.sh']
+    volumes:
+      - ./tunelator:/app
     networks:
       - tunelator
-    volumes:
-      - /home:/home
     depends_on:
       - "db"
-      - "api"
-    
-  watcher:
-    build: ./tunelator
-    entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
-    networks:
-      - tunelator
-    volumes:
-      - /home:/home
-    depends_on:
-      - "db"
+      - "redis"
       - "api"
 
 networks:
