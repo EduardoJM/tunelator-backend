@@ -17,13 +17,6 @@ services:
     networks:
       - tunelator
 
-  redis:
-    image: redis:alpine
-    volumes:
-      - /redis:/data
-    networks:
-      - tunelator
-
   api:
     build: ./tunelator
     entrypoint: ['./entrypoint.api.sh']
@@ -33,7 +26,6 @@ services:
       - tunelator
     depends_on:
       - "db"
-      - "redis"
 
   worker:
     build: ./tunelator
@@ -44,7 +36,6 @@ services:
       - /home:/home
     depends_on:
       - "db"
-      - "redis"
       - "api"
     
   watcher:
@@ -56,7 +47,6 @@ services:
       - /home:/home
     depends_on:
       - "db"
-      - "redis"
       - "api"
 
 networks:
