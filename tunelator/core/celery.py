@@ -1,5 +1,6 @@
 import os
 import environ
+from urllib.parse import quote
 from datetime import timedelta
 from pathlib import Path
 from celery import Celery
@@ -20,8 +21,18 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 app = Celery('tunelator')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
-app.conf.broker_url = BASE_REDIS_URL
 app.conf.beat_scheduler = 'django_celery_beat.schedulers.DatabaseScheduler'
+
+if env('DEBUG'):
+    app.conf.broker_url = BASE_REDIS_URL
+else:
+    key = quote(env('AWS_SQS_KEY'))
+    access = quote(env('AWS_SQS_ACCESS'))
+    region = env('AWS_SQS_REGION')
+    app.conf.broker_url = 'sqs://%s:%s@' % (key, access)
+    app.conf.broker_transport_options = {
+        "region": region
+    }
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
