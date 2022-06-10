@@ -29,7 +29,7 @@ services:
   api:
     build: ./tunelator
     container_name: api
-    entrypoint: ['./entrypoint.api.sh']
+    entrypoint: ['./entrypoints/development/entrypoint.api.sh']
     volumes:
       - ./tunelator:/app
     ports:
