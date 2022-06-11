@@ -6,7 +6,10 @@
   "author": "Eduardo Oliveira <eduardo_y05@outlook.com>",
   "license": "MIT",
   "scripts": {
+    "test": "nodemon --ext py --exec './tests.sh'",
     "test:badge": "node ./scripts/make-badge.js"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
