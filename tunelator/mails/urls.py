@@ -11,5 +11,5 @@ app_name = 'mails'
 
 urlpatterns = [
     path('', include(mails_router.urls)),
-    path('verify/user/', VerifyUserSystemAPIView.as_view()),
+    path('verify/user/', VerifyUserSystemAPIView.as_view(), name='verify_mail_user_name'),
 ]
