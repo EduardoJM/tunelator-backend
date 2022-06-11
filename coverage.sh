@@ -6,4 +6,4 @@ while ! nc -z localhost 8000 ; do
 done
 
 docker exec -ti api coverage run --source='.' manage.py test
-docker exec -ti api coverage html --omit migrations
+docker exec -ti api coverage html --omit='*migrations*'
