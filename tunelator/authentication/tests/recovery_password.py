@@ -160,3 +160,4 @@ class ForgotPasswordSessionResetAPITestCase(APITestCase):
         response = self.client.put(self.invalid_url)
 
         self.assertEqual(404, response.status_code)
+
