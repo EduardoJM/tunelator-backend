@@ -3,4 +3,9 @@ __pycache__
 *.pyc
 *.sqlite3
 *.env
+
 .coverage
+htmlcov
+coverage.json
+
+node_modules
