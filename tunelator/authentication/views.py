@@ -45,8 +45,12 @@ class UserProfileDataView(APIView):
         serializer = AuthenticationUserUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        data = serializer.validated_data
         user = request.user
+        data = serializer.validated_data
+        if "password" in data:
+            password = data.pop("password")
+            user.set_password(password)
+        
         user.__dict__.update(data)
         user.save()
 
