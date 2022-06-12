@@ -97,3 +97,20 @@ class UserProfileDataViewAPITestCase(APITestCase):
         self.assertEqual(last_name, data['last_name'])
         self.assertEqual(last_name, user.last_name)
         self.assertEqual(self.first_name, data['first_name'])
+
+    def test_update_user_password(self):
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.access)
+        
+        password = self.user.password
+        send_password = 'any new password'
+
+        response = self.client.patch(self.url, {
+            'password': send_password,
+        })
+
+        user = User.objects.filter(pk=self.user.id).first()
+        new_password = user.password
+
+        self.assertEqual(200, response.status_code)
+        self.assertNotEqual(password, new_password)
+        self.assertNotEqual(new_password, send_password)
