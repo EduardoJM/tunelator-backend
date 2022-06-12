@@ -1,6 +1,6 @@
 from celery import shared_task
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
+from django.core import mail
 from django.conf import settings
 from django.template.loader import render_to_string
 
@@ -22,7 +22,7 @@ def send_recovery_link(email: str):
         'session': session
     })
 
-    send_mail(
+    mail.send_mail(
         'Recuperar sua senha',
         message='',
         from_email=settings.EMAIL_HOST_USER,

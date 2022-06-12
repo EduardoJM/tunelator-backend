@@ -18,18 +18,10 @@ services:
     networks:
       - tunelator
 
-  redis:
-    image: redis:alpine
-    container_name: redis
-    volumes:
-      - /redis:/data
-    networks:
-      - tunelator
-
   api:
     build: ./tunelator
     container_name: api
-    entrypoint: ['./entrypoint.api.sh']
+    entrypoint: ['./entrypoints/tests/entrypoint.api.sh']
     volumes:
       - ./tunelator:/app
     ports:
@@ -38,7 +30,6 @@ services:
       - tunelator
     depends_on:
       - "db"
-      - "redis"
 
 networks:
   tunelator:

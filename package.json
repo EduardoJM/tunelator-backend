@@ -1,0 +1,16 @@
+{
+  "name": "tunelator-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tunelator/tunelator-backend.git",
+  "author": "Eduardo Oliveira <eduardo_y05@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "./tests.sh",
+    "test:watch": "nodemon --ext py --exec './tests.sh'",
+    "test:badge": "node ./scripts/make-badge.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

@@ -5,4 +5,4 @@ while ! nc -z localhost 8000 ; do
     sleep 0.1
 done
 
-docker exec -ti api python manage.py test
+docker exec api python manage.py test
