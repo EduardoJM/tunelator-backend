@@ -38,6 +38,7 @@ else:
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(crontab(minute="*/10"), periodic_check_mails.s())
     sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_stripe_checkout_ids.s())
+    sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_expired_forgot_password_sessions.s())
 
 @app.task(name="periodic_check_mails")
 def periodic_check_mails():
