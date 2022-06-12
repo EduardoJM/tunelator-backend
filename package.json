@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "./tests.sh",
+    "test:coverage": "./coverage.sh",
     "test:watch": "nodemon --ext py --exec './tests.sh'",
     "test:badge": "node ./scripts/make-badge.js"
   },

@@ -38,6 +38,7 @@ else:
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(crontab(minute="*/10"), periodic_check_mails.s())
     sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_stripe_checkout_ids.s())
+    sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_expired_forgot_password_sessions.s())
 
 @app.task(name="periodic_check_mails")
 def periodic_check_mails():
@@ -60,4 +61,12 @@ def periodic_clean_stripe_checkout_ids():
 
     SubscriptionManager.objects.filter(
         Q(created_at__lte=time) | Q(used=True)
+    ).delete()
+
+@app.task(name='periodic_clean_expired_forgot_password_sessions')
+def periodic_clean_expired_forgot_password_sessions():
+    from authentication.models import ForgotPasswordSession
+
+    ForgotPasswordSession.objects.filter(
+        Q(valid_until__lte=timezone.now()) | Q(used=True)
     ).delete()
