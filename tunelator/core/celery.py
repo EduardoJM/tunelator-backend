@@ -61,3 +61,11 @@ def periodic_clean_stripe_checkout_ids():
     SubscriptionManager.objects.filter(
         Q(created_at__lte=time) | Q(used=True)
     ).delete()
+
+@app.task(name='periodic_clean_expired_forgot_password_sessions')
+def periodic_clean_expired_forgot_password_sessions():
+    from authentication.models import ForgotPasswordSession
+
+    ForgotPasswordSession.objects.filter(
+        Q(valid_until__lte=timezone.now()) | Q(used=True)
+    ).delete()
