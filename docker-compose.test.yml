@@ -18,6 +18,12 @@ services:
     networks:
       - tunelator
 
+  redis:
+    image: redis:alpine
+    container_name: redis
+    networks:
+      - tunelator
+
   api:
     build: ./tunelator
     container_name: api
