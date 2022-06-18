@@ -1,3 +1,5 @@
+import smtplib
+from django.conf import settings
 from email import message_from_string
 from email.header import decode_header
 from django.utils import timezone
@@ -109,6 +111,22 @@ def get_email_body(received_email):
                 elif payload.get_content_type() == "text/html":
                     html_body = body
     else:
-        text_body = received_email.get_payload()
+        text_body = received_email.get_payload(decode=True)
         html_body = None
     return text_body, html_body
+
+def send_email(mail_to_send: str, mail_msg: str):
+    with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:
+        print(s)
+        print(s.sendmail)
+        s.ehlo()
+        s.starttls()
+        s.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+        print(
+            s.sendmail(
+                settings.EMAIL_HOST_USER,
+                mail_to_send,
+                mail_msg.as_string()
+            )
+        )
+        s.quit()

@@ -15,7 +15,6 @@ env = environ.Env(
 )
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 app = Celery('tunelator')
@@ -24,6 +23,7 @@ app.autodiscover_tasks()
 app.conf.beat_scheduler = 'django_celery_beat.schedulers.DatabaseScheduler'
 
 if env('DEBUG'):
+    BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
     app.conf.broker_url = BASE_REDIS_URL
 else:
     key = quote(env('AWS_SQS_KEY'))
