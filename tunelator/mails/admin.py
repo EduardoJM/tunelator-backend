@@ -1,5 +1,6 @@
 from django.contrib import admin
 from mails.models import UserMail, UserReceivedMail
+from mails.actions import force_resend_mails
 
 @admin.register(UserMail)
 class UserMailAdmin(admin.ModelAdmin):
@@ -9,3 +10,4 @@ class UserMailAdmin(admin.ModelAdmin):
 @admin.register(UserReceivedMail)
 class UserReceivedMailAdmin(admin.ModelAdmin):
     list_display = ["mail", "origin_mail", "subject", "date", "delivered", "delivered_date"]
+    actions = [force_resend_mails]
