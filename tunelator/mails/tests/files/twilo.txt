@@ -1,0 +1,338 @@
+Return-Path: <bounces+1363651-7475-matheusvieira1=tunelator.com.br@smtpgw.twilio.com>
+X-Original-To: matheusvieira1@tunelator.com.br
+Delivered-To: matheusvieira1@tunelator.com.br
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on tunelator.com.br
+Authentication-Results: tunelator.com.br;
+	dkim=pass (2048-bit key; unprotected) header.d=twilio.com header.i=@twilio.com header.a=rsa-sha256 header.s=s1 header.b=U23lRB1m;
+	dkim-atps=neutral
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,NO_RECEIVED,NO_RELAYS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=twilio.com;
+	h=from:subject:mime-version:reply-to:to:content-type;
+	s=s1; bh=Sm/3kG8IDPy2KZvYYLkav+RLjlx7M3DNoQb3J7lpHgo=;
+	b=U23lRB1mCN7bQRRqnH6stfhlXWeKQTkm97vMRBpkk6R1BnlsSbPivRfM6+a11fXSJX63
+	sImyUAqBvPKaom6/qsv7nFsdRWitcv24RMVf7nLrDd1kN6gcEkrl4xCq7pV6BLnPWcKPX0
+	gWqOQhsyMFC2AQxDzPwnYYrGZm/2cbu2LvML9TE5pIYRwGOdlilwdIvT7bgLXIMqEISGxm
+	01jTM2D5IRzdBumjbl6Jkxs4fNzBZqthu9fygUxMF3/wW0hJVRgT26P5rKK2WqwVlL12lp
+	QA8dK5y3zPI7ozypxux17hF18XV6ar9lj+d/6TsL/jUPHBzD5Q9ZZJRrEgDN8DkQ==
+Date: Tue, 14 Jun 2022 13:05:58 +0000 (UTC)
+From: Twilio <help@twilio.com>
+Subject: Verify your email
+Message-ID: <84769d43f587dc8417aee45286e805dd@zuul.twilio.com>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version 2.0.0 rc1]
+MIME-Version: 1.0
+Reply-To: help@twilio.com
+X-SG-EID: 
+ =?us-ascii?Q?rEnrq37n6BZzufiFBK7kEuhbLYElnY7NiOnQVJ6tNi+K7fgP7V7HfcvGjrSd9c?=
+ =?us-ascii?Q?BrywoJ8d7UDoS2LPn7GrB3eZxMxSECFy5e1n7rM?=
+ =?us-ascii?Q?K+6Xt5NE0GHzCclDX1XaqT4YlVju4i2Gfp6Wwil?=
+ =?us-ascii?Q?MC7atEr8iagQw6Shj6GL0CGdjBCOLb4eXmKMQ89?=
+ =?us-ascii?Q?SqHGsd4LdbL8CKriXGbzJ4QV=2FwQYZ3dD5h+=2Fwbq?=
+ =?us-ascii?Q?c+N6Q=2F=2FxQqTHNQxFbDJx20FbHZQUpNsPNeZ9AT?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb6mFJCOhbIKGaZbpsEYUEkfg3O8Yel=2F79bAWwfRdyr?=
+ =?us-ascii?Q?8Hvi8fiXfVFwmzv4rQlg3OUw=3D=3D?=
+To: Matheus Vieira =?iso-8859-1?q?Gon=E7alves?=
+	<matheusvieira1@tunelator.com.br>
+X-Entity-ID: D7mMIPVAoJjNKtPMuV4s9w==
+Content-Type: multipart/alternative;
+	boundary="b1_84769d43f587dc8417aee45286e805dd"
+--b1_84769d43f587dc8417aee45286e805dd
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Matheus Vieira Gon&ccedil;alves,
+ To activate your Twilio Account, please verify your email address.
+   Your account will not be created until your email address is confirmed.
+   Confirm Your Email @ https://links.twiliocdn.com/ls/click?upn=3D3kZIcBV8=
+4MSbPEonqfrF6dGb3PJ6jbldw7J3yS57HqemXns2WYta3RoHKq8W8aC7vmJbetPeRD2ZTK1LBQt=
+8SP1ZOi4eeSRR7qumWAqEMC7LbNOp57xIegLtkumAJzoMNrnMqNPIi2GqFrB-2FnuNVxfva14Gp=
+-2BMbKOZyNs4NDeD4DKd7w4jwrMYxKS-2Bp72zyky-2B8tgn3DxbQMg2kml660rvV-2FrXXwCSS=
+K460SRFK5AdsrmRU6zS-2FLdSrZclaYX-2FO27iFmr3zUELwNlvDF5vPEBkG4B1gy-2FWbZbfDj=
+-2BHQN6X3sF7iC4KGeXTGofnWwKYgazjrKUjVsoWHxToZ3J8Pf0Q-3D-3DIf9O_Ip066xcHsou6=
+K-2B6lU-2B2N2ewHcZ4uyLP8EdP2zo391TTsDZgggmmaSnCfSRmUMDXlaBxp5welj55c2A-2Fn4=
+H6GmYAOVArvYsf6C4eSsXuw-2FU5wL2jqvoaSdrd3zRExZ1j-2FUhhyVOcmC8WVrc2330iSguQ4=
+FKJKFOi2haF-2Bzy8dSMLW7OP-2FsBk6kuvdlhnV5NeJuhY9ttAg3f8eG-2FwWVC9zOPiPV8KAn=
+7xQhnM60VOJOcr52EwKSEisLIO3vCBjWfKA3jANnpTib7TKaWOFxHqUIw-3D-3D
+  Or, copy and paste the following URL into your browser:=20
+ https://links.twiliocdn.com/ls/click?upn=3D3kZIcBV84MSbPEonqfrF6dGb3PJ6jbl=
+dw7J3yS57HqemXns2WYta3RoHKq8W8aC7vmJbetPeRD2ZTK1LBQt8SP1ZOi4eeSRR7qumWAqEMC=
+7LbNOp57xIegLtkumAJzoMNrnMqNPIi2GqFrB-2FnuNVxfva14Gp-2BMbKOZyNs4NDeD4DKd7w4=
+jwrMYxKS-2Bp72zyky-2B8tgn3DxbQMg2kml660rvV-2FrXXwCSSK460SRFK5AdsrmRU6zS-2FL=
+dSrZclaYX-2FO27iFmr3zUELwNlvDF5vPEBkG4B1gy-2FWbZbfDj-2BHQN6X3sF7iC4KGeXTGof=
+nWwKYgazjrKUjVsoWHxToZ3J8Pf0Q-3D-3D5BkI_Ip066xcHsou6K-2B6lU-2B2N2ewHcZ4uyLP=
+8EdP2zo391TTsDZgggmmaSnCfSRmUMDXlaBxp5welj55c2A-2Fn4H6GmfFCUtt8iw2Q373dh-2B=
+DJUt2m2M4ziU94HYGnH6IBO7WDuvo3Zr3eOIpGI0YYih7DTlIHqerhjuJyYN44lJaPhvHXObSP5=
+pedgees-2Bu0r0AXtMN5gZ-2FwjPIeZmlPTbtPGmnh-2B4QAAFZCBZMt7rt5YunwCuTEwxQ27Ja=
+Po7KVUHxZNuPhmcgQdEKn-2BuKEwkwyCVg-3D-3D
+      This system email was sent to Matheus Vieira Gon&ccedil;alves (matheu=
+svieira1@tunelator.com.br @ mailto:matheusvieira1@tunelator.com.br) regardi=
+ng your Twilio Account
+      (ACc8c3ab9eba51f5b4a9609f7ef9e293f6)
+      by Twilio, Inc., 375 Beale Street, Suite 300, San Francisco, CA 94105
+      If you have any questions, simply respond to this email and we'll be =
+happy to help.
+--b1_84769d43f587dc8417aee45286e805dd
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"font-family: &quot;He=
+lvetica Neue&quot;, Helvetica, Arial, sans-serif;font-weight: 300;min-heigh=
+t: 100%;height: 100%;">
+<head>
+	<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+	<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1=
+, maximum-scale=3D1">
+</head>
+<body style=3D"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;ma=
+rgin: 0;padding: 0;font-family: 'Helvetica Neue', Helvetica, Arial, sans-se=
+rif;font-weight: 300;min-height: 100%;height: 100%;width: 100%;">
+<table id=3D"wrapper" cellpadding=3D"20" cellspacing=3D"0" border=3D"0" id=
+=3D"backgroundTable" style=3D"width: 100%;background-color: #eaeaea;backgro=
+und-image: url(https://static1.twilio.com/resources/images/email/background=
+.jpg);font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weig=
+ht: 300;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0=
+pt;margin: 0;padding: 0;line-height: 100%;height: 100%;">
+	<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+		<table id=3D"contentTable" cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"background-color: #fff;margin: 0 auto;width: 680px;border: soli=
+d 1px #ddd;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace=
+: 0pt;">
+			<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+				<table id=3D"header" cellpadding=3D"20" cellspacing=3D"0" border=3D"0" =
+style=3D"border-bottom: solid 1px #ddd;width: 100%;border-collapse: collaps=
+e;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+					<tbody><tr><td style=3D"color: #444;font-size: 31px;font-weight: bold;=
+border-collapse: collapse;vertical-align: top;">
+						<img src=3D"https://static1.twilio.com/resources/images/email/twilio-=
+logo-alt.jpg" width=3D"119" height=3D"35" alt=3D"twilio" style=3D"outline: =
+none;text-decoration: none;-ms-interpolation-mode: bicubic;">
+					</td></tr></tbody>
+				</table>
+				<table cellpadding=3D"30" cellspacing=3D"0" border=3D"0" style=3D"width=
+: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;">
+					<tbody><tr><td id=3D"message" style=3D"border-collapse: collapse;verti=
+cal-align: top;">
+						<table cellpadding=3D"10" cellspacing=3D"0" border=3D"0" style=3D"wid=
+th: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: =
+0pt;">
+	<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+		<p id=3D"description" style=3D"font-size: 16px; color: #555; line-height:=
+ 26px; font-weight: 300; margin: 0 40px;">
+			<span class=3D"notranslate">Matheus Vieira Gon&ccedil;alves</span>,
+		</p>
+	</td></tr></tbody>
+</table>
+<table cellpadding=3D"10" cellspacing=3D"0" border=3D"0" style=3D"width: 10=
+0%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+	<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+		<p id=3D"description" style=3D"font-size: 16px; color: #555; line-height:=
+ 26px; font-weight: 300; margin: 0 40px;">
+            To activate your Twilio Account, please verify your email addre=
+ss.<br />
+			Your account will not be created until your email address is confirmed.
+            </p>
+	</td></tr></tbody>
+</table>
+<table cellpadding=3D"10" cellspacing=3D"0" border=3D"0" style=3D"width: 10=
+0%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+	<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+		<p style=3D"font-size: 16px; color: #555; line-height: 26px; font-weight:=
+ 300; margin: 0 40px;">
+			<a href=3D"https://links.twiliocdn.com/ls/click?upn=3D3kZIcBV84MSbPEonqf=
+rF6dGb3PJ6jbldw7J3yS57HqemXns2WYta3RoHKq8W8aC7vmJbetPeRD2ZTK1LBQt8SP1ZOi4ee=
+SRR7qumWAqEMC7LbNOp57xIegLtkumAJzoMNrnMqNPIi2GqFrB-2FnuNVxfva14Gp-2BMbKOZyN=
+s4NDeD4DKd7w4jwrMYxKS-2Bp72zyky-2B8tgn3DxbQMg2kml660rvV-2FrXXwCSSK460SRFK5A=
+dsrmRU6zS-2FLdSrZclaYX-2FO27iFmr3zUELwNlvDF5vPEBkG4B1gy-2FWbZbfDj-2BHQN6X3s=
+F7iC4KGeXTGofnWwKYga0l-2FKy51i4yH9ePQ8yhYj1w-3D-3DbDGu_Ip066xcHsou6K-2B6lU-=
+2B2N2ewHcZ4uyLP8EdP2zo391TTsDZgggmmaSnCfSRmUMDXlaBxp5welj55c2A-2Fn4H6Gmfdos=
+fecvG7CSgdCjWpH0qI7qCJp95b74GHzau0Mizosa0oSIgDmSWiusk5B2nCuSMbKPkJDZVe0-2FF=
+NHFY4MGhkcaPHDmEeqx2-2BG4fe-2BNxywrSP0EyM4PjBmFPS0nOCD3whMhMhT1Txezd4ET-2FE=
+OTe2P-2BK3DtU-2F-2BfsJY-2FJjzs1lhACGdbm-2B-2BDR1hdWTgWOOLgg-3D-3D" class=3D=
+"notranslate" style=3D"color: #0000FF; font-weight: 400; text-decoration: u=
+nderline;">Confirm Your Email</a>
+		</p>
+    </td></tr></tbody>
+</table>
+<table cellpadding=3D"10" cellspacing=3D"0" border=3D"0" style=3D"width: 10=
+0%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+	<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+		<p id=3D"description" style=3D"font-size: 16px; color: #555; line-height:=
+ 26px; font-weight: 300; margin: 0 40px;">
+		    <br />
+	        Or, copy and paste the following URL into your browser: <br />
+            <span class=3D"notranslate">https://www.twilio.com/console/acti=
+vate?key=3DfHsjLb7FlbFkyWS3epzoKgNN7SaBEyMzpy8JmjJmAZyAka4Pm31CeFAH2GFVZ9ZT=
+s6v5S7UPDttlbKk3WCdoeqep77ja52jCWnVHY9yS2C%2BILhUcH8TI7nFA7Z%2BM7O2HlXgk%2F=
+hQj%2BOWt6H0cicvyddq9zUdnCyATvjQYD7pcdhM%3D&x-target-region=3Dus1</span>
+        </p>
+	</td></tr></tbody>
+</table>
+					</td></tr></tbody>
+				</table>
+			</td></tr></tbody>
+		</table>
+		<table id=3D"contentTable" cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" style=3D"margin: 0 auto;width: 680px;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;">
+			<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;">
+				<table cellpadding=3D"10" cellspacing=3D"0" border=3D"0" style=3D"width=
+: 100%;text-align: center;border-collapse: collapse;mso-table-lspace: 0pt;m=
+so-table-rspace: 0pt;">
+				<tbody><tr><td style=3D"border-collapse: collapse;vertical-align: top;"=
+>
+					<br />
+					<p style=3D"font-size: 12px; color: #555; line-height: 19px; font-weig=
+ht: 300; margin: 0 30px; text-align: center;">
+						This system email was sent to <span class=3D"notranslate">Matheus Vie=
+ira</span> <span class=3D"notranslate">Gon&ccedil;alves</span> (<span class=
+=3D"notranslate"><a href=3D"mailto:matheusvieira1@tunelator.com.br" style=
+=3D"color: #555; font-weight: 300; text-decoration: none;">matheusvieira1@t=
+unelator.com.br</a></span>) <span class=3D"mobile-clear"></span>regarding y=
+our Twilio Account
+						<br /><span class=3D"notranslate">(ACc8c3ab9eba51f5b4a9609f7ef9e293f6=
+)</span><span class=3D"mobile-clear"></span>
+						<br />by Twilio, Inc., 375 Beale Street, Suite 300, San Francisco, CA=
+ 94105
+					</p>
+					<br />
+					<p style=3D"font-size: 14px; color: #555; line-height: 16px; font-weig=
+ht: 300; margin: 20px 30px; text-align: center;">
+						If you have any questions, simply respond to this email and we'll be =
+happy to help.
+						</p>
+				</td></tr></tbody>
+				</table>
+			</td></tr></tbody>
+		</table>
+	</td></tr></tbody>
+</table>
+<style type=3D"text/css">
+	#outlook a {padding:0;}
+	body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-a=
+djust:100%; margin:0; padding:0;}
+	.ExternalClass {width:100%;}
+	.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font=
+, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+	#backgroundTable {margin:0; padding:0; width:100% !important; line-height:=
+ 100% !important; height: 100% !important;}
+		/* INLINE */
+	img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;}
+	a img {border:none;}
+	a {color: inherit;}
+	.image_fix {display:block;}
+	p {margin: 1em 0;}
+	table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0=
+pt; }
+	table td {border-collapse: collapse; vertical-align: top;}
+	body, html {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: 300;
+		min-height: 100%;
+		height: 100%;
+	}
+	@media only screen and (max-device-width: 720px) {
+		table[id=3D"header"] td {
+			text-align: center !important;
+		}
+		table[id=3D"contentTable"] {
+			width: 100% !important;
+			min-width: 320px;
+		}
+		p[id=3D"description"] {
+			margin: 0 10% !important;
+		}
+	}
+	@media only screen and (max-device-width: 480px) {
+		br {
+			display: none !important;
+		}
+		.mobile-clear {
+			display: block !important;
+			clear: both !important;
+		}
+		.mobile-hide {
+			display: none !important;
+		}
+		table[id=3D"wrapper"] > tbody > tr > td {
+			padding: 0 !important;
+		}
+		table[id=3D"wrapper"] > tbody > tr > td > table {
+			border: none !important;
+		}
+		td[id=3D"message"] {
+			padding: 30px 0 !important;
+		}
+		td[id=3D"message"] p {
+			margin: 0 20px !important;
+		}
+		table[id=3D"account-info"] td {
+			text-align: center !important;
+		}
+		td[class=3D"avatar"] {
+			display: none !important;
+		}
+		table[id=3D"questions"] b {
+			display: block;
+		}
+		table[id=3D"questions"] a {
+			display: block;
+		}
+		td[class=3D"account-info-spacing"] {
+			display: none !important;
+		}
+		td[class=3D"account-info-wrapper"] {
+			width: 100% !important;
+		}
+		td[class=3D"account-info-wrapper"] table {
+			width: 100% !important;
+		}
+		a[href^=3D"tel"], a[href^=3D"sms"] {
+			text-decoration: none;
+			color: black; /* or whatever your want */
+			pointer-events: none;
+			cursor: default;
+		}
+		.mobile_link a[href^=3D"tel"], .mobile_link a[href^=3D"sms"] {
+			text-decoration: default;
+			color: red !important; /* or whatever your want */
+			pointer-events: auto;
+			cursor: default;
+		}
+	}
+	@media only screen and (min-width: 768px) and (max-width: 1024px) {
+		a[href^=3D"tel"], a[href^=3D"sms"] {
+			text-decoration: none;
+			color: blue; /* or whatever your want */
+			pointer-events: none;
+			cursor: default;
+		}
+		.mobile_link a[href^=3D"tel"], .mobile_link a[href^=3D"sms"] {
+			text-decoration: default;
+			color: orange !important;
+			pointer-events: auto;
+			cursor: default;
+		}
+	}
+</style>
+<!--[if gte mso 9]>
+<style>
+		/* Target Outlook 2007 and 2010 */
+</style>
+<![endif]-->
+<img src=3D"https://links.twiliocdn.com/wf/open?upn=3DCTBn6y9iw93S-2FPkOc3P=
+dDDBC0qC2D7LDwcNUwhva15qt51LpZxiov4vbEjYsEFUqx0fk2WEdkTP5xq6LUsx-2FvlXXzAyf=
+pJT6gFMx-2FbP6hkAh6maaioX54uJ0g85w1qGLvum6r6PGmvteZ-2FrfHGHXsyO4k-2BJaXHtVP=
+QGz0xtXRhDHpYYD7TRsTMGsg0MQDbVNnrvJBjR8Wxme3yksFcndLbsuUhwMD-2BYfgo07KV9mZS=
+vfL5RGpFG8CbZRAmh8KoB6r2hqJgjaIO8LDnTlvVpyUpHJEF29MpgdmOWIBtMlewg-3D" alt=
+=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;=
+width:1px !important;border-width:0 !important;margin-top:0 !important;marg=
+in-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;p=
+adding-top:0 !important;padding-bottom:0 !important;padding-right:0 !import=
+ant;padding-left:0 !important;"/></body>
+</html>
+--b1_84769d43f587dc8417aee45286e805dd--

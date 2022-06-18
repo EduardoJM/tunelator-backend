@@ -1,5 +1,4 @@
 import json
-import smtplib
 from os import listdir, remove
 from os.path import isfile, join
 from email import message_from_string
@@ -7,7 +6,12 @@ from email.utils import make_msgid
 from django.conf import settings
 from django.utils import timezone
 from celery import shared_task
-from mails.utils import save_mail_from_file, get_email_body, set_email_body
+from mails.utils import (
+    save_mail_from_file,
+    get_email_body,
+    set_email_body,
+    send_email
+)
 import requests
 
 @shared_task(name="create_mail_user")
@@ -94,16 +98,7 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
 
     set_email_body(mail_msg, text_body, html_body)
 
-    with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:
-        s.ehlo()
-        s.starttls()
-        s.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
-        s.sendmail(
-            settings.EMAIL_HOST_USER,
-            mail_to_send,
-            mail_msg.as_string()
-        )
-        s.quit()
+    send_email(mail_to_send, mail_msg)
 
     received_mail.delivered = True
     received_mail.delivered_date = timezone.now()
