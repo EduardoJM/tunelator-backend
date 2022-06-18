@@ -26,8 +26,8 @@ if env('DEBUG'):
     BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
     app.conf.broker_url = BASE_REDIS_URL
 else:
-    key = quote(env('AWS_SQS_KEY'))
-    access = quote(env('AWS_SQS_ACCESS'))
+    key = quote(env('AWS_SQS_KEY'), safe='')
+    access = quote(env('AWS_SQS_ACCESS'), safe='')
     region = env('AWS_SQS_REGION')
     app.conf.broker_url = 'sqs://%s:%s@' % (key, access)
     app.conf.broker_transport_options = {
