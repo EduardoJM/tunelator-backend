@@ -78,8 +78,7 @@ def set_email_body(received_email, text_body, html_body):
     if not received_email.is_multipart():
         if not text_body:
             return
-        add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
-        received_email.set_payload(text_body)
+        received_email.set_payload(text_body, charset='utf-8')
         return
 
     for payload in received_email.get_payload():
@@ -89,13 +88,11 @@ def set_email_body(received_email, text_body, html_body):
         
         if text_body:
             if payload.get_content_type() == "text/plain":
-                add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
-                payload.set_payload(text_body)
+                payload.set_payload(text_body, charset='utf-8')
         
         if html_body:
             if payload.get_content_type() == "text/html":
-                add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
-                payload.set_payload(html_body)
+                payload.set_payload(html_body, charset='utf-8')
 
 
 def get_email_body(received_email):

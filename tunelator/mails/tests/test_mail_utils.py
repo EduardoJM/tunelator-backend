@@ -1,4 +1,5 @@
 import os
+import codecs
 from django.conf import settings
 from django.test import TestCase, override_settings
 from django.core import mail
@@ -9,11 +10,11 @@ from mails import utils
 from mails.tasks import send_redirect_mail
 
 class TestMailUtilsTestCase(TestCase):
-    def read_file(self, path: str):
+    def read_file(self, path: str, encoding: str):
         dir = os.path.dirname(__file__)
         full_path = os.path.join(dir, 'files', path)
-        with open(full_path, 'r') as f:
-            text = '\n'.join(f.readlines())
+        with codecs.open(full_path, 'r', 'ascii') as f:
+            text = f.read()
         return text
 
     def setUp(self):
@@ -37,11 +38,11 @@ class TestMailUtilsTestCase(TestCase):
         self.problematic_received_mails = [
             UserReceivedMail.objects.create(
                 mail=self.mail,
-                raw_mail=self.read_file('twilo.txt')
+                raw_mail=self.read_file('twilo.txt', 'ascii')
             ),
             UserReceivedMail.objects.create(
                 mail=self.mail,
-                raw_mail=self.read_file('canva.txt')
+                raw_mail=self.read_file('canva.txt', 'utf-8')
             )
         ]
     
