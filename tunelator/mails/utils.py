@@ -123,11 +123,9 @@ def send_email(mail_to_send: str, mail_msg: str):
         s.ehlo()
         s.starttls()
         s.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
-        print(
-            s.sendmail(
-                settings.EMAIL_HOST_USER,
-                mail_to_send,
-                mail_msg.as_string()
-            )
+        s.sendmail(
+            settings.EMAIL_HOST_USER,
+            mail_to_send,
+            mail_msg.as_string()
         )
         s.quit()
