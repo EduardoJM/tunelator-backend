@@ -1,3 +1,4 @@
+from email.charset import Charset
 import smtplib
 from django.conf import settings
 from email import message_from_string
@@ -78,6 +79,8 @@ def set_email_body(received_email, text_body, html_body):
         if not text_body:
             return
         received_email.set_payload(text_body)
+        charset = Charset(input_charset='utf-8')
+        received_email.set_charset(charset)
         return
 
     for payload in received_email.get_payload():
@@ -88,10 +91,14 @@ def set_email_body(received_email, text_body, html_body):
         if text_body:
             if payload.get_content_type() == "text/plain":
                 payload.set_payload(text_body)
+                charset = Charset(input_charset='utf-8')
+                payload.set_charset(charset)
         
         if html_body:
             if payload.get_content_type() == "text/html":
                 payload.set_payload(html_body)
+                charset = Charset(input_charset='utf-8')
+                payload.set_charset(charset)
 
 
 def get_email_body(received_email):
