@@ -1,0 +1,439 @@
+Return-Path: <0100018154de1a82-c1de0912-349d-467e-99bf-312544250016-000000@mail.canva.com>
+X-Original-To: canva_edu@tunelator.com.br
+Delivered-To: canva_edu@tunelator.com.br
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on tunelator.com.br
+Authentication-Results: tunelator.com.br;
+	dkim=pass (1024-bit key; unprotected) header.d=canva.com header.i=@canva.com header.a=rsa-sha256 header.s=yslv66d5hqaec6ap6sspekyvkyghnfhm header.b=FIF+u672;
+	dkim=pass (1024-bit key; unprotected) header.d=amazonses.com header.i=@amazonses.com header.a=rsa-sha256 header.s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw header.b=J4PS/uoR;
+	dkim-atps=neutral
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,HTML_MESSAGE,NO_RECEIVED,NO_RELAYS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.4
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=yslv66d5hqaec6ap6sspekyvkyghnfhm; d=canva.com; t=1654986251;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=UsQBV3Iu6iaDz5g7DZnGVQ3vvxJdV+Dac7bPkSd8uyg=;
+	b=FIF+u672WCv55UqXVoxJSc1/LcSOLD8vL0Sq/Prfnx+T6EChXuuuwbXwN/5/SUKK
+	e7yPpV2o/IAVSjlXIXFskIfImv/Leq3elwThE7k7n+oFuizn1HDQjzjIzo0OeH1Yw/U
+	92d14yJvuGFwIHTX5isv/SZSDoJQ1aI+iV99zQYQ=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1654986251;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=UsQBV3Iu6iaDz5g7DZnGVQ3vvxJdV+Dac7bPkSd8uyg=;
+	b=J4PS/uoRSibZdAOvH+b2v65CRJFNbEoFT+5qJZMiT4QYbyUf9zWQdyHfUvAPzKH2
+	4wvb96ZFDGFysEzjFRb7pYutxW2jkaEwssN8kVNMYups4sJGkfNS87F3RcH2QIq6/hY
+	MKmCTyWpuwvujp1pILQbpS0Esf0fgpz/kvTUzvTE=
+From: Canva <no-reply@canva.com>
+To: canva_edu@tunelator.com.br
+Message-ID: <0100018154de1a82-c1de0912-349d-467e-99bf-312544250016-000000@email.amazonses.com>
+Subject: =?UTF-8?Q?Use_o_c=C3=B3digo_760415_para_concl?=
+ =?UTF-8?Q?uir_a_confirma=C3=A7=C3=A3o_do_seu_e-mail?=
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_3326425_927856308.1654986250870"
+Date: Sat, 11 Jun 2022 22:24:10 +0000
+Feedback-ID: 1.us-east-1.DcdLQsUfV4bQ5Js81yJ5zbYh1g1N/Fje4R2eTpK5fRw=:AmazonSES
+X-SES-Outgoing: 2022.06.11-54.240.68.122
+------=_Part_3326425_927856308.1654986250870
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3326424_125820172.1654986250870"
+------=_Part_3326424_125820172.1654986250870
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Seu c=C3=B3digo =C3=A9: 760415
+Ol=C3=A1! Digite o c=C3=B3digo 760415 dentro dos pr=C3=B3ximos 10=C2=A0minu=
+tos para concluir a confirma=C3=A7=C3=A3o do seu e-mail.
+Enviamos este e-mail para voc=C3=AA para confirmar se o endere=C3=A7o de e-=
+mail vinculado =C3=A0 sua conta do Canva est=C3=A1 correto. Acha que houve =
+um engano? Entre em contato conosco em https://www.canva.com/help.
+--
+Canva Pty Ltd
+110 Kippax St, NSW 2010, Australia
+------=_Part_3326424_125820172.1654986250870
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+<!doctype html>
+<html lang=3D'pt' xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sch=
+emas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"=
+ dir=3D'ltr'>
+=09<head>
+=09=09<title>Use o c=C3=B3digo 760415 para concluir a confirma=C3=A7=C3=A3o=
+ do seu e-mail</title>
+=09=09<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+=09=09<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+=09=09<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1">
+=09=09<style type=3D"text/css">
+=09=09=09#outlook a{padding: 0;}
+=09=09=09.ReadMsgBody{width: 100%;}
+=09=09=09.ExternalClass{width: 100%;}
+=09=09=09.ExternalClass *{line-height: 100%;}
+=09=09=09body{margin: 0; padding: 0; -webkit-text-size-adjust: 100%; -ms-te=
+xt-size-adjust: 100%;}
+=09=09=09table, td{border-collapse: collapse; mso-table-lspace: 0pt; mso-ta=
+ble-rspace: 0pt;}
+=09=09=09img{border: 0; height: auto; line-height: 100%; outline: none; tex=
+t-decoration: none; -ms-interpolation-mode: bicubic;}
+=09=09=09p{display: block; margin: 13px 0;}
+=09=09</style>
+=09=09<!--[if mso]>
+=09=09<xml>
+=09=09=09<o:OfficeDocumentSettings>
+=09=09=09=09<o:AllowPNG/>
+=09=09=09=09<o:PixelsPerInch>96</o:PixelsPerInch>
+=09=09=09</o:OfficeDocumentSettings>
+=09=09</xml>
+=09=09<![endif]-->
+=09=09<!--[if lte mso 11]>
+=09=09<style type=3D"text/css">
+=09=09=09.outlook-group-fix{width:100% !important;}
+=09=09</style>
+=09=09<![endif]-->
+=09=09<style type=3D"text/css"> =20
+=09=09=09@media only screen and (max-width: 480px) {
+=09=09=09=09.dys-desktop { display: none !important; }
+=09=09=09=09div.dys-mobile { display: block !important; }
+=09=09=09=09tr.dys-mobile { display: table-row !important; }=20
+=09=09=09}
+=09=09</style>
+=09=09<style type=3D"text/css">
+@media only screen and (max-width:480px) {
+=09=09=09  table.full-width-mobile { width: 100% !important; }
+=09=09=09=09td.full-width-mobile { width: auto !important; }
+}
+@media only screen and (min-width:480px) {
+.dys-column-per-100 {
+=09=09width: 100.000000% !important;
+=09=09max-width: 100.000000%;
+=09}
+}
+u + #body a {color: #7d2ae8;text-decoration: underline;font-size: inherit; =
+font-family: inherit; font-weight: inherit; line-height: inherit; }
+ a {color: #7d2ae8;text-decoration: underline;}
+  html { font-size: 100%; -webkit-text-size-adjust:
+    100%; font-variant-ligatures: none; -webkit-font-variant-ligatures: non=
+e;
+    text-rendering: optimizeLegibility;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;=20
+    font-family: Open Sans, Helvetica, Arial, sans serif;
+    margin:0 !important;
+  }
+  body {
+    margin: 0 !important;
+  }
+  [dir=3Drtl] .bullet {
+    background-position: 100% 0;
+    padding-left: 0;
+    padding-right: 32px;
+    text-align: end;
+  }
+  amp-img.contain img {
+    object-fit: contain;
+  }
+  .submit-button {
+    background: #7d2ae8; color: #ffffff;
+  }
+  .submit-button:disabled {
+    background: rgba(57, 76, 96, 0.15); cursor: not-allowed;  color: rgba(1=
+7, 23, 29, 0.6);
+  }
+  form.amp-form-submit-success .hide-on-success { display: none }
+  form.amp-form-submit-error .hide-on-error { display: none }
+  button[disabled] { background: rgba(14, 19, 24, 0.15);  color: rgba(14, 1=
+9, 24, 0.45) }
+  button { background: #7d2ae8; color: #ffffff }
+  .hide { display: none }
+  .show { display: block }
+  .inline > table { display: inline !important; }
+  div.inline { display: inline !important; }
+  .show-for-large {
+    display: block } .hide-for-large { display: none } .wrapper {
+      background-color: #edf0f2; } .wrapper-padding { padding: 0 48px }
+  .wrapper-margin { width: 48px } .wrapper-typography { padding: 12px 48px =
+}
+  .header-bottom { height: 36px } .card-image { width: 38.8% } .card-conten=
+t {
+    width: 61.2% } .grid-cta { background: #F8F9F9; border-radius: 4px; bor=
+der:
+      1px solid #E8E9E9} .word-break, word-break > div { word-break: break-=
+all }
+  .device-image-container table { margin: auto } .grid-cta-button { border:
+    1px solid #EDF0F2; border-radius: 4px }
+  @media only screen and (max-width:480px) {=20
+    .wrapper-background { border: none !important; border-radius: 0 !import=
+ant }
+    .columns-stacked-mobile {} .columns-stacked-mobile .column-left { width=
+:
+      100%
+      !important; display: inline-block !important; } .columns-stacked-mobi=
+le .column-right { display: inline-block
+        !important; width: 100% !important } .columns-stacked-mobile .gutte=
+r { display: inline-block; width: 100%
+          !important; height: 16px !important } .card-horizontal .card-imag=
+e { width: 30% }
+    .card-horizontal .card-content { width: 70% } .card-contained .card-ima=
+ge {
+      display: table-footer-group !important; width: 100% !important}
+    .card-contained .card-content { display: table-caption; width: 100%
+      !important } .card-template-stacked .card-image { width: calc(100% - =
+32px)
+        !important; display: table-caption !important; } .card-template-sta=
+cked
+    .card-content { display: table-footer-group !important; width: 100%
+      !important; } .card-template-stacked .gutter { display: none !importa=
+nt; }
+    .card-template-stacked .card-content > p { margin-top: 16px !important;=
+ }
+    .card-horizontal-stacked { display: inline-block !important; width: 100=
+%
+      !important } .card-horizontal-stacked .card-content { display: inline=
+-block
+        !important; width: 100% !important; } .card-horizontal-stacked .car=
+d-image {
+          display: inline-block !important; width: 100% !important; }
+    .card-horizontal-stacked .gutter { display: inline-block; width: 100%
+      !important; height: 16px !important } .stack-on-mobile {} .column-lef=
+t
+    { display: table-caption; width:100% !important; max-width: 100% !impor=
+tant; padding: 0 !important } .column-right { display:
+      table-footer-group; max-width: 100% !important; width:100% !important=
+; padding: 0 !important }=20
+    .center-on-mobile {
+      text-align:center !important
+    }
+  }
+  @media only screen and (max-width:648px) { .wrapper { background-color: #=
+fff; }
+    .header-top-padding { border-radius: 0 !important } .header-top-padding=
+ td {
+      height: 24px !important; line-height: 24px } .show-for-large { displa=
+y: none
+        !important } .hide-for-large { display: block !important } .wrapper=
+-padding
+    { padding: 0 24px !important } .wrapper-margin { width: 24px !important=
+ }
+    .header-bottom { height: 12px; line-height: 12px } .wrapper-typography =
+{
+      padding: 12px 24px !important } .border-radius-for-large,
+    .border-radius-for-large img { border-radius: 0 !important }
+    .spacing-for-large { height: 1px !important; line-height: 0 !important =
+}
+    .image_grid .col { width: 47% } .full-image-block-spacing { height: 24p=
+x
+      !important} .card-horizontal-image > table > tbody > tr > td { paddin=
+g: 0px
+        24px 12px 24px !important } .card-horizontal-content > table > tbod=
+y > tr >
+    td { padding: 12px 24px 0 24px !important } .header-left { display: tab=
+le-footer-group !important; width: 320px
+      !important } .header-right { width: 320px !important; display: table-=
+caption !important; text-align: left
+        !important; } }
+</style>
+=09=09<!--[if !mso]><!--><link href=3D'https://fonts.googleapis.com/css?fam=
+ily=3DOpen+Sans:400,600,700' rel=3D'stylesheet' type=3D'text/css'><style ty=
+pe=3D'text/css'>@import url(https://fonts.googleapis.com/css?family=3DOpen+=
+Sans:400,600,700);</style><!--<![endif]-->
+=09</head>
+=09<body id=3D"body" style=3D"background-color: #FFFFFF;"><div style=3D"bac=
+kground-color: #FFFFFF;" class=3D"body">
+  <!--[if mso | IE]>
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"width:600px;" width=3D"600"><tr><td style=3D"line-height:0px;font-si=
+ze:0px;mso-line-height-rule:exactly;">
+<![endif]--><div style=3D'background:#ffffff;background-color:#ffffff;margi=
+n:0px auto;max-width:600px;'><table align=3D'center' border=3D'0' cellpaddi=
+ng=3D'0' cellspacing=3D'0' role=3D'presentation' style=3D'background:#fffff=
+f;background-color:#ffffff;width:100%;'><tbody><tr><td style=3D'direction:l=
+tr;font-size:0px;padding:0;padding-bottom:12px;padding-top:12px;text-align:=
+center;vertical-align:top;'><!--[if mso | IE]>
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0"><tr><td style=3D"vertical-align:top;width:600px;">
+<![endif]--><div class=3D'dys-column-per-100 outlook-group-fix' style=3D'di=
+rection:ltr;display:inline-block;font-size:13px;text-align:left;vertical-al=
+ign:top;width:100%;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0=
+' role=3D'presentation' width=3D'100%'><tbody><tr><td style=3D'padding:0;ve=
+rtical-align:top;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' =
+role=3D'presentation' style=3D'' width=3D'100%'>
+      <tr><td align=3D'left' style=3D'font-size:0px;padding:0;padding-botto=
+m:0;padding-top:0;word-break:break-word;'><div style=3D'color:#0E1318;font-=
+family:"Open Sans", Helvetica, Arial, sans-serif;font-size:16px;line-height=
+:1.6;text-align:left;'>
+      <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=3D'colo=
+r:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;line-heig=
+ht:22px;table-layout:auto;width:100%;' width=3D'100%'>
+        <tr>
+          <th class=3D'wrapper-margin' width=3D'48'>&nbsp;</th>
+          <th>
+            <img ratio=3D'566:424' src=3D'https://email-public.canva.com/im=
+ages/email_verification_illus.png' style=3D'max-width: 100%; border-radius:=
+ 4px' />
+          </th>
+          <th class=3D'wrapper-margin' width=3D'48'>&nbsp;</th>
+        </tr>
+      </table>
+        </div></td></tr>
+    </table></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]-->
+  <!--[if mso | IE]>
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"width:600px;" width=3D"600"><tr><td style=3D"line-height:0px;font-si=
+ze:0px;mso-line-height-rule:exactly;">
+<![endif]--><div style=3D'background:#ffffff;background-color:#ffffff;margi=
+n:0px auto;max-width:600px;'><table align=3D'center' border=3D'0' cellpaddi=
+ng=3D'0' cellspacing=3D'0' role=3D'presentation' style=3D'background:#fffff=
+f;background-color:#ffffff;width:100%;'><tbody><tr><td style=3D'direction:l=
+tr;font-size:0px;padding:0;padding-bottom:12px;padding-top:12px;text-align:=
+center;vertical-align:top;'><!--[if mso | IE]>
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0"><tr><td style=3D"vertical-align:top;width:600px;">
+<![endif]--><div class=3D'dys-column-per-100 outlook-group-fix' style=3D'di=
+rection:ltr;display:inline-block;font-size:13px;text-align:left;vertical-al=
+ign:top;width:100%;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0=
+' role=3D'presentation' width=3D'100%'><tbody><tr><td style=3D'padding:0;ve=
+rtical-align:top;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' =
+role=3D'presentation' style=3D'' width=3D'100%'>
+      <tr><td align=3D'center' class=3D'wrapper-typography title' style=3D'=
+font-size:0px;padding:0;padding-bottom:8px;padding-left:48px;padding-right:=
+48px;padding-top:0;word-break:break-word;'><div style=3D'color:#0E1318;font=
+-family:Open Sans, Helvetica, Arial, sans serif;font-size:32px;font-weight:=
+700;letter-spacing:-0.5px;line-height:130%;text-align:center;'><p style=3D"=
+margin-top:0;margin-bottom:0">Seu c=C3=B3digo =C3=A9: 760415</p></div></td>=
+</tr>
+      <tr><td align=3D'center' class=3D'wrapper-typography text' style=3D'f=
+ont-size:0px;padding:0;padding-bottom:0;padding-left:48px;padding-right:48p=
+x;padding-top:8px;word-break:break-word;'><div style=3D'color:#0E1318;font-=
+family:Open Sans, Helvetica, Arial, sans serif;font-size:14px;line-height:1=
+60%;text-align:center;'><p style=3D"margin-top:0;margin-bottom:0">Ol=C3=A1!=
+ Digite o c=C3=B3digo 760415 dentro dos pr=C3=B3ximos 10=C2=A0minutos para =
+concluir a confirma=C3=A7=C3=A3o do seu e-mail.</p></div></td></tr>
+    </table></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]-->
+ =20
+  <!--[if mso | IE]>
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"width:600px;" width=3D"600"><tr><td style=3D"line-height:0px;font-si=
+ze:0px;mso-line-height-rule:exactly;">
+<![endif]--><div style=3D'margin:0px auto;max-width:600px;'><table align=3D=
+'center' border=3D'0' cellpadding=3D'0' cellspacing=3D'0' role=3D'presentat=
+ion' style=3D'width:100%;'><tbody><tr><td style=3D'direction:ltr;font-size:=
+0px;padding:0;text-align:center;vertical-align:top;'><!--[if mso | IE]>
+<table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0"><tr><td style=3D"vertical-align:top;width:600px;">
+<![endif]--><div class=3D'dys-column-per-100 outlook-group-fix' style=3D'di=
+rection:ltr;display:inline-block;font-size:13px;text-align:left;vertical-al=
+ign:top;width:100%;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0=
+' role=3D'presentation' width=3D'100%'><tbody><tr><td style=3D'padding:0;ve=
+rtical-align:top;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' =
+role=3D'presentation' style=3D'' width=3D'100%'>
+      <tr><td align=3D'left' style=3D'font-size:0px;padding:0;word-break:br=
+eak-word;'><table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=3D=
+'color:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;line=
+-height:22px;table-layout:auto;width:100%;' width=3D'100%'>
+        <tr>
+          <th class=3D'wrapper-margin' width=3D'48'>&nbsp;</th>
+          <th>
+            <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=
+=3D'color:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;l=
+ine-height:22px;table-layout:auto;width:100%;' width=3D'100%'>
+        <tr>
+          <td style=3D'border-bottom: 1px solid #DDE1E3; height: 36px'>
+            &nbsp;
+          </td>
+        </tr>
+        <tr>
+          <td style=3D'height: 24px'>&nbsp;</td>
+        </tr>
+        <tr>
+          <td class=3D'center-on-mobile' style=3D'color:#565a5d;font-family=
+:Open Sans, Helvetica, Arial, sans serif;font-size:14px;font-weight:400;lin=
+e-height:160%;text-align:left;text-align:start;'>
+            <span> </span> <span>Enviamos este e-mail para voc=C3=AA para c=
+onfirmar se o endere=C3=A7o de e-mail vinculado =C3=A0 sua conta do Canva e=
+st=C3=A1 correto. Acha que houve um engano? Entre em contato com o <a href=
+=3D"https://track.canva.com/CL0/https:%2F%2Fwww.canva.com%2Fhelp/1/01000181=
+54de1a82-c1de0912-349d-467e-99bf-312544250016-000000/AAouPTgM1E9nT9rGlhJokq=
+LsI_sA8OnQgODat55eCOc=3D252">suporte do Canva</a></span>.
+          </td>
+        </tr>
+        <tr>
+          <td style=3D'height: 24px'>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>
+            <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=
+=3D'color:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;l=
+ine-height:22px;table-layout:auto;width:100%;' width=3D'100%'>
+        <tr class=3D'stack-on-mobile inline'>
+          <td class=3D'column-left' style=3D'width: 64px'>
+            <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=
+=3D'color:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;l=
+ine-height:22px;table-layout:auto;width:100%;' width=3D'100%'>
+        <tr>
+          <td style=3D'margin: 0 auto; width: 100%'>
+            <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' role=3D=
+'presentation' style=3D'border-collapse:collapse;border-spacing:0px;'><tbod=
+y><tr><td style=3D'width:48px;'><img alt=3D'canva' height=3D'48' src=3D'htt=
+ps://appboy-images.com/appboy/communication/assets/image_assets/images/5e15=
+3c090464b92fdc5bb88f/original.png?1578449929' style=3D'border:none;display:=
+block;font-size:13px;height:48px;outline:none;text-decoration:none;width:10=
+0%;' width=3D'48' /></td></tr></tbody></table>
+          </td>
+          <td class=3D'show-for-large' style=3D'width: 16px'></td>
+        </tr>
+      </table>
+      </td>
+      <td class=3D'column-right'>
+        <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' style=3D'co=
+lor:#000000;font-family:Helvetica, Arial, sans-serif;font-size:13px;line-he=
+ight:22px;table-layout:auto;width:100%;' width=3D'100%'>
+          <tr>
+            <td class=3D'center-on-mobile inline' style=3D'color: #565a5d; =
+font-family: Open Sans, Helvetica, Arial, sans serif; font-size: 14px; font=
+-weight: 400; line-height: 160%; text-align:left; text-align: start; vertic=
+al-align: middle'>
+              <span>Feito para voc=C3=AA com</span>
+              <table border=3D'0' cellpadding=3D'0' cellspacing=3D'0' role=
+=3D'presentation' style=3D'border-collapse:collapse;border-spacing:0px;'><t=
+body><tr><td style=3D'width:15px;'><img alt=3D'love' height=3D'16' src=3D'h=
+ttps://appboy-images.com/appboy/communication/assets/image_assets/images/5e=
+0190dc6a8d637c8dd20cff/original.png?1577160924' style=3D'border:none;displa=
+y:block;font-size:13px;height:16px;outline:none;text-decoration:none;width:=
+100%;' width=3D'15' /></td></tr></tbody></table>
+              <span>pelo</span> Canva<br />Canva=C2=AE,
+              <span>110 Kippax St, NSW 2010, Australia</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+      </tr>
+      </table>
+      </td>
+      </tr>
+      </table>
+      </th>
+      <th class=3D'wrapper-margin' width=3D'48'>&nbsp;</th>
+      </tr>
+      <tr>
+        <td height=3D'48'>&nbsp;</td>
+      </tr>
+      </table></td></tr>
+    </table></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+</td></tr></table>
+<![endif]-->
+</div><img alt=3D"" src=3D"http://track.canva.com/CI0/0100018154de1a82-c1de=
+0912-349d-467e-99bf-312544250016-000000/PSZhCujrGQPG2L7gLnUHAJrakrfsv0hr9ME=
+mOqChzuc=3D252" style=3D"display: none; width: 1px; height: 1px;">
+</body> </html>
+------=_Part_3326424_125820172.1654986250870--
+------=_Part_3326425_927856308.1654986250870--

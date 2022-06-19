@@ -1,8 +1,8 @@
-from email.charset import Charset
 import smtplib
 from django.conf import settings
 from email import message_from_string
 from email.header import decode_header
+from email.charset import Charset, add_charset
 from django.utils import timezone
 from mails.models import UserReceivedMail
 
@@ -78,9 +78,8 @@ def set_email_body(received_email, text_body, html_body):
     if not received_email.is_multipart():
         if not text_body:
             return
+        add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
         received_email.set_payload(text_body)
-        charset = Charset(input_charset='utf-8')
-        received_email.set_charset(charset)
         return
 
     for payload in received_email.get_payload():
@@ -90,15 +89,13 @@ def set_email_body(received_email, text_body, html_body):
         
         if text_body:
             if payload.get_content_type() == "text/plain":
+                add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
                 payload.set_payload(text_body)
-                charset = Charset(input_charset='utf-8')
-                payload.set_charset(charset)
         
         if html_body:
             if payload.get_content_type() == "text/html":
+                add_charset('utf-8', 'utf-8', 'utf-8', 'utf-8')
                 payload.set_payload(html_body)
-                charset = Charset(input_charset='utf-8')
-                payload.set_charset(charset)
 
 
 def get_email_body(received_email):

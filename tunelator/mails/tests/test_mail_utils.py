@@ -38,6 +38,10 @@ class TestMailUtilsTestCase(TestCase):
             UserReceivedMail.objects.create(
                 mail=self.mail,
                 raw_mail=self.read_file('twilo.txt')
+            ),
+            UserReceivedMail.objects.create(
+                mail=self.mail,
+                raw_mail=self.read_file('canva.txt')
             )
         ]
     
