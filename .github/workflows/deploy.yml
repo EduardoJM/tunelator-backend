@@ -17,7 +17,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          script_stop: true
           script: |
             cd tunelator-backend
-            git pull
+            git pull https://EduardoJM:${{ secrets.AUTO_MERGE_TOKEN }}@github.com/tunelator/tunelator-backend/
             docker-compose down && docker-compose up --build -d
