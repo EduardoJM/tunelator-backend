@@ -8,6 +8,7 @@ from plans.models import (
     PlanConfigurationBooleanItem,
     PlanConfigurationStringItem,
 )
+from mails.models import UserMail
 
 class PlanDisplayFeatureSerializer(serializers.ModelSerializer):
     class Meta:
