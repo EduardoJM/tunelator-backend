@@ -17,10 +17,6 @@ class PlanDisplayFeatureSerializer(serializers.ModelSerializer):
 
 class PlanSerializer(serializers.ModelSerializer):
     display_features = PlanDisplayFeatureSerializer(many=True)
-    world = serializers.SerializerMethodField()
-
-    def get_world(self, obj):
-        return 'Hello!'
 
     class Meta:
         model = Plan
