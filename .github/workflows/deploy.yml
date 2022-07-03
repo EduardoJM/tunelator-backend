@@ -1,4 +1,4 @@
-name: Run tests
+name: Deploy
 
 on:
   push:
@@ -17,4 +17,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: ls -al
+          script: |
+            cd tunelator-backend
+            git pull
+            docker-compose down && docker-compose up --build -d
