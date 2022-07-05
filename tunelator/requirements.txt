@@ -20,7 +20,7 @@ coreschema==0.0.4
 coverage==6.4.1
 cryptography==36.0.2
 Deprecated==1.2.13
-Django==3.2.13
+Django==3.2.14
 django-admin-sortable==2.2.4
 django-celery-beat==2.2.1
 django-celery-results==2.3.0
