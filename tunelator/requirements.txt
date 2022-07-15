@@ -23,7 +23,7 @@ Deprecated==1.2.13
 Django==3.2.14
 django-admin-sortable==2.2.4
 django-celery-beat==2.2.1
-django-celery-results==2.3.0
+django-celery-results==2.4.0
 django-cors-headers==3.11.0
 django-environ==0.8.1
 django-filter==21.1
