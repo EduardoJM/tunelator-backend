@@ -7,7 +7,6 @@ from mails.models import UserMail
 from core.celery import (
     periodic_clean_stripe_checkout_ids,
     periodic_clean_expired_forgot_password_sessions,
-    periodic_check_mails
 )
 from payments.models import SubscriptionCheckout, SubscriptionManager
 from plans.models import Plan
