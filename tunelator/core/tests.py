@@ -1,10 +1,13 @@
 import datetime
+from unittest.mock import MagicMock, patch
 from django.test import TestCase
 from django.utils import timezone
 from authentication.models import User, ForgotPasswordSession
+from mails.models import UserMail
 from core.celery import (
     periodic_clean_stripe_checkout_ids,
-    periodic_clean_expired_forgot_password_sessions
+    periodic_clean_expired_forgot_password_sessions,
+    periodic_check_mails
 )
 from payments.models import SubscriptionCheckout, SubscriptionManager
 from plans.models import Plan
@@ -124,7 +127,7 @@ class CleanStripeCheckoutIdsTestCase(TestCase):
         subscription = SubscriptionManager.objects.filter(pk=session_id).first()
         self.assertIsNone(subscription)
 
-class CleanExpiredForgotPasswordSessions(TestCase):
+class CleanExpiredForgotPasswordSessionsTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create(
             email="example.123456@example.com"
