@@ -47,7 +47,7 @@ def periodic_check_mails():
     
     mails = UserMail.objects.filter(plan_enabled=True).all()    
     for mail in mails:
-        check_user_late_mails.delay(mail.pk)
+        check_user_late_mails(mail.pk)
 
 @app.task(name="periodic_clean_stripe_checkout_ids")
 def periodic_clean_stripe_checkout_ids():
