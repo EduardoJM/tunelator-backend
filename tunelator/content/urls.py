@@ -1,9 +1,12 @@
-from django.urls import path
-from content.viewsets import SocialContentViewset
+from django.urls import path, include
+from rest_framework import routers
+from content.viewsets import SocialContentViewSet
+
+content_router = routers.SimpleRouter()
+content_router.register("", SocialContentViewSet, basename="SocialContent")
 
 app_name = 'content'
 
 urlpatterns = [
-    path('', SocialContentViewset.as_view(), name="social_contents"),
+    path('', include(content_router.urls)),
 ]
-
