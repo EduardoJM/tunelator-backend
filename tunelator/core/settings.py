@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'plans',
     'payments',
     'mails',
+    'content',
 ]
 
 MIDDLEWARE = [
