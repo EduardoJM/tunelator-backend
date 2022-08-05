@@ -1,8 +1,10 @@
-from rest_framework import views, response
+from rest_framework import views, response, status
+from drf_yasg.utils import swagger_auto_schema
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
+import stripe
 from plans.models import Approval
 from plans.plan import Plan as PlanIntegration
 from payments.models import SubscriptionCheckout, SubscriptionManager
@@ -11,13 +13,26 @@ from payments.serializers import (
     SubscriptionCheckoutRetrieveSerializer,
     SubscriptionManagerSerializer,
     SubscriptionManagerRetrieveSerializer,
+    # documentation only
+    WebhookWaitedFieldsSerializer,
 )
-import stripe
+from docs.responses import UnauthenticatedResponse
 
 User = get_user_model()
 
 class CreateCheckoutAPIView(views.APIView):
+    @swagger_auto_schema(
+        request_body=SubscriptionCheckoutSerializer,
+        responses={
+            status.HTTP_200_OK: SubscriptionCheckoutRetrieveSerializer,
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
+        }
+    )
     def post(self, request):
+        """
+        Generates an unique checkout session id used to redirect user
+        to the stripe payment page.
+        """
         serializer = SubscriptionCheckoutSerializer(data=request.data, context={ 'request': request })
         serializer.is_valid(raise_exception=True)
 
@@ -27,7 +42,19 @@ class CreateCheckoutAPIView(views.APIView):
         return response.Response(serializer.data)
 
 class CreateManagerAPIView(views.APIView):
+    @swagger_auto_schema(
+        request_body=None,
+        responses={
+            status.HTTP_200_OK: SubscriptionManagerRetrieveSerializer,
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
+        }
+    )
     def post(self, request):
+        """
+        Generates an unique subscription manager session id used to
+        redirect user to the subscription manager page on stripe
+        payment system.
+        """
         serializer = SubscriptionManagerSerializer(data={}, context={ 'request': request })
         serializer.is_valid(raise_exception=True)
 
@@ -39,7 +66,18 @@ class CreateManagerAPIView(views.APIView):
 class StripeWebHookAPIView(views.APIView):
     permission_classes = []
     
+    @swagger_auto_schema(
+        request_body=WebhookWaitedFieldsSerializer,
+        responses={
+            status.HTTP_200_OK: "No body",
+        },
+    )
     def post(self, request):
+        """
+        Webhook to receive status update and some data from the stripe
+        payment system integration. You can see more about the stripe
+        webhooks in the stripe documentations.
+        """
         request_data = request.data
         data = request_data['data']
         event_type = request_data['type']
