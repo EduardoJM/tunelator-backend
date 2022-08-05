@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-04 21:17-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin.py:34
+msgid "Personal info"
+msgstr "Informações Pessoais"
+
+#: admin.py:35
+msgid "Permissions"
+msgstr "Permissões"
+
+#: admin.py:38
+msgid "Important dates"
+msgstr "Datas Importantes"
+
+#: admin.py:122
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr "Item do tipo %(name)s com a chave primária %(key)r não existe."
+
+#: admin.py:132
+msgid "Password changed successfully."
+msgstr "Senha alterada com sucesso."
+
+#: admin.py:152
+#, python-format
+msgid "Change password: %s"
+msgstr "Mudar a senha: %s"
+
+#: models.py:69
+msgid "first name"
+msgstr "Nome"
+
+#: models.py:70
+msgid "last name"
+msgstr "Sobrenome"
+
+#: models.py:71
+msgid "email address"
+msgstr "Endereço de E-mail"
+
+#: models.py:73
+msgid "staff status"
+msgstr "Membro da Equipe?"
+
+#: models.py:75
+msgid "Designates whether the user can log into this admin site."
+msgstr "Determina se o usuário pode fazer login neste site de administração."
+
+#: models.py:78
+msgid "active"
+msgstr "Ativo?"
+
+#: models.py:81
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr "Determina se este usuário deve ser tratado como ativo. Desmarque isso"
+"em vez de excluir contas."
+
+#: models.py:85
+msgid "date joined"
+msgstr "Data de Ingresso"
+
+#: models.py:94 models.py:118
+msgid "user"
+msgstr "Usuário"
+
+#: models.py:95
+msgid "users"
+msgstr "Usuários"
+
+#: models.py:117
+msgid "checkout id"
+msgstr "ID de Checkout"
+
+#: models.py:119
+msgid "Valid Until"
+msgstr "Válido Até"
+
+#: models.py:120
+msgid "used"
+msgstr "Usado?"
+
+#: models.py:133
+msgid "Forgot Password Session"
+msgstr "Sessão de Recuperação de Senha"
+
+#: models.py:134
+msgid "Forgot Password Sessions"
+msgstr "Sessões de Recuperação de Senha"
+
+#: serializers.py:45
+msgid "The e-mail is already used."
+msgstr "O e-mail já foi utilizado."
