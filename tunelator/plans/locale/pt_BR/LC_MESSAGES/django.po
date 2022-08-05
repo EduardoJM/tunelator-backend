@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-04 21:32-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin.py:58 models.py:63 models.py:70 models.py:77
+msgid "value"
+msgstr "Valor"
+
+#: models.py:13
+msgid "Free"
+msgstr "Gratuíto"
+
+#: models.py:14
+msgid "Paid"
+msgstr "Pago"
+
+#: models.py:17 models.py:39 models.py:53
+msgid "name"
+msgstr "Nome"
+
+#: models.py:18
+msgid "description"
+msgstr "Descrição"
+
+#: models.py:19
+msgid "plan is visible"
+msgstr "Plano Visível?"
+
+#: models.py:20
+msgid "plan type"
+msgstr "Tipo do Plano"
+
+#: models.py:21
+msgid "monthly price"
+msgstr "Preço Mensal"
+
+#: models.py:22
+msgid "stripe integration price id"
+msgstr "ID da Integração com a Stripe"
+
+#: models.py:23 models.py:37
+msgid "order"
+msgstr "Ordem"
+
+#: models.py:29 models.py:35 models.py:51 models.py:102
+msgid "plan"
+msgstr "Plano"
+
+#: models.py:30
+msgid "plans"
+msgstr "Planos"
+
+#: models.py:38
+msgid "enabled"
+msgstr "Ativo"
+
+#: models.py:46
+msgid "plan display feature"
+msgstr "Feature do Plano"
+
+#: models.py:47
+msgid "plan display features"
+msgstr "Features do Plano"
+
+#: models.py:59
+msgid "plan configuration item"
+msgstr "Configuração do Plano"
+
+#: models.py:60
+msgid "plan configuration items"
+msgstr "Configurações do Plano"
+
+#: models.py:66
+msgid "plan configuration boolean item"
+msgstr "Configuração Booleana do Plano"
+
+#: models.py:67
+msgid "plan configuration boolean items"
+msgstr "Configurações Booleanas do Plano"
+
+#: models.py:73
+msgid "plan configuration string item"
+msgstr "Configuração de Texto do Plano"
+
+#: models.py:74
+msgid "plan configuration string items"
+msgstr "Configurações de Texto do Plano"
+
+#: models.py:80
+msgid "plan configuration integer item"
+msgstr "Configuração de Inteiro do Plano"
+
+#: models.py:81
+msgid "plan configuration integer items"
+msgstr "Configurações de Inteiros do Plano"
+
+#: models.py:92
+msgid "active"
+msgstr "Ativo"
+
+#: models.py:93
+msgid "past due"
+msgstr "Vencido"
+
+#: models.py:94
+msgid "unpaid"
+msgstr "Não Pago"
+
+#: models.py:95
+msgid "canceled"
+msgstr "Cancelado"
+
+#: models.py:96
+msgid "incomplete"
+msgstr "Incompleto"
+
+#: models.py:97
+msgid "incomplete expired"
+msgstr "Incompleto e Expirado"
+
+#: models.py:98
+msgid "trialing"
+msgstr "Teste"
+
+#: models.py:101
+msgid "user"
+msgstr "Usuário"
+
+#: models.py:103
+msgid "stripe session id"
+msgstr "Id da sessão com a Stripe"
+
+#: models.py:104
+msgid "stripe subscription id"
+msgstr "ID da assinatura com a Stripe"
+
+#: models.py:105
+msgid "stripe customer id"
+msgstr "ID do cliente com a Stripe"
+
+#: models.py:106
+msgid "status"
+msgstr "Status"
+
+#: models.py:109
+#, python-format
+msgid "approval of %(user)s to plan %(plan)s"
+msgstr "Assinatura de %(user)s no plano %(plan)s"
+
+#: models.py:115
+msgid "Approval"
+msgstr "Assinatura"
+
+#: models.py:116
+msgid "Approvals"
+msgstr "Assinaturas"
+
+#: plan.py:54
+msgid "Free plan not found for attribution"
+msgstr "Plano gratuíto não encontrado para atribuição"
+
+#: viewsets.py:18
+msgid "user is not authenticated."
+msgstr "Usuário não authenticado."
