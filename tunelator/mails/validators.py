@@ -7,6 +7,6 @@ from django.utils.translation import gettext_lazy as _
 class UserMailAliasValidator(validators.RegexValidator):
     regex = r'^[\w\d_]+$'
     message = _(
-        'Entre com um nome de conta de e-mail válido.'
+        'Use an valid e-mail username.'
     )
     flags = 0
