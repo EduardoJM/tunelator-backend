@@ -1,9 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import mixins, viewsets
+from rest_framework import mixins, viewsets, status
 from drf_yasg.utils import swagger_auto_schema
 from content.serializers import SocialContentSerializer
 from content.models import SocialContent
-from docs.serializers import UnauthenticatedSerializer
+from docs.responses import UnauthenticatedResponse
 
 class SocialContentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = SocialContentSerializer
@@ -12,7 +12,7 @@ class SocialContentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     @swagger_auto_schema(
         responses={
-            401: UnauthenticatedSerializer
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse
         }
     )
     def list(self, request, *args, **kwargs):
