@@ -32,6 +32,9 @@ class UserProfileDataView(APIView):
         },
     )
     def get(self, request):
+        """
+        Get the authenticated user profile informations.
+        """
         serializer = AuthenticationUserSerializer(instance=request.user)
         return Response(serializer.data, status=200)
     
@@ -42,6 +45,9 @@ class UserProfileDataView(APIView):
         },
     )
     def patch(self, request):
+        """
+        Update the authenticated user profile informations.
+        """
         serializer = AuthenticationUserUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -68,6 +74,10 @@ class UserCreateView(APIView):
         security=[],
     )
     def post(self, request):
+        """
+        Creates an new user inside our platform and return the refresh and access token
+        to authenticated the user before the signup process.
+        """
         serializer = UserCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
@@ -101,6 +111,10 @@ class TokenObtainPairView(BaseTokenObtainPairView):
         security=[],
     )
     def post(self, request, *args, **kwargs):
+        """
+        Sign-in process using Json Web Token (JWT). The access token expires quickly,
+        then the refresh token must be used to get an new access token.
+        """
         return super().post(request, *args, **kwargs)
 
 class TokenRefreshView(BaseTokenRefreshView):
@@ -111,6 +125,11 @@ class TokenRefreshView(BaseTokenRefreshView):
         security=[],
     )
     def post(self, request, *args, **kwargs):
+        """
+        Uses the refresh token from the sign-in or sign-up operations to get
+        an new access token. Access tokens expire quickly and then the refresh
+        token must be used to get an new access token.
+        """
         serializer = self.get_serializer(data=request.data)
 
         try:
@@ -140,6 +159,11 @@ class ForgotPasswordSessionView(APIView):
         security=[],
     )
     def post(self, request):
+        """
+        Find for users with that e-mail and send (in background task) the recovery link
+        for the e-mail of that users. If no users found, error is not returned, but
+        none e-mail is sent.
+        """
         from authentication.tasks import send_recovery_link
         
         serializer = ForgotPasswordSessionSerializer(data=request.data)
@@ -162,6 +186,9 @@ class ForgotPasswordValidateSessionView(APIView):
         security=[],
     )
     def get(self, request, session_id):
+        """
+        Verify if an the recovery link session token is valid.
+        """
         session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
         if not session:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -187,6 +214,9 @@ class ForgotPasswordSessionResetView(APIView):
         security=[],
     )
     def put(self, request, session_id):
+        """
+        Resets an password for an user associated by the session id token. The session must be valid.
+        """
         session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
         if not session:
             return Response(status=status.HTTP_404_NOT_FOUND)
