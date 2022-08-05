@@ -21,6 +21,12 @@ from authentication.serializers import (
     ForgotPasswordSessionResetSerializer,
 )
 from authentication.models import ForgotPasswordSession
+from docs.responses import (
+    UnauthenticatedResponse,
+    WrongCredentialsResponse,
+    InvalidTokenResponse,
+    create_bad_request_response,
+)
 from drf_yasg.utils import swagger_auto_schema
 
 User = get_user_model()
@@ -29,6 +35,7 @@ class UserProfileDataView(APIView):
     @swagger_auto_schema(
         responses={
             status.HTTP_200_OK: AuthenticationUserSerializer,
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
         },
     )
     def get(self, request):
@@ -42,6 +49,12 @@ class UserProfileDataView(APIView):
         request_body=AuthenticationUserUpdateSerializer,
         responses={
             status.HTTP_200_OK: AuthenticationUserSerializer,
+            status.HTTP_400_BAD_REQUEST: create_bad_request_response([
+                "first_name",
+                "last_name",
+                "password",
+            ]),
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
         },
     )
     def patch(self, request):
@@ -70,6 +83,12 @@ class UserCreateView(APIView):
         request_body=UserCreateSerializer,
         responses={
             status.HTTP_201_CREATED: TokenObtainPairResponseSerializer,
+            status.HTTP_400_BAD_REQUEST: create_bad_request_response([
+                "email",
+                "first_name",
+                "last_name",
+                "password",
+            ]),
         },
         security=[],
     )
@@ -107,6 +126,11 @@ class TokenObtainPairView(BaseTokenObtainPairView):
     @swagger_auto_schema(
         responses={
             status.HTTP_200_OK: TokenObtainPairResponseSerializer,
+            status.HTTP_400_BAD_REQUEST: create_bad_request_response([
+                "email",
+                "password",
+            ]),
+            status.HTTP_401_UNAUTHORIZED: WrongCredentialsResponse
         },
         security=[],
     )
@@ -121,6 +145,7 @@ class TokenRefreshView(BaseTokenRefreshView):
     @swagger_auto_schema(
         responses={
             status.HTTP_200_OK: TokenRefreshResponseSerializer,
+            status.HTTP_401_UNAUTHORIZED: InvalidTokenResponse,
         },
         security=[],
     )
