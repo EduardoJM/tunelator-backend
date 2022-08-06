@@ -70,3 +70,15 @@ def periodic_clean_expired_forgot_password_sessions():
     ForgotPasswordSession.objects.filter(
         Q(valid_until__lte=timezone.now()) | Q(used=True)
     ).delete()
+
+@app.task(name='periodic_delete_old_mails')
+def periodic_delete_old_mails():
+    from datetime import timedelta
+    from django.utils import timezone
+    from mails.models import UserReceivedMail
+
+    delete_until_date = timezone.now() - timedelta(days=30)
+    queryset = UserReceivedMail.objects.filter(
+        date__lte=delete_until_date
+    )
+    queryset.delete()
