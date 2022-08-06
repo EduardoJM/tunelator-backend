@@ -134,6 +134,7 @@ if not DEBUG:
 #
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_RESULT_EXTENDED = True
 
 #
 # User System
