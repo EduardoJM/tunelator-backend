@@ -47,6 +47,10 @@ class PlanConfigurationItem(PolymorphicSerializer):
 class ActivePlanSerializer(serializers.ModelSerializer):
     configs = PlanConfigurationItem(many=True)
     display_features = PlanDisplayFeatureSerializer(many=True)
+    free_accounts = serializers.SerializerMethodField()
+
+    def get_free_accounts(self, plan):
+        return 0
 
     class Meta:
         model = Plan
