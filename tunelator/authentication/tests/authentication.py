@@ -55,6 +55,20 @@ class TokenObtainPairViewAPITestCase(APITestCase):
         self.assertTrue('user' in data)
         self.assertEqual(self.user.id, data['user']['id'])
 
+    def test_authentication_should_update_last_login(self):
+        user = User.objects.filter(pk=self.user.pk).first()
+        last_login = user.last_login
+
+        response = self.client.post(self.url, { 'email': self.email, 'password': self.password })
+        data = response.json()
+        
+        self.assertTrue('user' in data)
+        
+        user = User.objects.filter(pk=self.user.pk).first()
+        updated_last_login = user.last_login
+        
+        self.assertNotEqual(last_login, updated_last_login)
+
 class TokenRefreshViewAPITestCase(APITestCase):
     url = reverse('authentication:refresh')
 
