@@ -39,6 +39,7 @@ def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(crontab(minute="*/10"), periodic_check_mails.s())
     sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_stripe_checkout_ids.s())
     sender.add_periodic_task(crontab(minute="*/2"), periodic_clean_expired_forgot_password_sessions.s())
+    sender.add_periodic_task(crontab(minute="0", hour="0"), periodic_delete_old_mails.s())
 
 @app.task(name="periodic_check_mails")
 def periodic_check_mails():
@@ -70,3 +71,15 @@ def periodic_clean_expired_forgot_password_sessions():
     ForgotPasswordSession.objects.filter(
         Q(valid_until__lte=timezone.now()) | Q(used=True)
     ).delete()
+
+@app.task(name='periodic_delete_old_mails')
+def periodic_delete_old_mails():
+    from datetime import timedelta
+    from django.utils import timezone
+    from mails.models import UserReceivedMail
+
+    delete_until_date = timezone.now() - timedelta(days=30)
+    queryset = UserReceivedMail.objects.filter(
+        date__lte=delete_until_date
+    )
+    queryset.delete()
