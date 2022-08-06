@@ -26,8 +26,21 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
     ordering = ["-date"]
     serializer_class = UserReceivedMailSerializer
 
+    @swagger_auto_schema(
+        request_body=None,
+        responses={
+            status.HTTP_200_OK: 'No Body',
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
+            status.HTTP_404_NOT_FOUND: NotFoundResponse,
+        }
+    )
     @decorators.action(methods=["POST"], detail=True)
     def resend(self, request, pk):
+        """
+        Resend one received e-mail. The resend e-mail is an background task,
+        then the return of that endpoint does not indicate that the
+        e-mail is really delivered.
+        """
         received_mail = self.get_object()
         if not received_mail:
             return response.Response({
@@ -42,6 +55,31 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
     def get_queryset(self):
         user = self.request.user
         return UserReceivedMail.objects.filter(mail__user=user).all()
+
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
+        }
+    )
+    def list(self, request, *args, **kwargs):
+        """
+        Retrieves an list of the received mails of the accounts
+        that the authenticated user is the owner.
+        """
+        return super(UserReceivedMailViewSet, self).list(request, *args, **kwargs)
+
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_401_UNAUTHORIZED: UnauthenticatedResponse,
+            status.HTTP_404_NOT_FOUND: NotFoundResponse,
+        }
+    )
+    def retrieve(self, request, *args, **kwargs):
+        """
+        Retrieve one received mails of an account that the authenticated
+        user is the owner by the received mail id.
+        """
+        return super(UserReceivedMailViewSet, self).retrieve(request, *args, **kwargs)
 
 class UserMailViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.OrderingFilter, DjangoFilterBackend, filters.SearchFilter]
