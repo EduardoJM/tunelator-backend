@@ -26,8 +26,7 @@ class SocialContentAPITestCase(APITestCase):
         self.access = str(AccessToken.for_user(self.first_user))
         self.bearer = "Bearer %s" % self.access
 
-        self.type1 = SocialContentType.objects.create(name="Instagram")
-        self.type2 = SocialContentType.objects.create(name="Text")
+        self.type = SocialContentType.objects.create(name="Instagram")
     
     def temporary_image(self):
         bts = BytesIO()
@@ -75,19 +74,19 @@ class SocialContentAPITestCase(APITestCase):
             "first title",
             "https://www.google.com/",
             "any text",
-            self.type1
+            self.type
         )
         content2 = self.create_content(
             "second title",
             "https://www.google.com/",
             "any text",
-            self.type1,
+            self.type,
         )
         content3 = self.create_content(
             "last title",
             "https://www.google.com/",
             "any text",
-            self.type1,
+            self.type,
         )
 
         id1 = content1.pk
@@ -111,6 +110,30 @@ class SocialContentAPITestCase(APITestCase):
         content2.delete()
         content3.delete()
 
+    def test_return_item_type(self):
+        self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
+
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type
+        )
+
+        response = self.client.get(self.url)
+
+        data = response.json()
+        self.assertEqual(200, response.status_code)
+        self.assertTrue("count" in data)
+        self.assertTrue("results" in data)
+        self.assertEqual(1, data["count"])
+
+        ids = [x["id"] for x in data["results"]]
+        self.assertEqual(ids[0], content1.pk)
+        self.assertEqual(data["results"][0]["type"], self.type.name)
+
+        content1.delete()
+
     def test_list_content_fields(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
@@ -118,7 +141,7 @@ class SocialContentAPITestCase(APITestCase):
             "first title",
             "https://www.google.com/",
             "any text",
-            self.type2,
+            self.type,
             self.temporary_image()
         )
 
@@ -149,25 +172,25 @@ class SocialContentAPITestCase(APITestCase):
             "first title",
             "https://www.google.com/",
             "any text",
-            self.type1,
+            self.type,
         )
         content2 = self.create_content(
             "second title",
             "https://www.google.com/",
             "any text",
-            self.type2,
+            self.type,
         )
         content3 = self.create_content(
             "last title",
             "https://www.google.com/",
             "any text",
-            self.type1,
+            self.type,
         )
         content4 = self.create_content(
             "ha title",
             "https://www.google.com/",
             "any text",
-            self.type2,
+            self.type,
         )
         id1 = content1.pk
         id2 = content2.pk

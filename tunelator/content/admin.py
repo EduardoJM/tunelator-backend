@@ -3,5 +3,5 @@ from content.models import SocialContent
 
 @admin.register(SocialContent)
 class SocialContentAdmin(admin.ModelAdmin):
-    list_display = ["title", "created_at", "updated_at"]
-    fields = ["title", "description", "link", "image"]
+    list_display = ["type", "title", "created_at", "updated_at"]
+    fields = ["type", "title", "description", "link", "image"]
