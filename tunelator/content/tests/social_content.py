@@ -6,7 +6,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import AccessToken
 from authentication.models import User
-from content.models import SocialContent
+from content.models import SocialContent, SocialContentType
 
 class SocialContentAPITestCase(APITestCase):
     url = reverse('content:SocialContent-list')
@@ -25,6 +25,8 @@ class SocialContentAPITestCase(APITestCase):
 
         self.access = str(AccessToken.for_user(self.first_user))
         self.bearer = "Bearer %s" % self.access
+
+        self.type = SocialContentType.objects.create(name="Instagram")
     
     def temporary_image(self):
         bts = BytesIO()
@@ -56,20 +58,36 @@ class SocialContentAPITestCase(APITestCase):
         self.assertIsNone(data["previous"])
         self.assertEqual([], data["results"])
 
-    def create_content(self, title, link, desc, image=None):
+    def create_content(self, title, link, desc, type, image=None):
         return SocialContent.objects.create(
             title=title,
             link=link,
             description=desc,
+            type=type,
             image=image
         )
 
     def test_list_content_order(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content1 = self.create_content("first title", "https://www.google.com/", "any text")
-        content2 = self.create_content("second title", "https://www.google.com/", "any text")
-        content3 = self.create_content("last title", "https://www.google.com/", "any text")
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type
+        )
+        content2 = self.create_content(
+            "second title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
+        content3 = self.create_content(
+            "last title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
 
         id1 = content1.pk
         id2 = content2.pk
@@ -92,10 +110,40 @@ class SocialContentAPITestCase(APITestCase):
         content2.delete()
         content3.delete()
 
+    def test_return_item_type(self):
+        self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
+
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type
+        )
+
+        response = self.client.get(self.url)
+
+        data = response.json()
+        self.assertEqual(200, response.status_code)
+        self.assertTrue("count" in data)
+        self.assertTrue("results" in data)
+        self.assertEqual(1, data["count"])
+
+        ids = [x["id"] for x in data["results"]]
+        self.assertEqual(ids[0], content1.pk)
+        self.assertEqual(data["results"][0]["type"], self.type.name)
+
+        content1.delete()
+
     def test_list_content_fields(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content = self.create_content("first title", "https://www.google.com/", "any text", self.temporary_image())
+        content = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+            self.temporary_image()
+        )
 
         response = self.client.get(self.url)
 
@@ -120,10 +168,30 @@ class SocialContentAPITestCase(APITestCase):
     def test_list_limit_pagination(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content1 = self.create_content("first title", "https://www.google.com/", "any text")
-        content2 = self.create_content("second title", "https://www.google.com/", "any text")
-        content3 = self.create_content("last title", "https://www.google.com/", "any text")
-        content4 = self.create_content("ha title", "https://www.google.com/", "any text")
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
+        content2 = self.create_content(
+            "second title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
+        content3 = self.create_content(
+            "last title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
+        content4 = self.create_content(
+            "ha title",
+            "https://www.google.com/",
+            "any text",
+            self.type,
+        )
         id1 = content1.pk
         id2 = content2.pk
         id3 = content3.pk
