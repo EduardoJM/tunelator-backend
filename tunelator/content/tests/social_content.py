@@ -6,7 +6,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import AccessToken
 from authentication.models import User
-from content.models import SocialContent
+from content.models import SocialContent, SocialContentType
 
 class SocialContentAPITestCase(APITestCase):
     url = reverse('content:SocialContent-list')
@@ -25,6 +25,9 @@ class SocialContentAPITestCase(APITestCase):
 
         self.access = str(AccessToken.for_user(self.first_user))
         self.bearer = "Bearer %s" % self.access
+
+        self.type1 = SocialContentType.objects.create(name="Instagram")
+        self.type2 = SocialContentType.objects.create(name="Text")
     
     def temporary_image(self):
         bts = BytesIO()
@@ -56,20 +59,36 @@ class SocialContentAPITestCase(APITestCase):
         self.assertIsNone(data["previous"])
         self.assertEqual([], data["results"])
 
-    def create_content(self, title, link, desc, image=None):
+    def create_content(self, title, link, desc, type, image=None):
         return SocialContent.objects.create(
             title=title,
             link=link,
             description=desc,
+            type=type,
             image=image
         )
 
     def test_list_content_order(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content1 = self.create_content("first title", "https://www.google.com/", "any text")
-        content2 = self.create_content("second title", "https://www.google.com/", "any text")
-        content3 = self.create_content("last title", "https://www.google.com/", "any text")
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type1
+        )
+        content2 = self.create_content(
+            "second title",
+            "https://www.google.com/",
+            "any text",
+            self.type1,
+        )
+        content3 = self.create_content(
+            "last title",
+            "https://www.google.com/",
+            "any text",
+            self.type1,
+        )
 
         id1 = content1.pk
         id2 = content2.pk
@@ -95,7 +114,13 @@ class SocialContentAPITestCase(APITestCase):
     def test_list_content_fields(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content = self.create_content("first title", "https://www.google.com/", "any text", self.temporary_image())
+        content = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type2,
+            self.temporary_image()
+        )
 
         response = self.client.get(self.url)
 
@@ -120,10 +145,30 @@ class SocialContentAPITestCase(APITestCase):
     def test_list_limit_pagination(self):
         self.client.credentials(HTTP_AUTHORIZATION=self.bearer)
 
-        content1 = self.create_content("first title", "https://www.google.com/", "any text")
-        content2 = self.create_content("second title", "https://www.google.com/", "any text")
-        content3 = self.create_content("last title", "https://www.google.com/", "any text")
-        content4 = self.create_content("ha title", "https://www.google.com/", "any text")
+        content1 = self.create_content(
+            "first title",
+            "https://www.google.com/",
+            "any text",
+            self.type1,
+        )
+        content2 = self.create_content(
+            "second title",
+            "https://www.google.com/",
+            "any text",
+            self.type2,
+        )
+        content3 = self.create_content(
+            "last title",
+            "https://www.google.com/",
+            "any text",
+            self.type1,
+        )
+        content4 = self.create_content(
+            "ha title",
+            "https://www.google.com/",
+            "any text",
+            self.type2,
+        )
         id1 = content1.pk
         id2 = content2.pk
         id3 = content3.pk
