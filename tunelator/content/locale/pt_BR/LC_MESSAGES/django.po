@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-04 21:23-0300\n"
+"POT-Creation-Date: 2022-08-08 23:02-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,33 +19,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: models.py:5
+msgid "name"
+msgstr "Nome"
+
+#: models.py:11
+#, fuzzy
+#| msgid "Social Content"
+msgid "Social Content Type"
+msgstr "Tipo de Conteúdo Social"
+
+#: models.py:12
+#, fuzzy
+#| msgid "Social Contents"
+msgid "Social Content Types"
+msgstr "Tipos de Conteúdos Sociais"
+
+#: models.py:15
+msgid "type"
+msgstr "Tipo"
+
+#: models.py:16
 msgid "title"
 msgstr "Título"
 
-#: models.py:6
+#: models.py:17
 msgid "link"
 msgstr "Link"
 
-#: models.py:7
+#: models.py:18
 msgid "description"
 msgstr "Descrição"
 
-#: models.py:8
+#: models.py:19
 msgid "image"
 msgstr "Imagem"
 
-#: models.py:9
+#: models.py:20
 msgid "created at"
 msgstr "Criado em"
 
-#: models.py:10
+#: models.py:21
 msgid "updated at"
 msgstr "Atualizado em"
 
-#: models.py:16
+#: models.py:27
 msgid "Social Content"
 msgstr "Conteúdo Social"
 
-#: models.py:17
+#: models.py:28
 msgid "Social Contents"
 msgstr "Conteúdos Sociais"
