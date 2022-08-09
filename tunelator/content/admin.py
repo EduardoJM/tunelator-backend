@@ -1,5 +1,10 @@
 from django.contrib import admin
-from content.models import SocialContent
+from content.models import SocialContent, SocialContentType
+
+@admin.register(SocialContentType)
+class SocialContentTypeAdmin(admin.ModelAdmin):
+    list_display = ["id", "name"]
+    fields = ["name"]
 
 @admin.register(SocialContent)
 class SocialContentAdmin(admin.ModelAdmin):
