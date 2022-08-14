@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from authentication.exceptions import UserNotFoundError
 
 User = get_user_model()
 
@@ -12,7 +13,7 @@ def send_recovery_link(email: str):
 
     user = User.objects.filter(email=email).first()
     if not user:
-        raise Exception('user-not-found')
+        raise UserNotFoundError({ 'email': email })
     
     session = ForgotPasswordSession()
     session.user = user
