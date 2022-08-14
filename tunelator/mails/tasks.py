@@ -1,4 +1,5 @@
 import json
+import requests
 from os import listdir, remove
 from os.path import isfile, join
 from email import message_from_string
@@ -12,18 +13,23 @@ from mails.utils import (
     set_email_body,
     send_email
 )
-import requests
+from mails.exceptions import (
+    MailUserNotSentError,
+    MailUserNotFoundError,
+    InvalidMailUserIntegrationDataError,
+    ReceivedMailNotFound,
+)
 
 @shared_task(name="create_mail_user")
 def create_mail_user(mail_user_id: int):
     from mails.models import UserMail
 
     if not mail_user_id:
-        raise Exception("No user id was sent")
+        raise MailUserNotSentError()
         
     user_mail = UserMail.objects.filter(pk=mail_user_id).first()
     if not user_mail:
-        raise Exception("Invalid user id was sent")
+        raise MailUserNotFoundError({ 'pk': mail_user_id })
     
     url = "%s/add/" % settings.USER_SYSTEM_URL
     headers = {
@@ -34,19 +40,20 @@ def create_mail_user(mail_user_id: int):
     }
     
     response = requests.post(url, headers=headers, json=payload)
-    if response.status_code == 200:
-        response_data = json.loads(response.text)
-        if "data" not in response_data:
-            raise Exception("Invalid call data")
-        data = response_data["data"]
-        if "user_name" not in data:
-            raise Exception("Invalid call data")
-        user_name = data["user_name"]
-        user_mail.mail_user = user_name
-        user_mail.mail = "%s@tunelator.com.br" % user_name
-        user_mail.save()
-    else:
-        raise Exception("Error in server: " + response.text)
+    if response.status_code != 200:
+        raise InvalidMailUserIntegrationDataError(response.text)
+    
+    response_data = json.loads(response.text)
+    if "data" not in response_data:
+        raise InvalidMailUserIntegrationDataError(response.text)
+    data = response_data["data"]
+    if "user_name" not in data:
+        raise InvalidMailUserIntegrationDataError(response.text)
+    user_name = data["user_name"]
+    user_mail.mail_user = user_name
+    user_mail.mail = "%s@tunelator.com.br" % user_name
+    user_mail.save()
+        
 
 @shared_task(name="send_redirect_mail")
 def send_redirect_mail(user_received_mail_id: int, force: bool = False):
@@ -54,7 +61,7 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
     
     received_mail = UserReceivedMail.objects.filter(pk=user_received_mail_id).first()
     if not received_mail:
-        raise Exception("No received mail found with id " + user_received_mail_id)
+        raise ReceivedMailNotFound({ 'pk': user_received_mail_id })
 
     if not received_mail.mail.redirect_enabled and not force:
         return
@@ -110,7 +117,7 @@ def check_user_late_mails(user_mail_id):
 
     user_mail = UserMail.objects.filter(pk=user_mail_id).first()
     if not user_mail:
-        raise Exception("User mail not found")
+        MailUserNotFoundError({ 'pk': user_mail_id })
     
     path_to_find = "/home/%s/Mail/Inbox/new" % user_mail.mail_user
     
@@ -126,7 +133,7 @@ def save_user_late_mail(user_mail_id, real_path):
 
     user_mail = UserMail.objects.filter(pk=user_mail_id).first()
     if not user_mail:
-        raise Exception("User mail not found")
+        MailUserNotFoundError({ 'pk': user_mail_id })
 
     save_mail_from_file(user_mail, real_path)
     remove(real_path)

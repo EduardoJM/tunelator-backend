@@ -6,6 +6,7 @@ from plans.models import (
     PlanConfigurationBooleanItem,
     PlanConfigurationIntegerItem,
 )
+from plans.exceptions import FreePlanNotFoundError
 
 class PlanSettings:
     DEFAULTS = {
@@ -51,7 +52,7 @@ class Plan:
         if not self.approval:
             free_plan = PlanModel.objects.filter(plan_type=PlanModel.TYPE_FREE).first()
             if not free_plan:
-                raise Exception(_("Free plan not found for attribution"))
+                raise FreePlanNotFoundError()
             
             self.approval = Approval.objects.create(
                 user=user,

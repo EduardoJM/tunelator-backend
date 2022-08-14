@@ -5,6 +5,7 @@ from email.header import decode_header
 from email.charset import Charset, add_charset
 from django.utils import timezone
 from mails.models import UserReceivedMail
+from mails.exceptions import FileReadError
 
 def decode_subject(message):
     if not message["subject"]:
@@ -52,7 +53,7 @@ def save_mail_from_file(user_mail, path):
         text = "\n".join(lines)
     
     if not text:
-        raise Exception("can't read file: " + path)
+        raise FileReadError(path)
 
     text = "".join([s for s in text.strip().splitlines(True) if s.strip("\r\n").strip()])
     email = message_from_string(text)
