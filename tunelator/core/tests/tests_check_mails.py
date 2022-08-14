@@ -61,3 +61,16 @@ class PeriodicCheckMailsTestCase(TestCase):
         periodic_check_mails()
 
         mock_delay.assert_not_called()
+
+    @patch('mails.tasks.listdir', MagicMock(side_effect=FileNotFoundError()))
+    @patch('mails.tasks.isfile', MagicMock(return_value=True))
+    def test_fetch_with_file_not_found_exception(self):
+        mail2 = UserMail.objects.create(
+            user=self.user,
+            name='Any Name',
+            mail_user='any_user2',
+        )
+
+        periodic_check_mails()
+
+        mail2.delete()

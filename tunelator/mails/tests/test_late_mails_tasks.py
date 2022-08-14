@@ -25,6 +25,12 @@ class CheckUserLateMailsTestCase(TestCase):
             mail_user='any_user',
         )
 
+    @patch('mails.tasks.listdir', MagicMock(side_effect=FileNotFoundError()))
+    @patch('mails.tasks.isfile', MagicMock(return_value=True))
+    def test_with_exception(self):
+        with self.assertRaises(FileNotFoundError):
+            check_user_late_mails(self.mail.pk)
+
     @patch('mails.tasks.listdir', MagicMock(return_value=['any-file']))
     @patch('mails.tasks.isfile', MagicMock(return_value=True))
     @patch('mails.tasks.save_user_late_mail.delay')

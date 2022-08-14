@@ -1,5 +1,6 @@
 import os
 import environ
+from contextlib import suppress
 from urllib.parse import quote
 from datetime import timedelta
 from pathlib import Path
@@ -48,7 +49,8 @@ def periodic_check_mails():
     
     mails = UserMail.objects.filter(plan_enabled=True).all()    
     for mail in mails:
-        check_user_late_mails(mail.pk)
+        with suppress(Exception):
+            check_user_late_mails(mail.pk)
 
 @app.task(name="periodic_clean_stripe_checkout_ids")
 def periodic_clean_stripe_checkout_ids():
