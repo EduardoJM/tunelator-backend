@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 22:54-0300\n"
+"POT-Creation-Date: 2022-10-01 08:46-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,14 +110,6 @@ msgstr "E-mail's Recebidos"
 msgid "Use an valid e-mail username."
 msgstr "Use um nome de e-mail válido."
 
-#: views.py:31
-msgid "E-mail username is already used."
-msgstr "Usuário de e-mail já está sendo utilizado."
-
-#: views.py:32
+#: views.py:33
 msgid "E-mail username is free."
 msgstr "Usuário de e-mail disponível."
-
-#: viewsets.py:47
-msgid "Received mail not found."
-msgstr "E-mail recebido não encontrado."
