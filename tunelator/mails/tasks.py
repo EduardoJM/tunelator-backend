@@ -13,7 +13,7 @@ from mails.utils import (
     set_email_body,
     send_email
 )
-from mails.exceptions import (
+from exceptions.core import (
     MailUserNotSentError,
     MailUserNotFoundError,
     InvalidMailUserIntegrationDataError,

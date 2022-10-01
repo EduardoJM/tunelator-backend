@@ -6,7 +6,7 @@ from plans.models import (
     PlanConfigurationBooleanItem,
     PlanConfigurationIntegerItem,
 )
-from plans.exceptions import FreePlanNotFoundError
+from exceptions.core import FreePlanNotFoundError
 
 class PlanSettings:
     DEFAULTS = {
