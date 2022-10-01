@@ -5,7 +5,7 @@ from email.header import decode_header
 from email.charset import Charset, add_charset
 from django.utils import timezone
 from mails.models import UserReceivedMail
-from mails.exceptions import FileReadError
+from exceptions.core import FileReadError
 
 def decode_subject(message):
     if not message["subject"]:

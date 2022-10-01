@@ -1,3 +1,11 @@
+class UserNotFoundError(Exception):
+    def __init__(self, search_fields: dict) -> None:
+        self.search_fields = search_fields
+        super().__init__()
+
+    def __str__(self) -> str:
+        return "User with search fields %s was not found" % self.search_fields
+
 class MailUserNotSentError(Exception):
     def __init__(self) -> None:
         super().__init__("No mail user id was sent")
@@ -34,3 +42,7 @@ class FileReadError(Exception):
 
     def __str__(self) -> str:
         return "Error reading file: %s" % self.path
+
+class FreePlanNotFoundError(Exception):
+    def __init__(self) -> None:
+        super().__init__("Free plan not found for attribution")

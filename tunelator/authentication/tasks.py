@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.conf import settings
 from django.template.loader import render_to_string
-from authentication.exceptions import UserNotFoundError
+from exceptions.core import UserNotFoundError
 
 User = get_user_model()
 

@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from mails.serializers import UserMailVerifySerializer
 from mails.services import validate_user_name
 from mails.schemas import IndisponibleResponse, DisponibleResponse
+from exceptions.api import EmailUsernameAlreadyUsed
 
 class VerifyUserSystemAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -28,5 +29,5 @@ class VerifyUserSystemAPIView(APIView):
 
         user_name = serializer.validated_data["user_name"]
         if not validate_user_name(user_name):
-            return Response({ 'detail': _('E-mail username is already used.') }, status=status.HTTP_400_BAD_REQUEST)
+            raise EmailUsernameAlreadyUsed()
         return Response({ 'detail': _('E-mail username is free.') }, status=status.HTTP_200_OK)
