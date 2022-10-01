@@ -1,4 +1,5 @@
 from rest_framework import viewsets, mixins, decorators, response, status
+from rest_framework.exceptions import NotAuthenticated
 from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_auto_schema
 from mails.models import UserMail
@@ -44,10 +45,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.Gen
         user.
         """
         if not request.user.is_authenticated:
-            return response.Response(
-                { 'detail': _('user is not authenticated.') },
-                status=status.HTTP_401_UNAUTHORIZED
-            )
+            raise NotAuthenticated()
         
         plan_util = PlanUtil(request.user)
         approval = plan_util.approval

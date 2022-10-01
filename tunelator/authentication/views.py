@@ -3,6 +3,7 @@ from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.exceptions import NotFound
 from rest_framework_simplejwt.views import (
     TokenObtainPairView as BaseTokenObtainPairView,
     TokenRefreshView as BaseTokenRefreshView,
@@ -21,6 +22,7 @@ from authentication.serializers import (
     ForgotPasswordSessionResetSerializer,
 )
 from authentication.models import ForgotPasswordSession
+from exceptions.api import UnprocessableEntity
 from docs.responses import (
     UnauthenticatedResponse,
     WrongCredentialsResponse,
@@ -216,13 +218,13 @@ class ForgotPasswordValidateSessionView(APIView):
         """
         session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
         if not session:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            raise NotFound()
         if session.used:
-            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            raise UnprocessableEntity()
         if timezone.now() > session.valid_until:
             session.used = True
             session.save()
-            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            raise UnprocessableEntity()
         return Response(status=status.HTTP_200_OK)
 
 class ForgotPasswordSessionResetView(APIView):
@@ -244,13 +246,13 @@ class ForgotPasswordSessionResetView(APIView):
         """
         session = ForgotPasswordSession.objects.filter(session_id=session_id).first()
         if not session:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            raise NotFound()
         if session.used:
-            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            raise UnprocessableEntity()
         if timezone.now() > session.valid_until:
             session.used = True
             session.save()
-            return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+            raise UnprocessableEntity()
 
         serializer = ForgotPasswordSessionResetSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

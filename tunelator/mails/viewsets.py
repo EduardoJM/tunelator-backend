@@ -13,6 +13,7 @@ from docs.responses import (
     UnauthenticatedResponse,
     create_bad_request_response,
 )
+from exceptions.api import ReceivedMailNotFound
 
 class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     filter_backends = [filters.OrderingFilter, DjangoFilterBackend, filters.SearchFilter]
@@ -43,9 +44,7 @@ class UserReceivedMailViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, 
         """
         received_mail = self.get_object()
         if not received_mail:
-            return response.Response({
-                'detail': _('Received mail not found.')
-            }, status=status.HTTP_404_NOT_FOUND)
+            raise ReceivedMailNotFound()
         
         from mails.tasks import send_redirect_mail
         send_redirect_mail.apply_async(args=[received_mail.id, True], coutdown=2)
