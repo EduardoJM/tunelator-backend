@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     # custom tunelator apps
+    'exceptions',
     'docs',
     'authentication',
     'plans',

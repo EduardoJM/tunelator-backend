@@ -1,14 +1,16 @@
+from django.utils.translation import gettext_lazy as _
+
 class UserNotFoundError(Exception):
     def __init__(self, search_fields: dict) -> None:
         self.search_fields = search_fields
         super().__init__()
 
     def __str__(self) -> str:
-        return "User with search fields %s was not found" % self.search_fields
+        return _("User with search fields %s was not found") % self.search_fields
 
 class MailUserNotSentError(Exception):
     def __init__(self) -> None:
-        super().__init__("No mail user id was sent")
+        super().__init__(_("No mail user id was sent"))
 
 class MailUserNotFoundError(Exception):
     def __init__(self, search_fields: dict) -> None:
@@ -16,12 +18,12 @@ class MailUserNotFoundError(Exception):
         super().__init__()
 
     def __str__(self) -> str:
-        return "Mail user with search fields %s was not found" % self.search_fields
+        return _("Mail user with search fields %s was not found") % self.search_fields
 
 class InvalidMailUserIntegrationDataError(Exception):
     def __init__(self, data: str) -> None:
         self.data = data
-        self.message = "Invalid Mail User Integration Data"
+        self.message = _("Invalid Mail User Integration Data")
         super().__init__(self.message)
 
     def __str__(self) -> str:
@@ -33,7 +35,7 @@ class ReceivedMailNotFound(Exception):
         super().__init__()
 
     def __str__(self) -> str:
-        return "Received mail with search fields %s was not found" % self.search_fields
+        return _("Received mail with search fields %s was not found") % self.search_fields
 
 class FileReadError(Exception):
     def __init__(self, path: str) -> None:
@@ -41,8 +43,8 @@ class FileReadError(Exception):
         super().__init__()
 
     def __str__(self) -> str:
-        return "Error reading file: %s" % self.path
+        return _("Error reading file: %s") % self.path
 
 class FreePlanNotFoundError(Exception):
     def __init__(self) -> None:
-        super().__init__("Free plan not found for attribution")
+        super().__init__(_("Free plan not found for attribution"))
