@@ -93,12 +93,12 @@ def send_redirect_mail(user_received_mail_id: int, force: bool = False):
                 '</tr>' +\
             '</table>' +\
             '<br/>'
-        html_body = header + html_body.decode(html_encoding)
+        html_body = header + html_body.decode()
         html_body = html_body.encode('utf-8')
     
     if text_body:
         header = 'Esse é um e-mail reenviado pelo tunelator.com.br.\r\n\r\nConta de Redirecionamento:  ' + str(received_mail.mail.mail) + '\r\n'
-        text_body = header + text_body.decode(text_encoding)
+        text_body = header + text_body.decode()
         text_body = text_body.encode('utf-8')
 
     set_email_body(mail_msg, text_body, html_body)
