@@ -18,7 +18,10 @@ def decode_subject(message):
         if type(decoded_bytes) == str:
             output += decoded_bytes
         else:
-            output += decoded_bytes.decode(encoding)
+            if not encoding:
+                output += decoded_bytes.decode()
+            else:
+                output += decoded_bytes.decode(encoding)
     return output
 
 def decode_from_email(message):
