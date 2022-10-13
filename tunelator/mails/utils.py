@@ -13,6 +13,8 @@ def decode_subject(message):
     output = ""
     decoded = decode_header(message["subject"])
     for decoded_bytes, encoding in decoded:
+        if not decoded_bytes:
+            pass
         if type(decoded_bytes) == str:
             output += decoded_bytes
         else:
