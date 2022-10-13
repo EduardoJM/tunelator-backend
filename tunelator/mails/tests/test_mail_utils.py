@@ -13,7 +13,7 @@ class TestMailUtilsTestCase(TestCase):
     def read_file(self, path: str, encoding: str):
         dir = os.path.dirname(__file__)
         full_path = os.path.join(dir, 'files', path)
-        with codecs.open(full_path, 'r', 'ascii') as f:
+        with codecs.open(full_path, 'r', encoding) as f:
             text = f.read()
         return text
 
@@ -42,7 +42,15 @@ class TestMailUtilsTestCase(TestCase):
             ),
             UserReceivedMail.objects.create(
                 mail=self.mail,
-                raw_mail=self.read_file('canva.txt', 'utf-8')
+                raw_mail=self.read_file('canva.txt', 'ascii')
+            ),
+            UserReceivedMail.objects.create(
+                mail=self.mail,
+                raw_mail=self.read_file('edumoreira.txt', 'ascii')
+            ),
+            UserReceivedMail.objects.create(
+                mail=self.mail,
+                raw_mail=self.read_file('rastro.txt', 'utf-8')
             )
         ]
     

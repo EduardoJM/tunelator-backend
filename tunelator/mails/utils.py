@@ -103,24 +103,30 @@ def set_email_body(received_email, text_body, html_body):
 
 def get_email_body(received_email):
     text_body = ""
+    text_encoding = None
     html_body = ""
+    html_encoding = None
     if received_email.is_multipart():
         for payload in received_email.get_payload():
             # If the message comes with a signature it can be that this
             # payload itself has multiple parts, so just return the
             # first one
             if payload.is_multipart():
-                text_body, html_body = get_email_body(payload)
+                text_body, text_encoding, html_body, html_encoding = get_email_body(payload)
             else:
                 body = payload.get_payload(decode=True)
+                encoding = payload.get_content_charset()
                 if payload.get_content_type() == "text/plain":
                     text_body = body
+                    text_encoding = encoding
                 elif payload.get_content_type() == "text/html":
                     html_body = body
+                    html_encoding = encoding
     else:
         text_body = received_email.get_payload(decode=True)
+        text_encoding = received_email.get_content_charset()
         html_body = None
-    return text_body, html_body
+    return text_body, text_encoding, html_body, html_encoding
 
 def send_email(mail_to_send: str, mail_msg: str):
     with smtplib.SMTP(host=settings.EMAIL_HOST, port=settings.EMAIL_PORT) as s:

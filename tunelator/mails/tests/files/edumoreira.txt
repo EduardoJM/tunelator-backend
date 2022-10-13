@@ -1,0 +1,171 @@
+Return-Path: <bounces+25181029-5874-only=tunelator.com.br@em1582.institutoliberta.com.br>
+X-Original-To: only@tunelator.com.br
+Delivered-To: only@tunelator.com.br
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=institutoliberta.com.br;
+	h=content-type:from:mime-version:subject:reply-to:to:cc;
+	s=s1; bh=CXTFqNDCl3VU6kWjRJv/LK2OO5k12Uwlt5NVfuWQyHI=;
+	b=YtvcTM1mfsVv5x1VlXC0rWKvNkuVwiTxoFbizuSBRAxL6N8kmgrs6z/m8XfgES5UU7Ko
+	18bGMboRfNmasieAmLmXUMu8SluNFNXJnn+t0mn+lZB9haJrtB2J91awZ37L8/zB3lPCUs
+	4RaAQirjKLIsUbBLZGa4NNQ2OCb1A8h3nbHSh9ryaCQygcjy7NjygD2pFHkyG2wSrMZ4K8
+	sp28eVWrgT8wz72GD+l1wawdevPqvg0C0DdWEFOIHzvwDborJcA9HSCO3+6KuEPGJEe45L
+	M+AyDOueuOu7a9TwBCCbClfARzbfbGo6UOuaweGQNuV4AOf6a02UeKzMpn6dU/Bw==
+Authentication-Results: tunelator.com.br;
+	dkim=pass (2048-bit key; unprotected) header.d=institutoliberta.com.br header.i=@institutoliberta.com.br header.a=rsa-sha256 header.s=s1 header.b=YtvcTM1m;
+	dkim-atps=neutral
+Content-Type: multipart/alternative; boundary=1780c0d6f8b31215cf97b357fb3489818e458f58abe0692e35111b1bdb3e
+Date: Tue, 06 Sep 2022 04:00:26 +0000 (UTC)
+From: EDUARDO MOREIRA <contato@institutoliberta.com.br>
+Mime-Version: 1.0
+Message-ID: <oPWBAiaaT22rhG5xuWV8qQ@geopod-ismtpd-4-0>
+Subject: Olha o que =?UTF-8?B?dm9jw6o=?= perdeu
+Reply-To: contato@institutoliberta.com.br
+X-WJ-leadId: 1407401
+X-WJ-memberId: 205816
+X-WJ-communicationId: 2322
+X-SG-EID: 
+ =?us-ascii?Q?GVc3I3FTfUqKfDTwVxVJ4Azg=2FIQEfeAnEh3S9e7DfwrTcYvZybsT+YBPGPqW3m?=
+ =?us-ascii?Q?u+9NeXnKBrZFEPGw=2FgiadfIyHN5ZyTLcFKGE9HC?=
+ =?us-ascii?Q?=2FXydMcuR2VWvhvke+A06Oa9xAl2qUaNiXKqEsBO?=
+ =?us-ascii?Q?0OxMzBzOI6ootyE8KaGpoNhvW7wvesxz=2FWZN8eV?=
+ =?us-ascii?Q?fagliz4kWnfFAGSuWCxZCZCNWU3Q=2F=2FC6u=2F1jyn2?=
+ =?us-ascii?Q?3nClpo9pGTwf8J2kYK+XacTxDFwVt2t0sNFWsJk?=
+ =?us-ascii?Q?W1a7YjLZ7p1SnFw1xeQcw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FKpEV4UV0xXHuk4r2Eq09?=
+ =?us-ascii?Q?ckk+Pxn5kAcj5Hlh1DYD2IrqaPkxp86JZPHIHTM?=
+ =?us-ascii?Q?5LSCJmrPAAaSQ=2FA++AeGzsH40l6TVLz1N6mJw2h?=
+ =?us-ascii?Q?qay+cZRjjA=3D=3D?=
+To: Eduardo <only@tunelator.com.br>
+X-Entity-ID: 9Fv0++V/YMLnRyPavCVh8g==
+--1780c0d6f8b31215cf97b357fb3489818e458f58abe0692e35111b1bdb3e
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Mime-Version: 1.0
+Vimos que voc=EA se inscreveu para nossa Aula: "COMPREENDENDO OS DOIS
+=DANICOS TIPOS DE INVESTIMENTOS QUE EXISTEM NA PR=C1TICA", mas por
+alguma raz=E3o, voc=EA n=E3o participou.
+Essa aula foi simplesmente sensacional!=A0Pena que voc=EA perdeu...
+Quem assistiu ficou realmente entusiasmado(a) com a forma que
+compartilhamos=A0o essencial sobre o=A0MUNDO DAS FINAN=C7AS=A0e conseguiu
+entender por onde come=E7ar a constru=E7=E3o de patrim=F4nio com
+investimentos.
+Mas n=E3o se preocupe, porque trazemos=A0boas not=EDcias pra voc=EA!
+O fato =E9 que o conte=FAdo dessa Aula =E9 de extremo valor para quem
+quer descobrir como=A0GERAR RENDA E CONSTRUIR PATRIM=D4NIO NO MERCADO
+FINANCEIRO...
+E como acreditamos que esse seja o seu caso,=A0decidimos=A0oferecer para
+voc=EA uma=A0NOVA CHANCE=A0de assistir esse conte=FAdo.
+Ent=E3o, =E9 s=F3 clicar no link abaixo para agendar um novo hor=E1rio.
+>>> INSCREVA-SE NOVAMENTE CLICANDO AQUI!
+[https://u25181029.ct.sendgrid.net/ls/click?upn=3DyRqTqDOQJNVVFyoWlAFhJpQkF=
+t2lE5p6t7JSpSxESc9FGtQy0l827DApRyrZ3WetJatXU6-2FE8oEXisWAK19hZIuhR7LBQ54Q90=
+PP6X8rv-2FaQKkHKNOa5-2BrwzaQfP2GmObM0qFvMjeijtEp9eeCDseg-3D-3DZLSi_ck-2FokZ=
+ClFhznb-2BErOgsB5I0xULjpEN9pcKWep-2BqwVcT-2FoTvaCEgYjIlP2tRJVwNKLjje9gs4Ka3=
+83a-2BIy8s3QDzpt8S5F-2F0gYc1VQUAYDoKksleDNcXu-2B84DXlJZf3U7Ax2nWCHgj1nIvTFS=
+l0aUcuiBOxeg0HXMeWCvz0LcDL86K3x-2FqzjUvma8HC-2BOsohxGvxgTD2h-2BsEbZLi-2F9gO=
+JoFVzwHt3sPsXhlzwnAV23x7PAzOvH4wtoSW4DXxk-2Bz1wgVs4vmUWj6IYOAsXr6ovLE6jpGDy=
+cmzIZa3GC09weZVuBeBVVMn3UqCEZiYppwDQ]
+Um abra=E7o,
+Eduardo Moreira.
+You are receiving this email because you registered for this webinar.=20
+Unsubscribe [/https://u25181029.ct.sendgrid.net/ls/click?upn=3DyRqTqDOQJNVV=
+FyoWlAFhJrM9Fazdmj-2B-2BAgE64ZYgdE-2BoyoGDXsJR-2BSYHLRvDgDb7qw3hrBux9DRnGeO=
+M73evZAwkts9hKrcfRD-2FR66JIswKUv0M1fFyIGkJYH7JpHI9jtubr_ck-2FokZClFhznb-2BE=
+rOgsB5I0xULjpEN9pcKWep-2BqwVcT-2FoTvaCEgYjIlP2tRJVwNKLjje9gs4Ka383a-2BIy8s3=
+QDzpt8S5F-2F0gYc1VQUAYDoKksleDNcXu-2B84DXlJZf3U7Ax2nWCHgj1nIvTFSl0aUcuiBOxe=
+g0HXMeWCvz0LcDL-2FnjI92UOwozsXHoSpYy7YjJ37yA1ACzCc4n4zlwXdtYDKnw61jrtaOouNy=
+KcJp78bJUGjEm10DSOF1fCf-2Fcb6KFA1ND7KAkS8fdjUbxBEmCWXGL851ugsoPTkqxztDK2g88=
+bYAk8RL8vtSR1nkwFOg] to stop receiving notifications
+about this event.
+WebinarJam LLC=20
+7660 Fay Ave Ste H184=20
+La Jolla, CA 92037=20
+USA
+POWERED BY...
+=20=
+--1780c0d6f8b31215cf97b357fb3489818e458f58abe0692e35111b1bdb3e
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Mime-Version: 1.0
+<html><body><p><span style=3D"font-size:16px;">Vimos que voc=EA se inscreve=
+u para nossa Aula: "<strong>Compreendendo os dois =FAnicos tipos de investi=
+mentos que existem na pr=E1tica"</strong>, mas por alguma raz=E3o, voc=EA n=
+=E3o participou.<br><br>
+Essa aula foi simplesmente sensacional!=A0Pena que voc=EA perdeu...<br><br>
+Quem assistiu ficou realmente entusiasmado(a) com a forma que compartilhamo=
+s=A0o essencial sobre o=A0<strong>Mundo das Finan=E7as</strong>=A0e consegu=
+iu entender por onde come=E7ar a constru=E7=E3o de patrim=F4nio com investi=
+mentos</span><span style=3D"font-size:16px;">.<br><br>
+Mas n=E3o se preocupe, porque trazemos=A0boas not=EDcias pra voc=EA!<br><br=
+>
+O fato =E9 que o conte=FAdo dessa Aula =E9 de extremo valor para quem quer =
+descobrir como<strong>=A0Gerar Renda e Construir Patrim=F4nio no Mercado Fi=
+nanceiro...</strong><br><br>
+E como acreditamos que esse seja o seu caso,=A0decidimos=A0oferecer para vo=
+c=EA uma=A0<span style=3D"color:#e74c3c;"><strong>nova chance</strong></spa=
+n>=A0de assistir esse conte=FAdo.<br><br>
+Ent=E3o, =E9 s=F3 clicar no link abaixo para agendar um novo hor=E1rio.<br>=
+<br><strong><a href=3D"https://u25181029.ct.sendgrid.net/ls/click?upn=3DyRq=
+TqDOQJNVVFyoWlAFhJpQkFt2lE5p6t7JSpSxESc9FGtQy0l827DApRyrZ3WetJatXU6-2FE8oEX=
+isWAK19hZIuhR7LBQ54Q90PP6X8rv-2FaQKkHKNOa5-2BrwzaQfP2GmObM0qFvMjeijtEp9eeCD=
+seg-3D-3Du_7j_ck-2FokZClFhznb-2BErOgsB5I0xULjpEN9pcKWep-2BqwVcT-2FoTvaCEgYj=
+IlP2tRJVwNKLjje9gs4Ka383a-2BIy8s3QDzpt8S5F-2F0gYc1VQUAYDoKksleDNcXu-2B84DXl=
+JZf3U7Ax2nWCHgj1nIvTFSl0aUcuiBOxeg0HXMeWCvz0LcDL9EMwKrcoNt5vO1CgfateE297i6V=
+0nuxES94KpvxLOasohekE7IDDH70W-2B-2B2fpqV62UhSrsg84dTgAyGm2b2Io4ZNDyoASJ-2BP=
+C7IJgfVYLet-2BwvURWCqG3wivgnl9FaMVPA5taBkJ-2FO-2Fw0Ve-2FepWlQZ" target=3D"_=
+blank" rel=3D"noreferrer noopener">>>> Inscreva-se Novamente Clicando Aqui!=
+</a></strong><br><br>
+Um abra=E7o,<br>
+Eduardo Moreira.</span></p>
+<div style=3D"padding: 20px; font-family: arial; font-weight: 400; font-siz=
+e: 12px; color: #999; line-height: 140%; text-align: left;">
+            <!-- START FOOTER -->
+            <div style=3D" border-top: 1px solid #ccc; padding: 0px 0px 20p=
+x 0px; margin: 20px 0px 0px 0px;">
+            <div style=3D"margin: 0px auto 0px auto; padding: 20px 0px 0px =
+0px;">
+            <div style=3D"float: left; vertical-align: middle;">
+            <p style=3D"color: #000; font-size: 12px;">You are receiving th=
+is email because you registered for this webinar. <br><a style=3D"color: #0=
+0f; font-weight: 600; text-decoration: underline;" href=3D"https://u2518102=
+9.ct.sendgrid.net/ls/click?upn=3DyRqTqDOQJNVVFyoWlAFhJrM9Fazdmj-2B-2BAgE64Z=
+YgdE-2BoyoGDXsJR-2BSYHLRvDgDb7qw3hrBux9DRnGeOM73evZAwkts9hKrcfRD-2FR66JIswK=
+Uv0M1fFyIGkJYH7JpHI9jScah_ck-2FokZClFhznb-2BErOgsB5I0xULjpEN9pcKWep-2BqwVcT=
+-2FoTvaCEgYjIlP2tRJVwNKLjje9gs4Ka383a-2BIy8s3QDzpt8S5F-2F0gYc1VQUAYDoKksleD=
+NcXu-2B84DXlJZf3U7Ax2nWCHgj1nIvTFSl0aUcuiBOxeg0HXMeWCvz0LcDL-2Frs9aOJGoL6M-=
+2Bz7qSqXTXEUI3EJSFYcVvywv8KKPBvsZYRMzLQPibpr2qstVrFfXKV-2FVCISgULki8SrBAGKV=
+TxoMzeTDZsWCJI3pgrUA-2FPaZT5QE4M0kFC6dBoIIv3V4HesUGwgJ-2BbSQEn-2B0fjmcR3">U=
+nsubscribe</a> to stop receiving notifications about this event.</p>
+            <p>WebinarJam LLC
+                <br>
+                7660 Fay Ave Ste H184
+                <br>
+                La Jolla, CA 92037
+                <br>
+                USA</p>
+            </div>
+            <div style=3D"float: right; vertical-align: top; text-align: ce=
+nter;">
+            <p>POWERED BY...</p>
+            <img src=3D"https://webinarjam-assets.s3-us-west-2.amazonaws.co=
+m/images/logo-WJ-email-footer.png" alt=3D"" width=3D"130" height=3D"20"></d=
+iv>
+            <div style=3D"clear: both;"></div>
+            </div>
+            </div>
+            <!-- END FOOTER -->
+            <img src=3D"https://event.webinarjam.com/t/open/87y2vcl5i056u53=
+500u8n9k3u7rwqyuw76" width=3D"0" height=3D"0" border=3D"0" style=3D"visibil=
+ity:hidden; display:none; height:0px!important; width:0px!important; border=
+:none;"></div><img src=3D"https://u25181029.ct.sendgrid.net/wf/open?upn=3Du=
+kMZg9Yk8lmtuWEBQiiBLd7KX9isoMTTywqqNXg-2BE5HWyrTSVo60o9uM-2FFbEuxtz7GgBZ-2F=
+JzVkv8FvQn1Mjd7KClWbYKkoElBeRbRQQdaKcc8oUjqcFXVR5EXUSGPIIM21cVLtAUZ9qamI-2F=
+Vt6SJ2ipBO-2BvsvkuJogp797-2F0ZHC5cI0fv43EW1UhJryIhkKdWohMpnKv88HL-2FTdAJ3Bd=
+-2FcZ0NiuQsYUulVjPpADdjooV1TlNozk4vQ4FFjxQ6U5ahNqYuZPBFWO13iPCU5pOv6qCl8Juf=
+BCd2B53p1VUxsVAcVKNDA191dOfVxwAoBi8qSwjriNjSactBOArGEJAxQ-3D-3D" alt=3D"" w=
+idth=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !important;width:1=
+px !important;border-width:0 !important;margin-top:0 !important;margin-bott=
+om:0 !important;margin-right:0 !important;margin-left:0 !important;padding-=
+top:0 !important;padding-bottom:0 !important;padding-right:0 !important;pad=
+ding-left:0 !important;"/></body></html>
+--1780c0d6f8b31215cf97b357fb3489818e458f58abe0692e35111b1bdb3e--
