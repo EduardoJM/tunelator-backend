@@ -6,4 +6,4 @@ while ! nc -z localhost 8000 ; do
 done
 
 docker exec api coverage run --source='.' manage.py test
-docker exec api coveralls
+docker exec api coveralls --service=github
