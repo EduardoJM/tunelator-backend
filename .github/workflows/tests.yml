@@ -30,7 +30,13 @@ jobs:
         run: yarn
 
       - name: Run tests
-        run: yarn test
+        run: yarn test:coverage
+      
+      - name: Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          coveralls
 
       - name: Stop containers
         if: always()
