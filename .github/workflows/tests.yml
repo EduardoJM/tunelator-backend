@@ -14,7 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
       - name: Write secrets to repository
         run: |
           printf "%s\n" "$DEV_ENV_FILE" >> ./tunelator/.env
