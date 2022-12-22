@@ -9,6 +9,7 @@
     "test": "./tests.sh",
     "test:coverage": "./coverage.sh",
     "test:watch": "nodemon --ext py --exec './tests.sh'",
+    "test:coveralls": "./coveralls.sh"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

@@ -25,17 +25,21 @@ services:
       - tunelator
 
   api:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     container_name: api
     entrypoint: ['./entrypoints/tests/entrypoint.api.sh']
     volumes:
-      - ./tunelator:/app
+      - .:/app
     ports:
       - 8000:8000
     networks:
       - tunelator
     depends_on:
       - "db"
+    environment:
+      - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
 
 networks:
   tunelator:

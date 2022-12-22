@@ -18,7 +18,9 @@ services:
       - tunelator
 
   api:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     entrypoint: ['./entrypoints/production/entrypoint.api.sh']
     ports:
       - 8000:8000
@@ -28,7 +30,9 @@ services:
       - "db"
 
   worker:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     entrypoint: ['./entrypoints/production/entrypoint.worker.sh']
     networks:
       - tunelator
@@ -39,7 +43,9 @@ services:
       - "api"
     
   watcher:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
     networks:
       - tunelator

@@ -18,6 +18,7 @@ click-repl==0.2.0
 coreapi==2.3.3
 coreschema==0.0.4
 coverage==6.4.1
+coveralls==3.3.1
 cryptography==36.0.2
 Deprecated==1.2.13
 Django==3.2.16
@@ -35,6 +36,7 @@ django-storages==1.12.3
 django-timezone-field==4.2.3
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
+docopt==0.6.2
 drf-yasg==1.20.0
 firebase-admin==5.2.0
 google-api-core==2.7.1
