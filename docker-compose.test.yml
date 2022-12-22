@@ -40,6 +40,7 @@ services:
       - "db"
     environment:
       - COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
 
 networks:
   tunelator:
