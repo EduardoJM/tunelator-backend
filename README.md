@@ -39,7 +39,7 @@ O projeto, como um "MVP", entrou em produção com poucos usuários para testes 
 Nesse repositório, existem modificações para simplificar a execução do back-end localmente, devido ao fato de que o projeto foi aberto a fins de manter uma certa "história" da aplicação. Levando isso em consideração, vale, nesse momento, mostrar um breve diagrama da arquitetura da aplicação em operação.
 
 
-## 2.1 Recebimento e Reenvio de E-mails
+### 2.1 Recebimento e Reenvio de E-mails
 
 Para o recebimento dos e-mails, configuramos um servidor (em uma VPS da Digital Ocean por ter um preço acessível para projetos pequenos como esse) de e-mails com o Postfix e um *file watcher* de modo que quando um novo e-mail caia na pasta do usuário o mesmo era salvo e processado pelo back-end da aplicação.
 
@@ -51,7 +51,7 @@ Os e-mails são processados, são adicionados banner's indicando que o e-mail fo
     <img src="https://raw.githubusercontent.com/EduardoJM/tunelator-backend/main/.github/images/arquitetura1.png" alt="Arquitetura do app original descrita acima" />
 </p>
 
-## 2.2 Usuários de E-mails
+### 2.2 Usuários de E-mails
 
 No servidor de e-mails, configurado com o Postfix, o usuário Linux é usado como usuário de e-mail. Dessa forma, foi criada uma aplicação, com Flask, apenas para servir de interface entre a aplicação original django e o sistema operacional do servidor de e-mails.
 
