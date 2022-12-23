@@ -47,7 +47,7 @@ def periodic_check_mails():
     from mails.models import UserMail
     from mails.tasks import check_user_late_mails
     
-    mails = UserMail.objects.filter(plan_enabled=True).all()    
+    mails = UserMail.objects.filter(plan_enabled=True).all()
     for mail in mails:
         with suppress(Exception):
             check_user_late_mails(mail.pk)
