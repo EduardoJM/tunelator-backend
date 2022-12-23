@@ -53,7 +53,7 @@ Os e-mails são processados, são adicionados banner's indicando que o e-mail fo
 
 ### 2.2 Usuários de E-mails
 
-No servidor de e-mails, configurado com o Postfix, o usuário Linux é usado como usuário de e-mail. Dessa forma, foi criada uma aplicação, com Flask, apenas para servir de interface entre a aplicação original django e o sistema operacional do servidor de e-mails.
+No servidor de e-mails, configurado com o Postfix, o usuário Linux é usado como usuário de e-mail. Dessa forma, foi criada uma aplicação, com Flask, apenas para servir de interface entre a aplicação original django e o sistema operacional do servidor de e-mails (disponível em [/usersystem](https://github.com/EduardoJM/tunelator-backend/tree/main/usersystem)).
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/EduardoJM/tunelator-backend/main/.github/images/arquitetura2.png" alt="Arquitetura do app original descrita acima" />
