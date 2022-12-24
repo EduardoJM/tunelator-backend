@@ -27,11 +27,13 @@ services:
       - tunelator
 
   api:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     container_name: api
     entrypoint: ['./entrypoints/development/entrypoint.api.sh']
     volumes:
-      - ./tunelator:/app
+      - .:/app
     ports:
       - 8000:8000
     networks:
@@ -40,12 +42,30 @@ services:
       - "db"
       - "redis"
 
+  usersystem:
+    build:
+      context: .
+      dockerfile: Dockerfile.usersystem
+    container_name: usersystem
+    entrypoint: ['./entrypoint.sh']
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+    networks:
+      - tunelator
+    depends_on:
+      - "db"
+      - "api"
+
   worker:
-    build: ./tunelator
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
     container_name: worker
     entrypoint: ['./entrypoints/development/entrypoint.worker.sh']
     volumes:
-      - ./tunelator:/app
+      - .:/app
     networks:
       - tunelator
     depends_on:

@@ -125,12 +125,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-if not DEBUG:
+if env.bool('USE_AWS_S3', False):
     AWS_S3_CUSTOM_DOMAIN = env('AWS_S3_DOMAIN')
     AWS_STORAGE_BUCKET_NAME = env('AWS_S3_BUCKET_NAME')
     AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    DEFAULT_FILE_STORAGE = 'core.storage.MediaS3Boto3Storage'
+    STATICFILES_STORAGE = 'core.storage.StaticS3Boto3Storage'
 
 #
 # Celery Task Result
@@ -142,7 +142,7 @@ CELERY_RESULT_EXTENDED = True
 #
 # User System
 #
-USER_SYSTEM_URL = "https://usersystem.tunelator.com.br"
+USER_SYSTEM_URL = env('USER_SYSTEM_URL')
 USER_SYSTEM_AUTHORIZATION = env('USER_SYSTEM_AUTHORIZATION')
 
 #

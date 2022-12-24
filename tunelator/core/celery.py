@@ -10,10 +10,8 @@ from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+env = environ.Env(DEBUG=(bool, False))
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
@@ -23,10 +21,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 app.conf.beat_scheduler = 'django_celery_beat.schedulers.DatabaseScheduler'
 
-if env('DEBUG'):
-    BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
-    app.conf.broker_url = BASE_REDIS_URL
-else:
+if env.bool('USE_AWS_SQS', False):
     key = quote(env('AWS_SQS_KEY'), safe='')
     access = quote(env('AWS_SQS_ACCESS'), safe='')
     region = env('AWS_SQS_REGION')
@@ -34,6 +29,9 @@ else:
     app.conf.broker_transport_options = {
         "region": region
     }
+else:
+    BASE_REDIS_URL = env('REDIS_CELERY_URL', default=None)
+    app.conf.broker_url = BASE_REDIS_URL
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):

@@ -41,19 +41,32 @@ services:
     depends_on:
       - "db"
       - "api"
-    
-  watcher:
+
+  usersystem:
     build:
       context: .
-      dockerfile: Dockerfile.tunelator
-    entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
+      dockerfile: Dockerfile.usersystem
+    entrypoint: ['./entrypoint.sh']
+    ports:
+      - 5000:5000
     networks:
       - tunelator
-    volumes:
-      - /home:/home
     depends_on:
       - "db"
       - "api"
+
+#  watcher:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.tunelator
+#    entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
+#    networks:
+#      - tunelator
+#    volumes:
+#      - /home:/home
+#    depends_on:
+#      - "db"
+#      - "api"
 
 networks:
   tunelator:
