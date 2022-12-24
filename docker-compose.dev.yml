@@ -60,20 +60,20 @@ services:
     environment:
       - AUTHORIZATION=65417b70a1a7bd08a6189f4d309d90979cbe7b56
 
-#  worker:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.tunelator
-#    container_name: worker
-#    entrypoint: ['./entrypoints/development/entrypoint.worker.sh']
-#    volumes:
-#      - .:/app
-#    networks:
-#      - tunelator
-#    depends_on:
-#      - "db"
-#      - "redis"
-#      - "api"
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
+    container_name: worker
+    entrypoint: ['./entrypoints/development/entrypoint.worker.sh']
+    volumes:
+      - .:/app
+    networks:
+      - tunelator
+    depends_on:
+      - "db"
+      - "redis"
+      - "api"
 
 networks:
   tunelator:
