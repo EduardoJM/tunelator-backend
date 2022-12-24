@@ -58,3 +58,42 @@ No servidor de e-mails, configurado com o Postfix, o usuário Linux é usado com
 <p align="center">
     <img src="https://raw.githubusercontent.com/EduardoJM/tunelator-backend/main/.github/images/arquitetura2.png" alt="Arquitetura do app original descrita acima" />
 </p>
+
+### 2.3 Storage e Background Tasks
+
+Para storage de arquivos, em ambiente de produção, foi configurado um ambiente com o AWS S3 (Simple Storage Service), ver [Ref 1](#ref-1). Em ambiente local, foi utilizado o sistema de storage padrão do django salvando os arquivos em disco.
+
+Para o *celery* e a execução de tarefas em segundo plano, em ambiente local, foi utilizada um container *REDIS* como broker. Já em produção, uma configuração para o uso do AWS SQS (Simple Queue Service) foi definida para o broker.
+
+Essas configurações podem, e devem, ser definidas dentro do arquivo `/tunelator/.env`, conforme o arquivo de exemplos `/tunelator/.env.example`.
+
+## 3. Alterações na Arquitetura para Ambientes Locais
+
+Para a execução em ambientes locais, principalmente após encerrar o projeto, alguns pontos do item 2 foram alterados para facilitar a execução. Não temos o servidor de e-mails e, portanto, alguns pontos não fazem tanto sentido serem mantidos, como o *file watcher*. Dessa forma, o container do *file watcher* foi removido dos arquivos do `docker-compose`. Porém, em resumo, o trecho do `docker-compose` desse container é:
+
+```yml
+# ...
+
+  watcher:
+    build:
+      context: .
+      dockerfile: Dockerfile.tunelator
+    entrypoint: ['./entrypoints/production/entrypoint.watcher.sh']
+    networks:
+      - tunelator
+    volumes:
+      - /home:/home
+    depends_on:
+      - "db"
+      - "api"
+
+# ...
+```
+
+Outro ponto é que a interface de comunicação entre o sistema operacional do servidor de e-mails e do back-end django, feito em Flask, pode ser utilizado dentro de um container (aqui há um **ponto de atenção**: as informações de usuários "salvas" não são preservadas) e a aplicação foi inserida nesse repositório em [/usersystem](https://github.com/EduardoJM/tunelator-backend/tree/main/usersystem) e dockerizada.
+
+## Referências
+
+<a id="ref-1"></a> 1 - [django-storages + S3: lidando com arquivos de mesmo nome](https://dev.to/eduardojm/django-storages-s3-lidando-com-arquivos-de-mesmo-nome-4eo1)
+
+<a id="ref-2"></a> 2 - [Django + Celery: testando sistemas com filas](https://dev.to/eduardojm/django-celery-testando-sistemas-com-filas-3e1n)
