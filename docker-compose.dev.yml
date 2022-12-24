@@ -57,8 +57,6 @@ services:
     depends_on:
       - "db"
       - "api"
-    environment:
-      - AUTHORIZATION=65417b70a1a7bd08a6189f4d309d90979cbe7b56
 
   worker:
     build:
