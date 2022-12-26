@@ -111,7 +111,7 @@ def stripe_subscription_manage_view(request, uuid):
     ).first()
     
     if not manager or manager.used:
-        return redirect('https://dashboard.tunelator.com.br/customer/error', status=303)
+        return redirect('https://dashboard.tunelator.com.br/customer/error', status=302)
     
     manager.used = True
     manager.save()
@@ -119,7 +119,7 @@ def stripe_subscription_manage_view(request, uuid):
     user = manager.user
     plan_util = PlanIntegration(user)
     if not plan_util.is_paid_approval():
-        return redirect('https://dashboard.tunelator.com.br/customer/error', status=303)
+        return redirect('https://dashboard.tunelator.com.br/customer/error', status=302)
     
     approval = plan_util.approval
     customer_id = approval.stripe_customer_id
@@ -129,7 +129,7 @@ def stripe_subscription_manage_view(request, uuid):
         customer=customer_id,
         return_url=return_url,
     )
-    return redirect(session.url, status=303)
+    return redirect(session.url, status=302)
 
 @csrf_exempt
 def stripe_subscription_view(request, uuid):
