@@ -2,7 +2,6 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import AccessToken
 from authentication.models import User
-from plans.models import Plan
 from payments.models import SubscriptionManager
 
 class CreateManagerIdAPITestCase(APITestCase):
