@@ -127,7 +127,7 @@ def check_user_late_mails(user_mail_id):
 
     user_mail = UserMail.objects.filter(pk=user_mail_id).first()
     if not user_mail:
-        MailUserNotFoundError({ 'pk': user_mail_id })
+        raise MailUserNotFoundError({ 'pk': user_mail_id })
     
     path_to_find = "/home/%s/Mail/Inbox/new" % user_mail.mail_user
     

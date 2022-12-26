@@ -6,6 +6,7 @@ from mails.tasks import (
     check_user_late_mails,
     save_user_late_mail
 )
+from exceptions.core import MailUserNotFoundError
 
 class CheckUserLateMailsTestCase(TestCase):
     def setUp(self):
@@ -30,6 +31,11 @@ class CheckUserLateMailsTestCase(TestCase):
     def test_with_exception(self):
         with self.assertRaises(FileNotFoundError):
             check_user_late_mails(self.mail.pk)
+
+    def test_with_invalid_user_mail_id(self):
+        user_mail_id = 56454995
+        with self.assertRaises(MailUserNotFoundError):
+            check_user_late_mails(user_mail_id)
 
     @patch('mails.tasks.listdir', MagicMock(return_value=['any-file']))
     @patch('mails.tasks.isfile', MagicMock(return_value=True))
