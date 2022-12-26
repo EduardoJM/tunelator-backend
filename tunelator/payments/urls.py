@@ -8,7 +8,7 @@ from payments.views import (
 )
 
 urlpatterns = [
-    path('checkout/', CreateCheckoutAPIView.as_view()),
+    path('checkout/', CreateCheckoutAPIView.as_view(), name="create-checkout-uid"),
     path('checkout/go/<uuid>/', stripe_subscription_view),
     path('manage/', CreateManagerAPIView.as_view()),
     path('manage/go/<uuid>/', stripe_subscription_manage_view),
