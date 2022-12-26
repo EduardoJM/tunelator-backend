@@ -4,12 +4,12 @@ from django.http import HttpResponseRedirect
 from unittest.mock import MagicMock, Mock, patch
 from authentication.models import User
 from plans.models import Plan, Approval
-from payments.models import SubscriptionCheckout
+from payments.models import SubscriptionManager
 from payments.views import stripe_subscription_view
 
-class StripeSubscriptionViewTestCase(TestCase):
-    error_response = 'https://dashboard.tunelator.com.br/checkout/error'
-    already_paid = 'https://dashboard.tunelator.com.br/checkout/already-paid'
+class StripeSubscriptionManageViewTestCase(TestCase):
+    error_response = 'https://dashboard.tunelator.com.br/customer/error'
+    return_url = 'https://dashboard.tunelator.com.br'
 
     def setUp(self):
         self.email = 'example@example.com.br'
@@ -32,7 +32,7 @@ class StripeSubscriptionViewTestCase(TestCase):
         )
 
     def test_not_subscription_found(self):
-        url = reverse('checkout-view', args=['uid-token'])
+        url = reverse('manage-view', args=['uid-token'])
         response = self.client.get(url)
 
         self.assertTrue(isinstance(response, HttpResponseRedirect))
@@ -40,73 +40,61 @@ class StripeSubscriptionViewTestCase(TestCase):
         self.assertEqual(response.url, self.error_response)
 
     def test_used_subscription(self):
-        used_checkout = SubscriptionCheckout.objects.create(
+        used_manager = SubscriptionManager.objects.create(
             user=self.user,
-            plan=self.plan,
             used=True
         )
 
-        url = reverse('checkout-view', args=[used_checkout.checkout_id])
+        url = reverse('manage-view', args=[used_manager.manager_id])
         response = self.client.get(url)
 
         self.assertTrue(isinstance(response, HttpResponseRedirect))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, self.error_response)
+    
+    def test_without_paid_approval(self):
+        manager = SubscriptionManager.objects.create(user=self.user)
 
-    def test_user_with_paid_approval(self):
-        self.plan2 = Plan.objects.create(
-            name=self.plan_name,
-            description=self.plan_description,
-            plan_type=Plan.TYPE_PAID
-        )
-        self.approval = Approval.objects.create(
-            plan=self.plan2,
-            user=self.user,
-            stripe_session_id='any',
-            stripe_subscription_id='any',
-            stripe_customer_id='any',
-            status=Approval.STATUS_ACTIVE
-        )
-        checkout = SubscriptionCheckout.objects.create(
-            user=self.user,
-            plan=self.plan,
-        )
-
-        url = reverse('checkout-view', args=[checkout.checkout_id])
+        url = reverse('manage-view', args=[manager.manager_id])
         response = self.client.get(url)
 
+        manager = SubscriptionManager.objects.get(pk=manager.pk)
+
+        self.assertTrue(manager.used)
         self.assertTrue(isinstance(response, HttpResponseRedirect))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, self.already_paid)
-    
-    @patch('payments.views.stripe.checkout.Session.create')
+        self.assertEqual(response.url, self.error_response)
+
+    @patch('payments.views.stripe.billing_portal.Session.create')
     def test_user_with_valid_checkout(self, mock_stripe: MagicMock):
         plan2 = Plan.objects.create(
             name=self.plan_name,
             description=self.plan_description,
             plan_type=Plan.TYPE_PAID
         )
-        checkout = SubscriptionCheckout.objects.create(
+        approval = Approval.objects.create(
             user=self.user,
             plan=plan2,
+            stripe_session_id='session-id',
+            stripe_subscription_id='subscription-id',
+            stripe_customer_id='customer-id',
+            status=Approval.STATUS_ACTIVE
         )
-        stripe_id = 'any-stripe-id'
+        manager = SubscriptionManager.objects.create(user=self.user)
         stripe_url = 'http://any_stripe_url.com/'
 
         mock_stripe.return_value = MagicMock()
-        mock_stripe.return_value.id = stripe_id
         mock_stripe.return_value.url = stripe_url
 
-        url = reverse('checkout-view', args=[checkout.checkout_id])
+        url = reverse('manage-view', args=[manager.manager_id])
         response = self.client.get(url)
 
-        checkout = SubscriptionCheckout.objects.get(pk=checkout.pk)
-        approval = Approval.objects.filter(user=self.user, plan=plan2).first()
+        manager = SubscriptionManager.objects.get(pk=manager.pk)
         
-        self.assertTrue(checkout.used)
-        self.assertIsNotNone(approval)
-        self.assertEqual(approval.stripe_session_id, stripe_id)
-
+        self.assertTrue(manager.used)
+        
         self.assertTrue(isinstance(response, HttpResponseRedirect))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, stripe_url)
+        mock_stripe.assert_called_once_with(customer=approval.stripe_customer_id, return_url=self.return_url)
+    
