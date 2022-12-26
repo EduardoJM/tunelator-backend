@@ -5,7 +5,7 @@ from authentication.models import User
 from plans.models import Plan
 from payments.models import SubscriptionCheckout
 
-class CheckoutViewAPITestCase(APITestCase):
+class CreateCheckoutIdAPITestCase(APITestCase):
     url = reverse('create-checkout-uid')
 
     def setUp(self):
