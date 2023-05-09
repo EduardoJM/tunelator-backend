@@ -21,7 +21,7 @@ coverage==6.4.1
 coveralls==3.3.1
 cryptography==39.0.1
 Deprecated==1.2.13
-Django==3.2.18
+Django==3.2.19
 django-admin-sortable==2.2.4
 django-celery-beat==2.2.1
 django-celery-results==2.4.0
