@@ -4,7 +4,7 @@ WORKDIR /app/tunelator
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-RUN apt-get update && apt-get install python3-dev default-libmysqlclient-dev netcat gettext -y
+RUN apt-get update && apt-get install python3-dev default-libmysqlclient-dev netcat-traditional gettext -y
 
 COPY ./tunelator/requirements.txt /app/tunelator/requirements.txt
 RUN pip install --no-cache -r requirements.txt
