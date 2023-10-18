@@ -94,7 +94,7 @@ sqlparse==0.4.4
 stripe==2.74.0
 tqdm==4.64.0
 uritemplate==4.1.1
-urllib3==1.26.17
+urllib3==1.26.18
 vine==5.0.0
 wcwidth==0.2.5
 wrapt==1.14.0
