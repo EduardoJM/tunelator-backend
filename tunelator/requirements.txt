@@ -84,7 +84,7 @@ python-dateutil==2.8.2
 pytz==2022.1
 PyYAML==6.0
 redis==4.5.4
-requests==2.31.0
+requests==2.32.0
 rsa==4.8
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
